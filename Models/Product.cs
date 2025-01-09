@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WebbShoppen1._0.Models
+{
+    internal class Product
+    {
+        public int Id { get; set; }
+        public string ProductName { get; set; }
+        public string Description { get; set; }
+        public double ProductPrice { get; set; }
+        public int ProductInStock { get; set; }
+        public int ReorderLevel { get; set; }
+        public bool OutgoingProduct { get; set; }
+        public bool OnSale { get; set; }
+        public double DiscountAmount { get; set; }
+
+        public int ManufacturerId { get; set; }
+        public int SupplierId { get; set; }
+        public int ProductCategoryId { get; set; }
+
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+        public virtual ProductCategory ProductCategory { get; set; }
+        public virtual Supplier Supplier { get; set; }
+        public virtual Manufacturer Manufacturer { get; set; }
+
+    }
+}

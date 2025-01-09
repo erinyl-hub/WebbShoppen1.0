@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebbShoppen1.0", "WebbShoppen1.0.csproj", "{108EAA21-0E31-45CF-A700-72F03AB74E15}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{108EAA21-0E31-45CF-A700-72F03AB74E15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{108EAA21-0E31-45CF-A700-72F03AB74E15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{108EAA21-0E31-45CF-A700-72F03AB74E15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{108EAA21-0E31-45CF-A700-72F03AB74E15}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BDA7F600-619E-467E-AA6F-F6EF45BB3912}
+	EndGlobalSection
+EndGlobal
