@@ -11,7 +11,7 @@ namespace WebbShoppen1._0.Models
         public int Id { get; set; }
         public double UnitPrice { get; set; }
         public int Quantity { get; set; }
-        public double Discount { get; set; }
+        public double? Discount { get; set; }
 
         public int ProductId { get; set; }
         public int OrderId { get; set; }

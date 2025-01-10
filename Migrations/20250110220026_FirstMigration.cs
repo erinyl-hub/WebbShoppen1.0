@@ -31,17 +31,16 @@ namespace WebbShoppen1._0.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EmailAdress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SecondName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Age = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    YearBorn = table.Column<int>(type: "int", nullable: false),
                     Gender = table.Column<bool>(type: "bit", nullable: false),
                     Adress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmailAdress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TelephoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -123,13 +122,13 @@ namespace WebbShoppen1._0.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductPrice = table.Column<double>(type: "float", nullable: false),
                     ProductInStock = table.Column<int>(type: "int", nullable: false),
-                    ReorderLevel = table.Column<int>(type: "int", nullable: false),
+                    ReorderLevel = table.Column<int>(type: "int", nullable: true),
                     OutgoingProduct = table.Column<bool>(type: "bit", nullable: false),
                     OnSale = table.Column<bool>(type: "bit", nullable: false),
-                    DiscountAmount = table.Column<double>(type: "float", nullable: false),
+                    DiscountAmount = table.Column<double>(type: "float", nullable: true),
                     ManufacturerId = table.Column<int>(type: "int", nullable: false),
                     SupplierId = table.Column<int>(type: "int", nullable: false),
                     ProductCategoryId = table.Column<int>(type: "int", nullable: false)
@@ -165,7 +164,7 @@ namespace WebbShoppen1._0.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UnitPrice = table.Column<double>(type: "float", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    Discount = table.Column<double>(type: "float", nullable: false),
+                    Discount = table.Column<double>(type: "float", nullable: true),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false)
                 },

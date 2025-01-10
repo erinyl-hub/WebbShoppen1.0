@@ -10,13 +10,13 @@ namespace WebbShoppen1._0.Models
     {
         public int Id { get; set; }
         public string ProductName { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public double ProductPrice { get; set; }
         public int ProductInStock { get; set; }
-        public int ReorderLevel { get; set; }
+        public int? ReorderLevel { get; set; }
         public bool OutgoingProduct { get; set; }
         public bool OnSale { get; set; }
-        public double DiscountAmount { get; set; }
+        public double? DiscountAmount { get; set; }
 
         public int ManufacturerId { get; set; }
         public int SupplierId { get; set; }

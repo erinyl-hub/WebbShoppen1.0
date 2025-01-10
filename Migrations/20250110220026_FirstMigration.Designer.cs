@@ -12,7 +12,7 @@ using WebbShoppen1._0.Models;
 namespace WebbShoppen1._0.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20250110111840_FirstMigration")]
+    [Migration("20250110220026_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -58,9 +58,6 @@ namespace WebbShoppen1._0.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -73,12 +70,12 @@ namespace WebbShoppen1._0.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("Gender")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -88,7 +85,7 @@ namespace WebbShoppen1._0.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SecondName")
+                    b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -96,9 +93,8 @@ namespace WebbShoppen1._0.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("YearBorn")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -169,7 +165,7 @@ namespace WebbShoppen1._0.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<double>("Discount")
+                    b.Property<double?>("Discount")
                         .HasColumnType("float");
 
                     b.Property<int>("OrderId")
@@ -202,10 +198,9 @@ namespace WebbShoppen1._0.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("DiscountAmount")
+                    b.Property<double?>("DiscountAmount")
                         .HasColumnType("float");
 
                     b.Property<int>("ManufacturerId")
@@ -230,7 +225,7 @@ namespace WebbShoppen1._0.Migrations
                     b.Property<double>("ProductPrice")
                         .HasColumnType("float");
 
-                    b.Property<int>("ReorderLevel")
+                    b.Property<int?>("ReorderLevel")
                         .HasColumnType("int");
 
                     b.Property<int>("SupplierId")
