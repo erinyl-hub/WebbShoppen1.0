@@ -12,7 +12,7 @@ using WebbShoppen1._0.Models;
 namespace WebbShoppen1._0.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20250109225435_FirstMigration")]
+    [Migration("20250110111840_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -58,6 +58,9 @@ namespace WebbShoppen1._0.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -73,6 +76,9 @@ namespace WebbShoppen1._0.Migrations
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Gender")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Password")
                         .IsRequired()
