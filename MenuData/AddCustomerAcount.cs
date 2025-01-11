@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebbShoppen1._0.MenuData
 {
-    internal class CreateCustomerAcount
+    internal class AddCustomerAcount
     {
         public List<string> createLogginData = new List<string> {
             "Enter emailadress",

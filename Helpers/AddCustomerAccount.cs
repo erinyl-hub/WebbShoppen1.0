@@ -16,7 +16,7 @@ namespace WebbShoppen1._0.Helpers
             int x = 40;
             int y = 10;
 
-            MenuData.CreateCustomerAcount createCustomerAcount = new MenuData.CreateCustomerAcount();
+            MenuData.AddCustomerAcount createCustomerAcount = new MenuData.AddCustomerAcount();
             var logginData = new Window("Enter loggin data", x, y, createCustomerAcount.createLogginData);
             logginData.Draw(5);
 
@@ -78,7 +78,7 @@ namespace WebbShoppen1._0.Helpers
 
                 else
                 {
-                    MenuData.CreateCustomerAcount passwordNotMatch = new MenuData.CreateCustomerAcount();
+                    MenuData.AddCustomerAcount passwordNotMatch = new MenuData.AddCustomerAcount();
                     var notMatch = new Window("", x - 1, y + 8, passwordNotMatch.passwordNotMatch);
                     notMatch.Draw(0);
 
@@ -112,7 +112,7 @@ namespace WebbShoppen1._0.Helpers
                     }
                 }
 
-                MenuData.CreateCustomerAcount yearWrongFormat = new MenuData.CreateCustomerAcount();
+                MenuData.AddCustomerAcount yearWrongFormat = new MenuData.AddCustomerAcount();
                 var notMatch = new Window("", x - 13, y + 8, yearWrongFormat.wrongYear);
                 notMatch.Draw(0);
                 Console.SetCursorPosition(x, y);
@@ -142,7 +142,7 @@ namespace WebbShoppen1._0.Helpers
                     return true;
                 }
 
-                MenuData.CreateCustomerAcount wrongGenderKey = new MenuData.CreateCustomerAcount();
+                MenuData.AddCustomerAcount wrongGenderKey = new MenuData.AddCustomerAcount();
                 var notMatch = new Window("", x - 1, y + 7, wrongGenderKey.wrongGenderKey);
                 notMatch.Draw(0);
             }
@@ -170,7 +170,7 @@ namespace WebbShoppen1._0.Helpers
                     return emailAdress;
                 }
 
-                MenuData.CreateCustomerAcount emailInUse = new MenuData.CreateCustomerAcount();
+                MenuData.AddCustomerAcount emailInUse = new MenuData.AddCustomerAcount();
                 var notMatch = new Window("", x, y + 8, emailInUse.emailInUse);
                 notMatch.Draw(0);
                 emailAdress = Helpers.Replacer(emailAdress.Length);

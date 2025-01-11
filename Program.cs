@@ -5,7 +5,11 @@
         static void Main(string[] args)
         {
 
-            AddToDb.DbAddCustomer.AddCustomer();
+            Helpers.AddProductCategory productCategory = new Helpers.AddProductCategory();
+
+            productCategory.CreateProductCategory();
+
+            Console.ReadLine();
 
 
         }

@@ -10,17 +10,16 @@ namespace WebbShoppen1._0.Models
     {
         public ProductCategory() { }
 
-        public ProductCategory(string categoryName, int productCategoryCount, string description) 
+        public ProductCategory(string categoryName, string description) 
         { 
             CategoryName = categoryName;
-            ProductCategoryCount = productCategoryCount;
             Description = description;
         }
 
 
         public int Id { get; set; }
         public string CategoryName { get; set; }
-        public int ProductCategoryCount { get; set; }
+        public int? ProductCategoryCount { get; set; }
         public string Description { get; set; }
 
 
