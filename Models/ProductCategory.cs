@@ -8,6 +8,16 @@ namespace WebbShoppen1._0.Models
 {
     internal class ProductCategory
     {
+        public ProductCategory() { }
+
+        public ProductCategory(string categoryName, int productCategoryCount, string description) 
+        { 
+            CategoryName = categoryName;
+            ProductCategoryCount = productCategoryCount;
+            Description = description;
+        }
+
+
         public int Id { get; set; }
         public string CategoryName { get; set; }
         public int ProductCategoryCount { get; set; }

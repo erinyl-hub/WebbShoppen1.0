@@ -8,6 +8,27 @@ namespace WebbShoppen1._0.Models
 {
     internal class Product
     {
+        public Product() { }
+
+        public Product
+            (string productName, string description, double productPrice,
+            int? reorderLevel, bool outgoingProduct, bool onSale, double? discountAmount,
+            int manufacturerId, int supplierId, int productCategoryId) 
+        {
+            ProductName = productName;
+            Description = description;
+            ProductPrice = productPrice;
+            ReorderLevel = reorderLevel;
+            OutgoingProduct = outgoingProduct;
+            OnSale = onSale;
+            DiscountAmount = discountAmount;
+
+            ManufacturerId = manufacturerId;
+            SupplierId = supplierId;
+            ProductCategoryId = productCategoryId;
+        }
+
+
         public int Id { get; set; }
         public string ProductName { get; set; }
         public string? Description { get; set; }

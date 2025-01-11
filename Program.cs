@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
 
-            AddToDb.AddCustomerDb.AddCustomer();
+            AddToDb.DbAddCustomer.AddCustomer();
 
 
         }

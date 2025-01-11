@@ -8,6 +8,23 @@ namespace WebbShoppen1._0.Models
 {
     internal class Order
     {
+
+        public Order() { }
+
+        public Order
+            (DateTime orderDate, DateTime arrivalDate, double totalCost, int productCount,
+            bool orderArrived, bool orderUnderway, bool orderProcessing, int customerId) 
+        {
+            OrderDate = orderDate;
+            ArrivalDate = arrivalDate;
+            TotalCost = totalCost;
+            ProductCount = productCount;
+            OrderArrived = orderArrived;
+            OrderProcessing = orderProcessing;
+            CustomerId = customerId;         
+        }
+
+
         public int Id { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime ArrivalDate { get; set; }

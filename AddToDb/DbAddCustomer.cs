@@ -6,24 +6,20 @@ using System.Threading.Tasks;
 
 namespace WebbShoppen1._0.AddToDb
 {
-    internal class AddCustomerDb
+    internal class DbAddCustomer
     {
 
         public static void AddCustomer()
         {
-            Helpers.CreateCustomerAccount createCustomerAccount = new Helpers.CreateCustomerAccount();
+            Helpers.AddCustomerAccount createCustomerAccount = new Helpers.AddCustomerAccount();
 
             Models.Customer customer =  createCustomerAccount.CreateAcount();
 
             using (var dB = new Models.MyDbContext())
             {
                 dB.Customers.Add(customer);
-
                 dB.SaveChanges();
-
             }
         }
-
-
     }
 }

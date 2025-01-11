@@ -8,6 +8,15 @@ namespace WebbShoppen1._0.Models
 {
     internal class Manufacturer
     {
+        public Manufacturer() { }
+
+        public Manufacturer(string name) 
+        { 
+            Name = name;
+        }
+
+
+
         public int Id { get; set; }
         public string Name { get; set; }
 
