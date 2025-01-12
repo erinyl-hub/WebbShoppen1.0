@@ -161,7 +161,7 @@ namespace WebbShoppen1._0.Helpers
                     foreach (var customer in dB.Customers)
                     {
                         if(customer.EmailAdress == emailAdress) {inUse = false;}
-                    }
+                    }          
                 }
 
                 if(inUse == true && emailAdress != "")

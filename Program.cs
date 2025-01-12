@@ -5,13 +5,16 @@
         static void Main(string[] args)
         {
 
-            Helpers.AddProductCategory productCategory = new Helpers.AddProductCategory();
+            //AddToDb.DbAddManufacturer.AddManufacturer();
 
-            productCategory.CreateProductCategory();
+            Helpers.AddProduct addProduct = new Helpers.AddProduct();
+            addProduct.ManufacturerList();
+            addProduct.CreateProduct();
+
 
             Console.ReadLine();
 
 
-        }
+        }   
     }
 }

@@ -8,10 +8,7 @@ using System.Threading.Tasks;
 namespace WebbShoppen1._0.Models
 {
     internal class MyDbContext : DbContext
-
     {
-
-
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Manufacturer> Manufacturers { get; set; }
@@ -20,10 +17,6 @@ namespace WebbShoppen1._0.Models
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
-
-
-
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

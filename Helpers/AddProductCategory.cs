@@ -15,8 +15,8 @@ namespace WebbShoppen1._0.Helpers
             int y = 10;
 
             MenuData.AddProductCategory addProductCategoryName = new MenuData.AddProductCategory();
-            var productCategoryName = new Window("Create product category", x, y, addProductCategoryName.createProductCategoryName);
-            productCategoryName.Draw(1);
+            var productCategoryName = new Window("Add product category", x, y, addProductCategoryName.createProductCategoryName);
+            productCategoryName.Draw(4);
 
             MenuData.AddProductCategory addProductCategoryDescription = new MenuData.AddProductCategory();
             var productCategoryDescription = new Window("", x - 9, y + 4, addProductCategoryDescription.createProductCategoryDescription);
@@ -28,11 +28,9 @@ namespace WebbShoppen1._0.Helpers
             Console.SetCursorPosition(x - 6, y + 6);
             string description = Console.ReadLine();
 
-
             Models.ProductCategory productCategory = new Models.ProductCategory(categoryName, description);
 
             return productCategory;
-
         }
     }
 }
