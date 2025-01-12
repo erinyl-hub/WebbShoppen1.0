@@ -90,7 +90,7 @@ namespace WebbShoppen1._0.Helpers
             Console.ReadKey();
         }
 
-        public void DisplayList<T>(Func<T, string> formatter) where T : class
+        public void DisplayList<T>(Func<T, string> formatter) where T : class // lär dig
         {
             List<T> items;
 
@@ -111,6 +111,6 @@ namespace WebbShoppen1._0.Helpers
             Console.ReadKey();
         }
 
-
+        // DisplayList<Manufacturer>(m => $"[{m.Id}]     {m.Name}");
     }
 }
