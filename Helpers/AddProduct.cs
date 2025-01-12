@@ -70,7 +70,7 @@ namespace WebbShoppen1._0.Helpers
 
         public void ManufacturerList()
         {
-            var manufacturer;
+            List <Manufacturer> manufacturer = new List<Manufacturer>();
 
             using (var dB = new MyDbContext())
             {
@@ -90,7 +90,7 @@ namespace WebbShoppen1._0.Helpers
             Console.ReadKey();
         }
 
-        public void DisplayList<T>(Func<T, string> formatter) where T : class // Lär dig
+        public void DisplayList<T>(Func<T, string> formatter) where T : class
         {
             List<T> items;
 
@@ -112,6 +112,5 @@ namespace WebbShoppen1._0.Helpers
         }
 
 
-        // DisplayList<Manufacturer>(m => $"[{m.Id}]     {m.Name}");
     }
 }
