@@ -10,10 +10,18 @@ namespace WebbShoppen1._0.Helpers
     internal class AddProduct
     {
 
-        public void CreateProduct()
+        public async void CreateProduct()
         {
             int x = 40;
             int y = 10;
+
+            List<Manufacturer> manufacturers = GetDbInfo<Manufacturer>().Result; // Okej, får lista av objektet för att använda senare, ta bort resultat använd await
+            
+
+            Task<List<string>> manufacturerListMenu = DisplayList<Manufacturer>(m => $"[{m.Id}]     {m.Name}", manufacturers);
+            // skriv om lite, måste "<Manufacturer>" stå med?
+
+
 
             MenuData.AddProduct addProduct = new MenuData.AddProduct();
             var produktData = new Window("Add product", x, y, addProduct.addProductMenu);
@@ -30,11 +38,17 @@ namespace WebbShoppen1._0.Helpers
             int unitsInStock = checkFormat<int>(x + 3, y + 8, -6, 8);
 
 
+            var manufacturerList = await manufacturerListMenu;
+            int manufacturerId = someDb(x, y, manufacturerList, "Manufacturers");
 
 
 
-            Console.SetCursorPosition(x + 3, y + 10);
-            int manufacturerId = int.Parse(Console.ReadLine()); // skriver ut lista av manufa
+
+
+
+
+
+
 
             Console.SetCursorPosition(x + 3, y + 12);
             int supplierId = int.Parse(Console.ReadLine()); // skriver ut lista av sup
@@ -68,36 +82,8 @@ namespace WebbShoppen1._0.Helpers
 
         }
 
-        public void ManufacturerList()
+        public async Task<List<string>> DisplayList<T>(Func<T, string> formatter, List<T> items) where T : class // lär dig
         {
-            List <Manufacturer> manufacturer = new List<Manufacturer>();
-
-            using (var dB = new MyDbContext())
-            {
-                manufacturer = dB.Manufacturers.ToList();
-            }
-
-            List<string> manufacturerList = new List<string>() {"ID      Name" };
-
-            foreach(var unit in manufacturer)
-            {
-                string toString = "[" + unit.Id.ToString() + "]     " + unit.Name;
-                manufacturerList.Add(toString);
-            }
-
-            var manufacturers = new Window("Manufacturers", 10, 5, manufacturerList);
-            manufacturers.Draw(0);
-            Console.ReadKey();
-        }
-
-        public void DisplayList<T>(Func<T, string> formatter) where T : class // lär dig
-        {
-            List<T> items;
-
-            using (var db = new MyDbContext())
-            {
-                items = db.Set<T>().ToList();
-            }
 
             List<string> itemList = new List<string>() { "ID      Name" };
 
@@ -106,11 +92,36 @@ namespace WebbShoppen1._0.Helpers
                 itemList.Add(formatter(item));
             }
 
-            var window = new Window(typeof(T).Name + "s", 10, 5, itemList);
-            window.Draw(0);
-            Console.ReadKey();
+            return itemList;
         }
 
-        // DisplayList<Manufacturer>(m => $"[{m.Id}]     {m.Name}");
+
+
+        //Du får input, och funkar, men måste kolla att Id existerar, samt skriv ut namnet på Fronten
+        public int someDb(int x, int y, List<string> modelList, string dbValue)
+        {
+            var manufacturers = new Window(dbValue, x + 30, y, modelList);
+            manufacturers.Draw(10);
+
+            int returnValue = checkFormat<int>(x + 3, y + 10, -6, 6);
+            Helpers.clearMsg(x + 30, y, 35, modelList.Count + 2);
+
+            return returnValue;
+        }
+
+
+        public async Task<List<T>> GetDbInfo<T>() where T : class
+        {
+            List<T> items;
+
+            using (var db = new MyDbContext())
+            {
+                items = db.Set<T>().ToList();
+            }           
+
+            return items;
+        }
+
+
     }
 }

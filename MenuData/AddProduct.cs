@@ -18,11 +18,11 @@ namespace WebbShoppen1._0.MenuData
             ">",
             "Units in stock",
             ">",
-            "Manufacturer",
+            "Manufacturer Id",
             ">",
-             "Supplier",
+             "Supplier Id",
             ">",
-            "Product Category",
+            "Product Category Id",
             ">",
 
         };

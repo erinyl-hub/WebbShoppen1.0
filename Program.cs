@@ -1,4 +1,6 @@
-﻿namespace WebbShoppen1._0
+﻿using WebbShoppen1._0.Models;
+
+namespace WebbShoppen1._0
 {
     internal class Program
     {
@@ -7,8 +9,9 @@
 
             //AddToDb.DbAddManufacturer.AddManufacturer();
 
-            Helpers.AddProduct addProduct = new Helpers.AddProduct();
-            addProduct.ManufacturerList();
+
+
+            Helpers.AddProduct addProduct = new Helpers.AddProduct();         
             addProduct.CreateProduct();
 
 
