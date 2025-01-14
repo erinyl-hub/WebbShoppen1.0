@@ -34,5 +34,12 @@ namespace WebbShoppen1._0.MenuData
 
         };
 
+        public List<string> wrongId = new List<string>
+        {
+            "Id you have entered does not exist",
+            "            Try again",
+
+        };
+
     }
 }

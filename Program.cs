@@ -11,7 +11,7 @@ namespace WebbShoppen1._0
 
 
 
-            Helpers.AddProduct addProduct = new Helpers.AddProduct();         
+            Helpers.AddProduct addProduct = new Helpers.AddProduct();
             addProduct.CreateProduct();
 
 
