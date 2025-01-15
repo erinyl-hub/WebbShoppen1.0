@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using WebbShoppen1._0.Models;
 
 namespace WebbShoppen1._0.Helpers
@@ -15,13 +16,13 @@ namespace WebbShoppen1._0.Helpers
             int x = 40;
             int y = 10;
 
-            List<Manufacturer> manufacturers = await GetDbInfo<Manufacturer>(); // Okej, får lista av objektet för att använda senare, ta bort resultat använd await
-            List<Supplier> suppliers = await GetDbInfo<Supplier>();
-            List<ProductCategory> productCategorys = await GetDbInfo<ProductCategory>();
+            var manufacturers =  GetDbInfo<Manufacturer>(); // Okej, får lista av objektet för att använda senare, ta bort resultat använd await
+            var suppliers =  GetDbInfo<Supplier>();
+            var productCategorys = GetDbInfo<ProductCategory>();
 
-            Task<List<string>> manufacturerListMenu = DisplayList<Manufacturer>(m => $"[{m.Id}]     {m.Name}", manufacturers);
-            Task<List<string>> suppliersListMenu = DisplayList<Supplier>(m => $"[{m.Id}]     {m.Name}", suppliers);
-            Task<List<string>> productCategorysListMenu = DisplayList<ProductCategory>(m => $"[{m.Id}]     {m.CategoryName}", productCategorys);
+            Task<List<string>> manufacturerListMenu = DisplayList<Manufacturer>(m => $"[{m.Id}]     {m.Name}", await manufacturers);
+            Task<List<string>> suppliersListMenu = DisplayList<Supplier>(m => $"[{m.Id}]     {m.Name}", await suppliers);
+            Task<List<string>> productCategorysListMenu = DisplayList<ProductCategory>(m => $"[{m.Id}]     {m.CategoryName}", await productCategorys);
 
 
             MenuData.AddProduct addProduct = new MenuData.AddProduct();
@@ -40,13 +41,13 @@ namespace WebbShoppen1._0.Helpers
 
 
             var manufacturerList = await manufacturerListMenu;
-            int manufacturerId = someDb(x + 3, y + 10, -10, 0, manufacturerList, "Manufacturers", manufacturers);
+            int manufacturerId = someDb(x + 3, y + 10, -10, 0, manufacturerList, "Manufacturers", await manufacturers);
 
             var suppplierList = await suppliersListMenu;
-            int supplierId = someDb(x + 3, y + 12, -12, -2, suppplierList, "Suppliers", suppliers);
+            int supplierId = someDb(x + 3, y + 12, -12, -2, suppplierList, "Suppliers", await suppliers);
 
             var productCategorysList = await productCategorysListMenu;
-            int productCategoryId = someDb(x + 3, y + 14, -14, -4, productCategorysList, "Product Categorys", productCategorys);
+            int productCategoryId = someDb(x + 3, y + 14, -14, -4, productCategorysList, "Product Categorys", await productCategorys);
 
 
 
@@ -70,6 +71,7 @@ namespace WebbShoppen1._0.Helpers
                     return (T)Convert.ChangeType(value, typeof(T));
                 }
 
+                
                 MenuData.AddProduct wrongFormat = new MenuData.AddProduct();
                 var notMatch = new Window("", x + xMsgWindow, y + yMsgWindow, wrongFormat.wrongFormatWindow);
                 notMatch.Draw(0);
@@ -81,7 +83,6 @@ namespace WebbShoppen1._0.Helpers
 
         public async Task<List<string>> DisplayList<T>(Func<T, string> formatter, List<T> items) where T : class // lär dig
         {
-
             List<string> itemList = new List<string>() { "ID      Name" };
 
             foreach (var item in items)
@@ -98,18 +99,18 @@ namespace WebbShoppen1._0.Helpers
         public int someDb<T>
             (int x, int y, int yModList, int yModErrosMsg, List<string> modelList, string dbValueName, List<T> objects) where T : class, IHasId
         {
-            var manufacturers = new Window(dbValueName, x + 27, y + yModList, modelList);
+            var manufacturers = new Window(dbValueName, x + 30, y + yModList, modelList);
             manufacturers.Draw(10);
 
 
             while (true)
             {
                 MenuData.AddProduct addProduct = new MenuData.AddProduct();
-                Helpers.clearMsg(x - 8, y + 6, 30, addProduct.wrongId.Count() + 2);
                 int returnValue = checkFormat<int>(x, y, -6, 6 + yModErrosMsg);
+                Helpers.clearMsg(x - 8, y + 6, 30, addProduct.wrongId.Count() + 2);
 
-               
-                if(valueExistInDb(objects, returnValue))
+
+                if (valueExistInDb(objects, returnValue))
                 {
                     Helpers.clearMsg(x + 27, y + yModList, 35, modelList.Count + 2);
                     return returnValue;
@@ -120,7 +121,7 @@ namespace WebbShoppen1._0.Helpers
 
 
                 
-                var wrongId = new Window("", x - 8, y + 6, addProduct.wrongId); // Fixa
+                var wrongId = new Window("", x + 1, y + 6, addProduct.wrongId); // Fixa
                 wrongId.Draw(10);
 
             }            
