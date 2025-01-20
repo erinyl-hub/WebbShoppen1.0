@@ -9,10 +9,10 @@ namespace WebbShoppen1._0
 
             //AddToDb.DbAddManufacturer.AddManufacturer();
 
+            AddToDb.DbAddCustomer.AddCustomer();
 
-
-            Helpers.AddProduct addProduct = new Helpers.AddProduct();
-            addProduct.CreateProduct();
+            // Helpers.AddProduct addProduct = new Helpers.AddProduct();
+            // addProduct.CreateProduct();
 
 
             Console.ReadLine();

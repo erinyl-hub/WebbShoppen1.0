@@ -10,9 +10,9 @@ namespace WebbShoppen1._0.Helpers
 {
     internal class AddCustomerAccount
     {
-        public Models.Customer CreateAcount()
-        {
 
+        public Models.LoggInInfo CreateAcount()
+        {
             int x = 40;
             int y = 10;
 
@@ -20,13 +20,28 @@ namespace WebbShoppen1._0.Helpers
             var logginData = new Window("Enter loggin data", x, y, createCustomerAcount.createLogginData);
             logginData.Draw(5);
 
-
             string emailAdress = CreateEmailAdress(x, y);
             string password = CreatePassword(x + 3, y);
 
+            Models.LoggInInfo loggInInfo = new Models.LoggInInfo
+                    (emailAdress, password, null);
+
             Console.Clear();
-            var customerInfo = new Window("Enter personal info", x, y, createCustomerAcount.createPersenolInfo);
-            customerInfo.Draw(8);
+
+            return loggInInfo;
+        }
+
+
+
+        public Models.CustomerInfo CreatePersonalInfo()
+        {
+
+            int x = 40;
+            int y = 10;
+
+            MenuData.AddCustomerAcount createCustomerAcount = new MenuData.AddCustomerAcount();
+            var customerInfoMenu = new Window("Enter personal info", x, y, createCustomerAcount.createPersenolInfo);
+            customerInfoMenu.Draw(8);
 
             Console.SetCursorPosition(x + 7, y + 1);
             string name = Console.ReadLine();
@@ -53,10 +68,11 @@ namespace WebbShoppen1._0.Helpers
             Console.SetCursorPosition(x + 18, y + 9);
             string telephoneNumber = Console.ReadLine();
 
-            Models.Customer customer = new Models.Customer
-                (emailAdress,password,name,surname,yearBorn,gender,adress,postalCode,city,country,telephoneNumber);
+            Models.CustomerInfo customerInfo = new Models.CustomerInfo
+                (name, surname, yearBorn, gender, adress, postalCode, city, country, telephoneNumber);
 
-            return customer;
+
+            return customerInfo;
         }
 
         public string CreatePassword(int x, int y)
@@ -65,8 +81,6 @@ namespace WebbShoppen1._0.Helpers
             {
                 Console.SetCursorPosition(x, y + 4);
                 string password = Console.ReadLine();
-
-
 
                 Console.SetCursorPosition(x, y + 6);
                 string passwordAgain = Console.ReadLine();
@@ -158,13 +172,13 @@ namespace WebbShoppen1._0.Helpers
 
                 using (var dB = new Models.MyDbContext())
                 {
-                    foreach (var customer in dB.Customers)
+                    foreach (var customer in dB.LoggInInfo)
                     {
-                        if(customer.EmailAdress == emailAdress) {inUse = false;}
-                    }          
+                        if (customer.EmailAdress == emailAdress) { inUse = false; }
+                    }
                 }
 
-                if(inUse == true && emailAdress != "")
+                if (inUse == true && emailAdress != "")
                 {
                     Helpers.clearMsg(x - 13, y + 8, 43, 4);
                     return emailAdress;

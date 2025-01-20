@@ -13,11 +13,13 @@ namespace WebbShoppen1._0.AddToDb
         {
             Helpers.AddCustomerAccount createCustomerAccount = new Helpers.AddCustomerAccount();
 
-            Models.Customer customer =  createCustomerAccount.CreateAcount();
+            Models.LoggInInfo loggInInfo = createCustomerAccount.CreateAcount();
+            Models.CustomerInfo customer =  createCustomerAccount.CreatePersonalInfo();
 
             using (var dB = new Models.MyDbContext())
             {
-                dB.Customers.Add(customer);
+                customer.LoggInInfo = loggInInfo; 
+                dB.CustomerInfo.Add(customer);
                 dB.SaveChanges();
             }
         }

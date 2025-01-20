@@ -9,8 +9,8 @@ namespace WebbShoppen1._0.Models
 {
     internal class MyDbContext : DbContext
     {
-        public DbSet<Admin> Admins { get; set; }
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<LoggInInfo> LoggInInfo { get; set; }
+        public DbSet<CustomerInfo> CustomerInfo { get; set; }
         public DbSet<Manufacturer> Manufacturers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }

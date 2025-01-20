@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace WebbShoppen1._0.Models
 {
-    internal class Customer
+    internal class CustomerInfo
     {
 
-        public Customer
-            (string emailAdress, string password, string name, string surname, int yearBorn,
+        public CustomerInfo
+            (string name, string surname, int yearBorn,
             bool gender, string adress, string postalcode, string city, string country, string telephoneNumber)
         {
-            EmailAdress = emailAdress;
-            Password = password;
+
             Name = name;
             Surname = surname;
             YearBorn = yearBorn;
@@ -26,14 +25,10 @@ namespace WebbShoppen1._0.Models
             TelephoneNumber = telephoneNumber;
         }
 
-        public Customer()
+        public CustomerInfo()
         { }
 
-
-
         public int Id { get; set; }
-        public string EmailAdress { get; set; }
-        public string Password { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public int YearBorn { get; set; }
@@ -43,7 +38,11 @@ namespace WebbShoppen1._0.Models
         public string City { get; set; }
         public string Country { get; set; }
         public string TelephoneNumber { get; set; }
+        public int LoggInInfoId { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+        public virtual LoggInInfo LoggInInfo { get; set; }
+
+
     }
 }

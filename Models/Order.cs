@@ -36,7 +36,7 @@ namespace WebbShoppen1._0.Models
 
         public int CustomerId { get; set; }
 
-        public virtual Customer Customer { get; set; }
+        public virtual CustomerInfo Customer { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
         
     }
