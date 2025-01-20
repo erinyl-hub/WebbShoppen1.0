@@ -33,5 +33,19 @@ namespace WebbShoppen1._0.Helpers
                 Console.WriteLine();
             }
         }
+
+
+        public static void LoggIn()
+        {
+            int x = 40;
+            int y = 10;
+
+            MenuData.LoggIn loggIn = new MenuData.LoggIn();
+            var supplierName = new Window("Logg In", x, y, loggIn.loggIn);
+            supplierName.Draw(1);
+
+
+
+        }
     }
 }

@@ -172,7 +172,7 @@ namespace WebbShoppen1._0.Helpers
 
                 using (var dB = new Models.MyDbContext())
                 {
-                    foreach (var customer in dB.LoggInInfo)
+                    foreach (var customer in dB.LoggInInfo) // skapa ett link istället?
                     {
                         if (customer.EmailAdress == emailAdress) { inUse = false; }
                     }
