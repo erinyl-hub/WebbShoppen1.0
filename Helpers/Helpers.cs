@@ -44,7 +44,7 @@ namespace WebbShoppen1._0.Helpers
 
         }
 
-        public static void MenuLoggOut(int x, int y)
+        public static void MenuLogoOut(int x, int y)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             MenuData.PureWearaLogo menuLog = new MenuData.PureWearaLogo();
@@ -54,6 +54,37 @@ namespace WebbShoppen1._0.Helpers
             frame.Draw(97);
 
             Console.ResetColor();
+        }
+
+        public static void TangentMeny()
+        {
+            string[] menuItems = { "Alternativ 1", "Alternativ 2", "Alternativ 3", "Avsluta" };
+            int selectedIndex = 0;
+
+            while (true)
+            {
+                Console.Clear();
+                for (int i = 0; i < menuItems.Length; i++)
+                {
+                    if (i == selectedIndex)
+                        Console.WriteLine($"> {menuItems[i]}");
+                    else
+                        Console.WriteLine($"  {menuItems[i]}");
+                }
+
+                ConsoleKeyInfo key = Console.ReadKey();
+                if (key.Key == ConsoleKey.UpArrow)
+                    selectedIndex = (selectedIndex - 1 + menuItems.Length) % menuItems.Length;
+                else if (key.Key == ConsoleKey.DownArrow)
+                    selectedIndex = (selectedIndex + 1) % menuItems.Length;
+                else if (key.Key == ConsoleKey.Enter)
+                    break; // Välj alternativ
+            }
+
+            Console.Clear();
+            Console.WriteLine($"Du valde: {menuItems[selectedIndex]}");
+
+
         }
     }
 }

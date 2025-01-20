@@ -8,9 +8,9 @@ namespace WebbShoppen1._0
         static void Main(string[] args)
         {
             
-            Helpers.Helpers.MenuLoggOut(25,1);
+            Helpers.Helpers.MenuLogoOut(25,1);
 
-
+            Helpers.Helpers.Test();
 
 
 
