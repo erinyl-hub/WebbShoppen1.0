@@ -10,10 +10,10 @@ namespace WebbShoppen1._0.AddToDb
 {
     internal class DbAddProductCategory
     {
-        public static void AddProductCategory()
+        public void AddProductCategory(int x, int y)
         {
-            Helpers.AddProductCategory addProductCategory = new Helpers.AddProductCategory();
-            Models.ProductCategory productCategory = addProductCategory.CreateProductCategory();
+
+            Models.ProductCategory productCategory = CreateProductCategory(x,y);
 
             using(var dB = new MyDbContext())
             {
@@ -24,10 +24,8 @@ namespace WebbShoppen1._0.AddToDb
 
         }
 
-        public Models.ProductCategory CreateProductCategory()
+        public Models.ProductCategory CreateProductCategory(int x, int y)
         {
-            int x = 40;
-            int y = 10;
 
             MenuData.AddProductCategory addProductCategoryName = new MenuData.AddProductCategory();
             var productCategoryName = new Window("Add product category", x, y, addProductCategoryName.createProductCategoryName);

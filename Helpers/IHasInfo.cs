@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace WebbShoppen1._0.Helpers
 {
-    internal interface IHasId
+    internal interface IHasInfo
     {
         int Id { get; }
+
     }
 }

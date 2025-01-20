@@ -7,7 +7,7 @@ using WebbShoppen1._0.Helpers;
 
 namespace WebbShoppen1._0.Models
 {
-    internal class Supplier : IHasId
+    internal class Supplier : IHasInfo
     {
         public Supplier() { }
 

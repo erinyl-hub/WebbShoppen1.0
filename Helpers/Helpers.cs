@@ -35,17 +35,25 @@ namespace WebbShoppen1._0.Helpers
         }
 
 
-        public static void LoggIn()
+        public static void LoggIn(int x, int y)
         {
-            int x = 40;
-            int y = 10;
 
             MenuData.LoggIn loggIn = new MenuData.LoggIn();
             var supplierName = new Window("Logg In", x, y, loggIn.loggIn);
             supplierName.Draw(1);
 
+        }
 
+        public static void MenuLoggOut(int x, int y)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            MenuData.PureWearaLogo menuLog = new MenuData.PureWearaLogo();
+            Window menuLogWindow = new Window("", x, y, menuLog.MenuLog);
+            menuLogWindow.Draw(1);
+            Window frame = new Window("",x, y + 9, menuLog.frame);
+            frame.Draw(97);
 
+            Console.ResetColor();
         }
     }
 }

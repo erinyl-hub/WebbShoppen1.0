@@ -29,14 +29,14 @@ namespace WebbShoppen1._0.MenuData
 
         public List<string> wrongFormatWindow = new List<string>
         {
-            "You have enterd the worng format",
-            "          Try again",
+            "Worng format",
+            " Try again",
 
         };
 
         public List<string> wrongId = new List<string>
         {
-            "Id does not exist",
+            "ID does not exist",
             "    Try again",
 
         };

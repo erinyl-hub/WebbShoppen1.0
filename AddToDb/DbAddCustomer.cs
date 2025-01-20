@@ -10,12 +10,10 @@ namespace WebbShoppen1._0.AddToDb
     internal class DbAddCustomer
     {
 
-        public static void AddCustomer()
+        public void AddCustomer(int x, int y)
         {
-            Helpers.AddCustomerAccount createCustomerAccount = new Helpers.AddCustomerAccount();
-
-            Models.LoggInInfo loggInInfo = createCustomerAccount.CreateAcount();
-            Models.CustomerInfo customer =  createCustomerAccount.CreatePersonalInfo();
+            Models.LoggInInfo loggInInfo = CreateAcount(x,y);
+            Models.CustomerInfo customer = CreatePersonalInfo(x,y);
 
             using (var dB = new Models.MyDbContext())
             {
@@ -25,11 +23,8 @@ namespace WebbShoppen1._0.AddToDb
             }
         }
 
-
-        public Models.LoggInInfo CreateAcount()
+        public Models.LoggInInfo CreateAcount(int x, int y)
         {
-            int x = 40;
-            int y = 10;
 
             MenuData.AddCustomerAcount createCustomerAcount = new MenuData.AddCustomerAcount();
             var logginData = new Window("Enter loggin data", x, y, createCustomerAcount.createLogginData);
@@ -41,18 +36,15 @@ namespace WebbShoppen1._0.AddToDb
             Models.LoggInInfo loggInInfo = new Models.LoggInInfo
                     (emailAdress, password, null);
 
-            Console.Clear();
+            Helpers.Helpers.clearMsg(x - 1, y,30,createCustomerAcount.createLogginData.Count);
 
             return loggInInfo;
         }
 
-
-
-        public Models.CustomerInfo CreatePersonalInfo()
+        public Models.CustomerInfo CreatePersonalInfo(int x, int y)
         {
 
-            int x = 40;
-            int y = 10;
+
 
             MenuData.AddCustomerAcount createCustomerAcount = new MenuData.AddCustomerAcount();
             var customerInfoMenu = new Window("Enter personal info", x, y, createCustomerAcount.createPersenolInfo);
@@ -85,6 +77,8 @@ namespace WebbShoppen1._0.AddToDb
 
             Models.CustomerInfo customerInfo = new Models.CustomerInfo
                 (name, surname, yearBorn, gender, adress, postalCode, city, country, telephoneNumber);
+
+            Helpers.Helpers.clearMsg(x - 1, y, 37, createCustomerAcount.createPersenolInfo.Count + 2);
 
 
             return customerInfo;

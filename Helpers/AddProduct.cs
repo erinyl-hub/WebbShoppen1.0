@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,18 +12,14 @@ namespace WebbShoppen1._0.Helpers
     internal class AddProduct
     {
 
-        public async void CreateProduct()
+        public async void CreateProduct(int x, int y)
         {
-            int x = 40;
-            int y = 10;
 
-            var manufacturers =  GetDbInfo<Manufacturer>(); // Okej, får lista av objektet för att använda senare, ta bort resultat använd await
-            var suppliers =  GetDbInfo<Supplier>();
+
+
+            var manufacturers = GetDbInfo<Manufacturer>();
+            var suppliers = GetDbInfo<Supplier>();
             var productCategorys = GetDbInfo<ProductCategory>();
-
-            Task<List<string>> manufacturerListMenu = DisplayList<Manufacturer>(m => $"[{m.Id}]     {m.Name}", await manufacturers);
-            Task<List<string>> suppliersListMenu = DisplayList<Supplier>(m => $"[{m.Id}]     {m.Name}", await suppliers);
-            Task<List<string>> productCategorysListMenu = DisplayList<ProductCategory>(m => $"[{m.Id}]     {m.CategoryName}", await productCategorys);
 
 
             MenuData.AddProduct addProduct = new MenuData.AddProduct();
@@ -35,25 +32,15 @@ namespace WebbShoppen1._0.Helpers
             Console.SetCursorPosition(x + 3, y + 4);
             string description = Console.ReadLine();
 
-            double unitPrice = checkFormat<double>(x + 3, y + 6, -6, 10);
+            Task<List<string>> manufacturerListMenu = DisplayList<Manufacturer>(m => $"[{m.Id}]     {m.Name}", await manufacturers);
+            Task<List<string>> suppliersListMenu = DisplayList<Supplier>(m => $"[{m.Id}]     {m.Name}", await suppliers);
+            Task<List<string>> productCategorysListMenu = DisplayList<ProductCategory>(m => $"[{m.Id}]     {m.CategoryName}", await productCategorys);
 
-            int unitsInStock = checkFormat<int>(x + 3, y + 8, -6, 8);
-
-
-            var manufacturerList = await manufacturerListMenu;
-            int manufacturerId = someDb(x + 3, y + 10, -10, 0, manufacturerList, "Manufacturers", await manufacturers);
-
-            var suppplierList = await suppliersListMenu;
-            int supplierId = someDb(x + 3, y + 12, -12, -2, suppplierList, "Suppliers", await suppliers);
-
-            var productCategorysList = await productCategorysListMenu;
-            int productCategoryId = someDb(x + 3, y + 14, -14, -4, productCategorysList, "Product Categorys", await productCategorys);
-
-
-
-
-
-
+            double unitPrice = checkFormat<double>(x + 3, y + 6, +3, 10);
+            int unitsInStock = checkFormat<int>(x + 3, y + 8, +3, 8);
+            int manufacturerId = someDb(x + 3, y + 10, -10, 0, await manufacturerListMenu, "Manufacturers", await manufacturers);
+            int supplierId = someDb(x + 3, y + 12, -12, -2, await suppliersListMenu, "Suppliers", await suppliers);
+            int productCategoryId = someDb(x + 3, y + 14, -14, -4, await productCategorysListMenu, "Product Categorys", await productCategorys);
 
         }
 
@@ -61,24 +48,25 @@ namespace WebbShoppen1._0.Helpers
         {
             double value;
 
+
+
             while (true)
             {
                 Console.SetCursorPosition(x, y);
 
                 if (double.TryParse(Console.ReadLine(), out value))
                 {
-                    Helpers.clearMsg(x + xMsgWindow, y + yMsgWindow, 37, 5);
+                    Helpers.clearMsg(x + xMsgWindow, y + yMsgWindow, 30, 5);
                     return (T)Convert.ChangeType(value, typeof(T));
                 }
-
-                
+       
                 MenuData.AddProduct wrongFormat = new MenuData.AddProduct();
+                Helpers.clearMsg(x + xMsgWindow - 5, y + yMsgWindow, 30, 5);
                 var notMatch = new Window("", x + xMsgWindow, y + yMsgWindow, wrongFormat.wrongFormatWindow);
                 notMatch.Draw(0);
                 Console.SetCursorPosition(x, y);
                 Console.Write("          ");
             }
-
         }
 
         public async Task<List<string>> DisplayList<T>(Func<T, string> formatter, List<T> items) where T : class // lär dig
@@ -97,17 +85,16 @@ namespace WebbShoppen1._0.Helpers
 
         //Du får input, och funkar, men måste kolla att Id existerar, samt skriv ut namnet på Fronten
         public int someDb<T>
-            (int x, int y, int yModList, int yModErrosMsg, List<string> modelList, string dbValueName, List<T> objects) where T : class, IHasId
+            (int x, int y, int yModList, int yModErrosMsg, List<string> modelList, string dbValueName, List<T> objects) where T : class, IHasInfo
         {
             var manufacturers = new Window(dbValueName, x + 30, y + yModList, modelList);
             manufacturers.Draw(10);
 
-
             while (true)
             {
                 MenuData.AddProduct addProduct = new MenuData.AddProduct();
-                int returnValue = checkFormat<int>(x, y, -6, 6 + yModErrosMsg);
-                Helpers.clearMsg(x - 8, y + 6, 30, addProduct.wrongId.Count() + 2);
+                int returnValue = checkFormat<int>(x, y, 2, 6 + yModErrosMsg);
+                Helpers.clearMsg(x + 1, y + 6, 30, addProduct.wrongId.Count() + 2);
 
 
                 if (valueExistInDb(objects, returnValue))
@@ -118,10 +105,8 @@ namespace WebbShoppen1._0.Helpers
 
                 Console.SetCursorPosition(x, y);
                 Console.Write("         ");
-
-
-                
-                var wrongId = new Window("", x + 1, y + 6, addProduct.wrongId); // Fixa
+             
+                var wrongId = new Window("", x + 1, y + 6 + yModErrosMsg, addProduct.wrongId); // Fixa
                 wrongId.Draw(10);
 
             }            
@@ -134,13 +119,13 @@ namespace WebbShoppen1._0.Helpers
 
             using (var db = new MyDbContext())
             {
-                items = db.Set<T>().ToList();
+                items = await db.Set<T>().ToListAsync();
             }
-
             return items;
+
         }
 
-        public bool valueExistInDb<T>(List<T> objects, int valueToTest) where T : class, IHasId
+        public bool valueExistInDb<T>(List<T> objects, int valueToTest) where T : class, IHasInfo
         {
             foreach (var item in objects)
             {

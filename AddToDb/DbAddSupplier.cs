@@ -10,10 +10,10 @@ namespace WebbShoppen1._0.AddToDb
 {
     internal class DbAddSupplier
     {
-        public static void AddSupplier()
+        public void AddSupplier(int x, int y)
         {
-            Helpers.AddSupplier addSupplier = new Helpers.AddSupplier();
-            Models.Supplier supplier = addSupplier.CreateSupplier();
+
+            Models.Supplier supplier = CreateSupplier(x, y);
 
             using (var db = new MyDbContext())
             {
@@ -22,10 +22,9 @@ namespace WebbShoppen1._0.AddToDb
             }
         }
 
-        public Models.Supplier CreateSupplier()
+        public Models.Supplier CreateSupplier(int x, int y)
         {
-            int x = 40;
-            int y = 10;
+
 
             MenuData.AddSupplier addSupplierName = new MenuData.AddSupplier();
             var supplierName = new Window("Add supplier", x, y, addSupplierName.createSupplier);

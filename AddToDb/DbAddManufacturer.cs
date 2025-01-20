@@ -10,10 +10,9 @@ namespace WebbShoppen1._0.AddToDb
 {
     internal class DbAddManufacturer
     {
-        public static void AddManufacturer()
+        public void AddManufacturer(int x, int y)
         {
-            Helpers.AddManufacturer addManufacturer = new Helpers.AddManufacturer();
-            Models.Manufacturer manufacturer = addManufacturer.CreateManufacturer();
+            Models.Manufacturer manufacturer = CreateManufacturer(x,y);
 
             using (var dB = new MyDbContext())
             {
@@ -22,10 +21,9 @@ namespace WebbShoppen1._0.AddToDb
             }
         }
 
-        public Models.Manufacturer CreateManufacturer()
+        public Models.Manufacturer CreateManufacturer(int x, int y)
         {
-            int x = 40;
-            int y = 10;
+
 
             MenuData.AddManufacturer addManufacturerName = new MenuData.AddManufacturer();
             var manufacturerName = new Window("Add manufacturer", x, y, addManufacturerName.createManufacturer);
