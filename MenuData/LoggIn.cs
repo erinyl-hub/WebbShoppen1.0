@@ -10,10 +10,17 @@ namespace WebbShoppen1._0.MenuData
     {
         public List<string> loggIn = new List<string>
         {
-            "    1 Logg in",
-            "    2 Register",
-            "3 Forgot password",
+            "Logg in",
+            "Register",
+            "Forgot password",
 
+        };
+
+        public int[,] locations =
+        {
+            {66,21},
+            {66,22},
+            {66,23}
         };
 
     }

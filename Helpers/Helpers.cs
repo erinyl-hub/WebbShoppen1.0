@@ -22,7 +22,7 @@ namespace WebbShoppen1._0.Helpers
 
         public static void clearMsg(int x, int y, int clearSpaceX, int clearSpaceY)
         {
-            
+
             for (int i = 0; i < clearSpaceY; i++)
             {
                 Console.SetCursorPosition(x, y + i);
@@ -40,7 +40,8 @@ namespace WebbShoppen1._0.Helpers
 
             MenuData.LoggIn loggIn = new MenuData.LoggIn();
             var supplierName = new Window("Logg In", x, y, loggIn.loggIn);
-            supplierName.Draw(1);
+            supplierName.Draw(10);
+            TangentMeny(x + 1, y + 1, loggIn.loggIn, 18, 3, loggIn.locations);
 
         }
 
@@ -50,40 +51,86 @@ namespace WebbShoppen1._0.Helpers
             MenuData.PureWearaLogo menuLog = new MenuData.PureWearaLogo();
             Window menuLogWindow = new Window("", x, y, menuLog.MenuLog);
             menuLogWindow.Draw(1);
-            Window frame = new Window("",x, y + 9, menuLog.frame);
+            Window frame = new Window("", x, y + 9, menuLog.frame);
             frame.Draw(97);
 
             Console.ResetColor();
         }
 
-        public static void TangentMeny()
+        public static int TangentMeny(int x, int y, List<string> menuItems, int xClear, int yClear, int[,] pos)
         {
-            string[] menuItems = { "Alternativ 1", "Alternativ 2", "Alternativ 3", "Avsluta" };
+            //string[] menuItems = { "Alternativ 1", "Alternativ 2", "Alternativ 3", "Avsluta" };
             int selectedIndex = 0;
 
             while (true)
             {
-                Console.Clear();
-                for (int i = 0; i < menuItems.Length; i++)
+
+
+
+
+
+
+                for (int i = 0; i < menuItems.Count; i++)
                 {
+
+                  
+                    Console.SetCursorPosition(pos[i, 0], pos[i, 1]);
                     if (i == selectedIndex)
-                        Console.WriteLine($"> {menuItems[i]}");
+                        Console.Write($"> {menuItems[i]}");
                     else
-                        Console.WriteLine($"  {menuItems[i]}");
+                        Console.Write($" {menuItems[i]}");
+
+
+
+
                 }
+
+
+
+
+
+
+
+
 
                 ConsoleKeyInfo key = Console.ReadKey();
                 if (key.Key == ConsoleKey.UpArrow)
-                    selectedIndex = (selectedIndex - 1 + menuItems.Length) % menuItems.Length;
+                { selectedIndex = (selectedIndex - 1 + menuItems.Count) % menuItems.Count; }
+
                 else if (key.Key == ConsoleKey.DownArrow)
-                    selectedIndex = (selectedIndex + 1) % menuItems.Length;
+                { selectedIndex = (selectedIndex + 1) % menuItems.Count; }
+
                 else if (key.Key == ConsoleKey.Enter)
-                    break; // Välj alternativ
+                { return selectedIndex;}
+
+                //universalClear(menuItems, pos);
+
+                Helpers.clearMsg(x, y , xClear, yClear);
             }
 
-            Console.Clear();
-            Console.WriteLine($"Du valde: {menuItems[selectedIndex]}");
 
+
+
+        }
+
+        public static void specifikClear(List<string> count, int[,] locations)
+        {
+            string clearer = "";
+            for (int i = 0; i < count.Count; i++)
+            {            
+                int x = locations[i, 0];
+                int y = locations[i, 1];
+
+                for (int j = 0; j < count[i].Length; j++)
+                {
+                    Console.SetCursorPosition(x, y);
+                    Console.Write("");
+
+                }
+
+
+
+            }
 
         }
     }
