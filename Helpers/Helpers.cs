@@ -56,9 +56,9 @@ namespace WebbShoppen1._0.Helpers
             Console.ResetColor();
         }
 
-        public static void TangentMeny()
+        public static void TangentMeny() 
         {
-            string[] menuItems = { "Alternativ 1", "Alternativ 2", "Alternativ 3", "Avsluta" };
+            string[] menuItems = { "Alternativ 1", "Alternativ 2", "Alternativ 3", "Alternativ 4", "Alternativ 5", "Avsluta" };
             int selectedIndex = 0;
 
             while (true)

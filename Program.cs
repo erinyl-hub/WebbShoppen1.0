@@ -10,7 +10,7 @@ namespace WebbShoppen1._0
             
             Helpers.Helpers.MenuLogoOut(25,1);
 
-            Helpers.Helpers.Test();
+            Helpers.Helpers.TangentMeny();
 
 
 
