@@ -8,19 +8,39 @@ namespace WebbShoppen1._0.MenuData
 {
     internal class LoggIn
     {
-        public List<string> loggIn = new List<string>
+        public List<string> FrontPageOne = new List<string> // Defult
         {
             "Logg in",
             "Register",
-            "Forgot password",
+            "Categories",
+            "Search",
+        };
+
+        public int[,] FrontPageOneLocations =
+        {
+            {27 +22,11},
+            {39+22,11},
+            {52+22,11},
+            {67+22,11},
 
         };
 
-        public int[,] locations =
+
+        public List<string> FrontPageTwo = new List<string> // Inloggad
         {
-            {66,21},
-            {66,22},
-            {66,23}
+            "Logg in",
+            "Register",
+            "Categories",
+            "Search",
+        };
+
+        public int[,] FrontPageTwoLocations =
+        {
+            {27 +22,11},
+            {39+22,11},
+            {52+22,11},
+            {67+22,11},
+
         };
 
     }

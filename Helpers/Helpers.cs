@@ -39,9 +39,9 @@ namespace WebbShoppen1._0.Helpers
         {
 
             MenuData.LoggIn loggIn = new MenuData.LoggIn();
-            var supplierName = new Window("Logg In", x, y, loggIn.loggIn);
-            supplierName.Draw(10);
-            TangentMeny(x + 1, y + 1, loggIn.loggIn, 18, 3, loggIn.locations);
+            var supplierName = new Window("", x, y, loggIn.FrontPageOne);
+            //supplierName.Draw(10);
+            TangentMeny(loggIn.FrontPageOne, loggIn.FrontPageOneLocations);
 
         }
 
@@ -57,41 +57,23 @@ namespace WebbShoppen1._0.Helpers
             Console.ResetColor();
         }
 
-        public static int TangentMeny(int x, int y, List<string> menuItems, int xClear, int yClear, int[,] pos)
+        public static int TangentMeny(List<string> menuItems, int[,] pos)
         {
-            //string[] menuItems = { "Alternativ 1", "Alternativ 2", "Alternativ 3", "Avsluta" };
             int selectedIndex = 0;
 
             while (true)
             {
 
-
-
-
-
-
                 for (int i = 0; i < menuItems.Count; i++)
                 {
-
-                  
                     Console.SetCursorPosition(pos[i, 0], pos[i, 1]);
                     if (i == selectedIndex)
-                        Console.Write($"> {menuItems[i]}");
+                        Console.Write($"> [{menuItems[i]}]");
                     else
-                        Console.Write($" {menuItems[i]}");
-
-
-
-
+                    {
+                        Console.Write($"  [{menuItems[i]}]");
+                    }
                 }
-
-
-
-
-
-
-
-
 
                 ConsoleKeyInfo key = Console.ReadKey();
                 if (key.Key == ConsoleKey.UpArrow)
@@ -101,37 +83,8 @@ namespace WebbShoppen1._0.Helpers
                 { selectedIndex = (selectedIndex + 1) % menuItems.Count; }
 
                 else if (key.Key == ConsoleKey.Enter)
-                { return selectedIndex;}
-
-                //universalClear(menuItems, pos);
-
-                Helpers.clearMsg(x, y , xClear, yClear);
+                { return selectedIndex; }
             }
-
-
-
-
-        }
-
-        public static void specifikClear(List<string> count, int[,] locations)
-        {
-            string clearer = "";
-            for (int i = 0; i < count.Count; i++)
-            {            
-                int x = locations[i, 0];
-                int y = locations[i, 1];
-
-                for (int j = 0; j < count[i].Length; j++)
-                {
-                    Console.SetCursorPosition(x, y);
-                    Console.Write("");
-
-                }
-
-
-
-            }
-
         }
     }
 }

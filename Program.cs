@@ -10,12 +10,10 @@ namespace WebbShoppen1._0
             
             Helpers.Helpers.MenuLogoOut(25,1);
 
-            //Helpers.Helpers.TangentMeny(65,20); // för meny val
+
+             Helpers.Helpers.LoggIn(28, 11);
 
 
-
-
-            Helpers.Helpers.LoggIn(65, 20);
 
             //AddToDb.DbAddCustomer dbAddCustomer = new AddToDb.DbAddCustomer(); // lägga till kund
             //dbAddCustomer.AddCustomer(60, 14);
