@@ -1,5 +1,6 @@
 ﻿using WebbShoppen1._0.AddToDb;
 using WebbShoppen1._0.Models;
+using WebbShoppen1._0.TheWheel;
 
 namespace WebbShoppen1._0
 {
@@ -7,11 +8,16 @@ namespace WebbShoppen1._0
     {
         static void Main(string[] args)
         {
+
+
+            TheWheel.Start start = new TheWheel.Start();
+
+            start.StartMenu();
             
-            Helpers.Helpers.MenuLogoOut(25,1);
+            //Helpers.Helpers.MenuLogoOut(25,1);
 
 
-             Helpers.Helpers.LoggIn(28, 11);
+            // Helpers.Helpers.LoggIn(28, 11);
 
 
 

@@ -12,11 +12,11 @@ namespace WebbShoppen1._0.Models
 
         public LoggInInfo() { }
 
-        public LoggInInfo(string emailAdress, string password, bool? isAdmin) 
+        public LoggInInfo(string emailAdress, string password) 
         {
             EmailAdress = emailAdress;
             Password = password;
-            IsAdmin = isAdmin;
+            IsAdmin = false;
         }
 
         public int Id { get; set; }

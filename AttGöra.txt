@@ -21,3 +21,12 @@ Skapa metod för att logga in, skapa konto
 
 
 Kolla vidare på "esc funktion" samt "val i meny med pilar"
+
+
+
+
+Olika menyer:
+
+Defult: Logga in, registrera, produktkat, söka, kundkorg
+Inloggad: Profil,produktkat, söka, kundkorg
+Admin: Profil, admin alt, produkter, söka

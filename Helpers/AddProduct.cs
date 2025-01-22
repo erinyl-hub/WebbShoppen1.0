@@ -15,11 +15,11 @@ namespace WebbShoppen1._0.Helpers
         public async void CreateProduct(int x, int y)
         {
 
+            Helpers helpers = new Helpers();
 
-
-            var manufacturers = GetDbInfo<Manufacturer>();
-            var suppliers = GetDbInfo<Supplier>();
-            var productCategorys = GetDbInfo<ProductCategory>();
+            var manufacturers = helpers.GetDbInfo<Manufacturer>();
+            var suppliers = helpers.GetDbInfo<Supplier>();
+            var productCategorys = helpers.GetDbInfo<ProductCategory>();
 
 
             MenuData.AddProduct addProduct = new MenuData.AddProduct();
@@ -113,17 +113,6 @@ namespace WebbShoppen1._0.Helpers
         }
 
 
-        public async Task<List<T>> GetDbInfo<T>() where T : class
-        {
-            List<T> items;
-
-            using (var db = new MyDbContext())
-            {
-                items = await db.Set<T>().ToListAsync();
-            }
-            return items;
-
-        }
 
         public bool valueExistInDb<T>(List<T> objects, int valueToTest) where T : class, IHasInfo
         {

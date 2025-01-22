@@ -12,6 +12,8 @@ namespace WebbShoppen1._0.AddToDb
 
         public void AddCustomer(int x, int y)
         {
+
+
             Models.LoggInInfo loggInInfo = CreateAcount(x,y);
             Models.CustomerInfo customer = CreatePersonalInfo(x,y);
 
@@ -34,7 +36,7 @@ namespace WebbShoppen1._0.AddToDb
             string password = CreatePassword(x + 3, y);
 
             Models.LoggInInfo loggInInfo = new Models.LoggInInfo
-                    (emailAdress, password, null);
+                    (emailAdress, password);
 
             Helpers.Helpers.clearMsg(x - 1, y,30,createCustomerAcount.createLogginData.Count);
 
