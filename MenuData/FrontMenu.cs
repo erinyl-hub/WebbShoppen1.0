@@ -28,7 +28,7 @@ namespace WebbShoppen1._0.MenuData
         };
 
 
-        public List<string> FrontPageTwo = new List<string> // Inloggad
+        public List<string> FrontPageTwo = new List<string> // User
         {
             "Profile",
             "Categories",
@@ -38,14 +38,14 @@ namespace WebbShoppen1._0.MenuData
 
         public int[,] FrontPageTwoLocations =
         {
-            {31,11},
-            {43,11},
-            {58,11},
-            {69,11},
+            {28,10},
+            {40,10},
+            {55,10},
+            {66,10},
 
         };
 
-        public List<string> FrontPageTree = new List<string> // Inloggad
+        public List<string> FrontPageTree = new List<string> // Admin
         {
             "Profile",
             "Admin",
@@ -56,10 +56,10 @@ namespace WebbShoppen1._0.MenuData
 
         public int[,] FrontPageTreeLocations =
         {
-            {30,11},
-            {42,11},
-            {52,11},
-            {67,11},
+            {28,10},
+            {40,10},
+            {50,10},
+            {65,10},
 
         };
 

@@ -1,25 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+using WebbShoppen1._0.Helpers;
 using WebbShoppen1._0.Models;
+using WebbShoppen1._0.TheWheel;
 
-namespace WebbShoppen1._0.Helpers
+namespace WebbShoppen1._0.UsingDb
 {
-    internal class AddProduct
+    internal class DbAddProduct
     {
+        public async void AddProduct(int x, int y)
+        {
+            Console.Clear();
+            Helpers.Helpers.MenuLogoOut(Start.x, Start.y);
 
-        public async void CreateProduct(int x, int y)
+            Task<Models.Product> product = CreateProduct(x, y);
+
+
+            using (var dB = new Models.MyDbContext())
+            {
+                dB.Products.Add(await product);
+                dB.SaveChanges();
+            }
+        }
+
+        public async Task<Models.Product> CreateProduct(int x, int y)
         {
 
-            Helpers helpers = new Helpers();
+            UsingDb.GetInfoDb dbInfo = new UsingDb.GetInfoDb();
 
-            var manufacturers = helpers.GetDbInfo<Manufacturer>();
-            var suppliers = helpers.GetDbInfo<Supplier>();
-            var productCategorys = helpers.GetDbInfo<ProductCategory>();
+            var manufacturers = dbInfo.GetDbInfoAsync<Manufacturer>();
+            var suppliers = dbInfo.GetDbInfoAsync<Supplier>();
+            var productCategorys = dbInfo.GetDbInfoAsync<ProductCategory>();
 
 
             MenuData.AddProduct addProduct = new MenuData.AddProduct();
@@ -42,13 +56,16 @@ namespace WebbShoppen1._0.Helpers
             int supplierId = someDb(x + 3, y + 12, -12, -2, await suppliersListMenu, "Suppliers", await suppliers);
             int productCategoryId = someDb(x + 3, y + 14, -14, -4, await productCategorysListMenu, "Product Categorys", await productCategorys);
 
+            Models.Product product = new Models.Product
+                (name,description,unitPrice,null,false,false,null,manufacturerId,supplierId,productCategoryId);
+
+            return product;
+
         }
 
         public T checkFormat<T>(int x, int y, int xMsgWindow, int yMsgWindow)
         {
             double value;
-
-
 
             while (true)
             {
@@ -56,12 +73,12 @@ namespace WebbShoppen1._0.Helpers
 
                 if (double.TryParse(Console.ReadLine(), out value))
                 {
-                    Helpers.clearMsg(x + xMsgWindow, y + yMsgWindow, 30, 5);
+                    Helpers.Helpers.clearMsg(x + xMsgWindow, y + yMsgWindow, 30, 5);
                     return (T)Convert.ChangeType(value, typeof(T));
                 }
-       
+
                 MenuData.AddProduct wrongFormat = new MenuData.AddProduct();
-                Helpers.clearMsg(x + xMsgWindow - 5, y + yMsgWindow, 30, 5);
+                Helpers.Helpers.clearMsg(x + xMsgWindow - 5, y + yMsgWindow, 30, 5);
                 var notMatch = new Window("", x + xMsgWindow, y + yMsgWindow, wrongFormat.wrongFormatWindow);
                 notMatch.Draw(0);
                 Console.SetCursorPosition(x, y);
@@ -82,8 +99,6 @@ namespace WebbShoppen1._0.Helpers
         }
 
 
-
-        //Du får input, och funkar, men måste kolla att Id existerar, samt skriv ut namnet på Fronten
         public int someDb<T>
             (int x, int y, int yModList, int yModErrosMsg, List<string> modelList, string dbValueName, List<T> objects) where T : class, IHasInfo
         {
@@ -94,22 +109,22 @@ namespace WebbShoppen1._0.Helpers
             {
                 MenuData.AddProduct addProduct = new MenuData.AddProduct();
                 int returnValue = checkFormat<int>(x, y, 2, 6 + yModErrosMsg);
-                Helpers.clearMsg(x + 1, y + 6, 30, addProduct.wrongId.Count() + 2);
+                Helpers.Helpers.clearMsg(x + 1, y + 6, 30, addProduct.wrongId.Count() + 2);
 
 
                 if (valueExistInDb(objects, returnValue))
                 {
-                    Helpers.clearMsg(x + 27, y + yModList, 35, modelList.Count + 2);
+                    Helpers.Helpers.clearMsg(x + 27, y + yModList, 35, modelList.Count + 2);
                     return returnValue;
                 }
 
                 Console.SetCursorPosition(x, y);
                 Console.Write("         ");
-             
+
                 var wrongId = new Window("", x + 1, y + 6 + yModErrosMsg, addProduct.wrongId); // Fixa
                 wrongId.Draw(10);
 
-            }            
+            }
         }
 
 

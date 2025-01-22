@@ -22,7 +22,7 @@ namespace WebbShoppen1._0.MenuData
             ">",
              "Supplier Id",
             ">",
-            "Product Category Id",
+            "Category Id",
             ">",
 
         };

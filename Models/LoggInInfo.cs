@@ -22,7 +22,7 @@ namespace WebbShoppen1._0.Models
         public int Id { get; set; }
         public string EmailAdress { get; set; }
         public string Password { get; set; }
-        public bool? IsAdmin { get; set; }
+        public bool IsAdmin { get; set; }
 
         public virtual CustomerInfo Customer { get; set; }
     }

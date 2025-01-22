@@ -38,27 +38,43 @@ namespace WebbShoppen1._0.Helpers
         }
 
 
-        public static void LoggIn(int x, int y)
+        public static async void LoggIn(int x, int y)
         {
-            Helpers helpers = new Helpers();
-            var loggInInfoList = helpers.GetDbInfo<Models.LoggInInfo>();
+            UsingDb.GetInfoDb dbInfo = new UsingDb.GetInfoDb();
+            var loggInInfoList = dbInfo.GetDbInfoAsync<Models.LoggInInfo>();
 
             MenuData.LoggIn loggInData = new MenuData.LoggIn();
             Window loggInBox = new Window("Logg In", x, y, loggInData.logginData);
             loggInBox.Draw(0);
 
-            while(true)
-            { 
+            while (true)
+            {
+                Console.SetCursorPosition(x + 3, y + 2);
+                string username = Console.ReadLine();
 
-            Console.SetCursorPosition(x + 3, y + 2);
-            string username = Console.ReadLine();
+                string password = Helpers.HidePassword(x + 3, y + 4);
 
-            string password = Helpers.HidePassword(x + 3, y + 4);
+                foreach (var user in await loggInInfoList)
+                {
+                    if (user.EmailAdress == username && user.Password == password)
+                    {
+                        Start.user.Id = user.Id;
+                        Start.user.LoggdIn = true;
+
+                        if (user.IsAdmin)
+                        {
+                            Start.user.IsAdmin = true;
+                            return;
+                        }
+
+                        return;
+                    }
+                }
+
+
 
 
             }
-
-            Console.ReadKey();
         }
 
         public static void MenuLogoOut(int x, int y)
@@ -73,9 +89,11 @@ namespace WebbShoppen1._0.Helpers
             Console.ResetColor();
         }
 
-        public static int FrontMeny(List<string> menuItems, int[,] pos)
+        public static int MenuReader(List<string> menuItems, int[,] pos)
         {
             int selectedIndex = 0;
+            Console.Clear();
+            Helpers.MenuLogoOut(Start.x, Start.y);
 
             while (true)
             {
@@ -85,14 +103,20 @@ namespace WebbShoppen1._0.Helpers
                 {
                     Console.SetCursorPosition(pos[i, 0] + Start.x, pos[i, 1] + Start.y);
                     if (i == selectedIndex)
-                        Console.Write($"> [{menuItems[i]}]");
+                    {
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.Write($"> ");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write($"[{menuItems[i]}]");
+                        
+                    }
                     else
                     {
                         Console.Write($"  [{menuItems[i]}]");
                     }
                 }
 
-                ConsoleKeyInfo key = Console.ReadKey();
+                ConsoleKeyInfo key = Console.ReadKey(true);
                 if (key.Key == ConsoleKey.LeftArrow)
                 { selectedIndex = (selectedIndex - 1 + menuItems.Count) % menuItems.Count; }
 
@@ -100,7 +124,7 @@ namespace WebbShoppen1._0.Helpers
                 { selectedIndex = (selectedIndex + 1) % menuItems.Count; }
 
                 else if (key.Key == ConsoleKey.Enter)
-                { return selectedIndex; }
+                { Console.ResetColor(); return selectedIndex; }
             }
         }
 
@@ -112,9 +136,9 @@ namespace WebbShoppen1._0.Helpers
             while (true)
             {
                 Console.SetCursorPosition(x, y);
-                var key = Console.ReadKey(intercept: true); // Läs tangent utan att visa den
+                var key = Console.ReadKey(intercept: true);
 
-                if (key.Key == ConsoleKey.Enter) // Avsluta vid Enter
+                if (key.Key == ConsoleKey.Enter)
                 {
                     break;
                 }
@@ -127,31 +151,33 @@ namespace WebbShoppen1._0.Helpers
                         Console.SetCursorPosition(x, y);
                         Console.Write(" ");
                         input = input.Remove(input.Length - 1);
-                       
                     }
                 }
                 else
                 {
-                    input += key.KeyChar; // Lägg till tecken i input
-                    
-                    Console.Write("*");   // Visa ersättningstecken
+                    input += key.KeyChar;
+                    Console.Write("*");
                     x++;
                 }
             }
-
             return input;
         }
 
-        public async Task<List<T>> GetDbInfo<T>() where T : class
+        public List<Models.Product> ProductsOnSale(List<Models.Product> allProducts)
         {
-            List<T> items;
+            List < Models.Product > productsOnSale = new List<Models.Product>();
 
-            using (var db = new MyDbContext())
+            foreach (var product in allProducts)
             {
-                items = await db.Set<T>().ToListAsync();
+                if(product.OnSale == true)
+                {
+                    productsOnSale.Add(product);
+                }
             }
-            return items;
 
+            return productsOnSale;
         }
+
+
     }
 }

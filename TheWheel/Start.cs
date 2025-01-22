@@ -14,7 +14,12 @@ namespace WebbShoppen1._0.TheWheel
 
         public void StartMenu()
         {
-            Helpers.Helpers.MenuLogoOut(Start.x, Start.y);
+            UsingDb.GetInfoDb getInfoDb = new UsingDb.GetInfoDb();
+            var onSaleProducts = getInfoDb.GetDbInfo<Models.Product>();
+            Helpers.Helpers helpers = new Helpers.Helpers();
+            List<Models.Product> onSaleProductsList = helpers.ProductsOnSale(onSaleProducts);
+            
+
 
             while (true)
             {
@@ -22,24 +27,28 @@ namespace WebbShoppen1._0.TheWheel
                 FrontMenuChoise frontMenuChoise = new FrontMenuChoise();
                 int choise;
 
+                Console.Clear();
+                Helpers.Helpers.MenuLogoOut(Start.x, Start.y);
 
-                if (user.IsAdmin && user.LoggdIn) 
+                if (user.IsAdmin && user.LoggdIn)
                 {
-                    choise = Helpers.Helpers.FrontMeny(frontMenu.FrontPageTree, frontMenu.FrontPageTreeLocations);
-                    frontMenuChoise.FrontPageAdmin(choise);
+                    TheWheel.AdminPages adminPages = new TheWheel.AdminPages();
+                    adminPages.FrontPageAdmin();
 
                 }
 
                 else if (user.LoggdIn) 
                 {
-                    choise = Helpers.Helpers.FrontMeny(frontMenu.FrontPageTwo, frontMenu.FrontPageTwoLocations);
+                    
+
+                    choise = Helpers.Helpers.MenuReader(frontMenu.FrontPageTwo, frontMenu.FrontPageTwoLocations);
                     frontMenuChoise.FrontPageCustomer(choise);
 
                 }
 
                 else 
                 {
-                    choise = Helpers.Helpers.FrontMeny(frontMenu.FrontPageOne, frontMenu.FrontPageOneLocations);
+                    choise = Helpers.Helpers.MenuReader(frontMenu.FrontPageOne, frontMenu.FrontPageOneLocations);
                     frontMenuChoise.FrontPageDefult(choise);
 
                 

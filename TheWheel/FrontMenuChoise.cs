@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebbShoppen1._0.MenuData;
 
 namespace WebbShoppen1._0.TheWheel
 {
@@ -62,13 +63,30 @@ namespace WebbShoppen1._0.TheWheel
 
         public void FrontPageAdmin(int choise)
         {
-            switch (choise)
+            while (true)
             {
 
-                case 0:
+                switch (choise)
+                {
 
-                    break;
+                    case 0: //Profile
 
+                        break;
+
+                    case 1: //Admin
+
+
+
+                        break;
+
+                    case 2: //Categories
+
+                        break;
+
+                    case 3: //Search
+
+                        break;
+                }
             }
 
         }

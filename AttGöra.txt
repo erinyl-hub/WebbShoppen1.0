@@ -30,3 +30,6 @@ Olika menyer:
 Defult: Logga in, registrera, produktkat, söka, kundkorg
 Inloggad: Profil,produktkat, söka, kundkorg
 Admin: Profil, admin alt, produkter, söka
+
+
+Display varor som är på rea
