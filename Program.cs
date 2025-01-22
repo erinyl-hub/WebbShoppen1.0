@@ -8,7 +8,7 @@ namespace WebbShoppen1._0
     {
         static void Main(string[] args)
         {
-
+            Helpers.AdminHelpers.ChoseProduct();
 
             TheWheel.Start start = new TheWheel.Start();
 

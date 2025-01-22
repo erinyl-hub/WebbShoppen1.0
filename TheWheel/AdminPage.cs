@@ -98,7 +98,9 @@ namespace WebbShoppen1._0.TheWheel
 
                         break;
 
-                    case 1:
+                    case 1: // Ändra product
+
+
                         break;
 
                     case 2:
