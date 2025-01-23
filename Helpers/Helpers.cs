@@ -45,7 +45,7 @@ namespace WebbShoppen1._0.Helpers
 
             MenuData.LoggIn loggInData = new MenuData.LoggIn();
             Window loggInBox = new Window("Logg In", x, y, loggInData.logginData);
-            loggInBox.Draw(0,0);
+            loggInBox.Draw(0, 0);
 
             while (true)
             {
@@ -79,22 +79,26 @@ namespace WebbShoppen1._0.Helpers
 
         public static void MenuLogoOut(int x, int y)
         {
- 
+
             MenuData.PureWearaLogo menuLog = new MenuData.PureWearaLogo();
             Window menuLogWindow = new Window("", x, y, menuLog.MenuLog);
-            menuLogWindow.Draw(1,0);
+            menuLogWindow.Draw(1, 0);
             Window frame = new Window("", x, y + 9, menuLog.frame);
-            frame.Draw(97,0);
+            frame.Draw(97, 0);
 
             Console.ResetColor();
         }
 
-        public static int MenuReader(List<string> menuItems, int[,] pos)
+        public static int MenuReader(List<string> menuItems, int[,] pos, bool admin)
         {
             int selectedIndex = 0;
             Console.Clear();
             Helpers.MenuLogoOut(Start.x, Start.y);
-            ProductsOnFrontPage();
+
+            if (admin != true)
+            {
+                ProductsOnFrontPage();
+            }
 
             while (true)
             {
@@ -126,6 +130,8 @@ namespace WebbShoppen1._0.Helpers
 
                 else if (key.Key == ConsoleKey.Enter)
                 { Console.ResetColor(); return selectedIndex; }
+
+                // lägg metod, tar in key, kollar om ASDF, ev lägger till kundkorg
             }
         }
 
@@ -186,7 +192,7 @@ namespace WebbShoppen1._0.Helpers
         public static int ChoseObject(List<Models.Product> objektLista, int x, int y, List<string> info)
         {
             int aktuellIndex = 0;
-            int maxKolumner = 5; 
+            int maxKolumner = 5;
             Window window = new Window("", Start.x + 35, Start.y + 11, info);
 
 
@@ -197,13 +203,13 @@ namespace WebbShoppen1._0.Helpers
 
                 Console.Clear();
                 Helpers.MenuLogoOut(Start.x, Start.y);
-                window.Draw(0,0);
+                window.Draw(0, 0);
 
-                
+
                 for (int i = 0; i < objektLista.Count; i++)
                 {
-                    int objektX = x + (i % maxKolumner) * 15; 
-                    int objektY = y + (i / maxKolumner);      
+                    int objektX = x + (i % maxKolumner) * 15;
+                    int objektY = y + (i / maxKolumner);
                     string onSale = "";
 
                     if (objektLista[i].OnSale == true) { onSale = " *"; };
@@ -270,7 +276,7 @@ namespace WebbShoppen1._0.Helpers
                 MenuData.AddProduct wrongFormat = new MenuData.AddProduct();
                 Helpers.clearMsg(x + xMsgWindow - 5, y + yMsgWindow, 30, 5);
                 var notMatch = new Window("", x + xMsgWindow, y + yMsgWindow, wrongFormat.wrongFormatWindow);
-                notMatch.Draw(0,1);
+                notMatch.Draw(0, 1);
                 Console.SetCursorPosition(x, y);
                 Console.Write("          ");
             }
@@ -283,7 +289,7 @@ namespace WebbShoppen1._0.Helpers
             List<Models.Product> productsOnSale = await helpers.ProductsOnSale();
             int x = 25;
             int y = 5;
-            
+
             List<int> productNumber = new List<int>();
             List<string> letters = new List<string>() { "Press A to buy", "Press B to buy", "Press C to buy", "Press D to buy" };
             int[,] cords = { { Start.x + x, Start.y + y + 10 }, { Start.x + x, Start.y + y + 20 }, { Start.x + x + 30, Start.y + y + 10 }, { Start.x + x + 30, Start.y + y + 20 } };
@@ -305,8 +311,8 @@ namespace WebbShoppen1._0.Helpers
             for (int i = 0; i < 4; i++)
             {
                 List<string> product = produktInfoList(productsOnSale, productNumber[i]);
-                Window window = new Window(letters[i], cords[i, 0], cords[i,1], product);
-                window.Draw(0,0);
+                Window window = new Window(letters[i], cords[i, 0], cords[i, 1], product);
+                window.Draw(0, 0);
             }
         }
 
@@ -314,13 +320,20 @@ namespace WebbShoppen1._0.Helpers
         public static List<string> produktInfoList(List<Models.Product> productsOnSale, int productNumber)
         {
             List<string> objectsOnSaleList = new List<string>();
-            
+
             string onSale = $"ON SALE {productsOnSale[productNumber].ProductName} ";
             objectsOnSaleList.Add(onSale);
             string price = $"For only:{Math.Round(productsOnSale[productNumber].ProductPrice - (double)productsOnSale[productNumber].DiscountAmount),2} $";
             objectsOnSaleList.Add(price);
 
             return objectsOnSaleList;
+
+        }
+
+        public static void DisplayCartValue()
+        {
+
+
 
         }
 

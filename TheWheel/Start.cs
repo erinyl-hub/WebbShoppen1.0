@@ -44,14 +44,14 @@ namespace WebbShoppen1._0.TheWheel
                 {
                     
 
-                    choise = Helpers.Helpers.MenuReader(frontMenu.FrontPageTwo, frontMenu.FrontPageTwoLocations );
+                    choise = Helpers.Helpers.MenuReader(frontMenu.FrontPageTwo, frontMenu.FrontPageTwoLocations, false);
                     frontMenuChoise.FrontPageCustomer(choise);
 
                 }
 
                 else 
                 {
-                    choise = Helpers.Helpers.MenuReader(frontMenu.FrontPageOne, frontMenu.FrontPageOneLocations);
+                    choise = Helpers.Helpers.MenuReader(frontMenu.FrontPageOne, frontMenu.FrontPageOneLocations, false);
                     frontMenuChoise.FrontPageDefult(choise);
 
                 
