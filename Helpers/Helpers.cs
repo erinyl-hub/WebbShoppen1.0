@@ -70,10 +70,6 @@ namespace WebbShoppen1._0.Helpers
                         return;
                     }
                 }
-
-
-
-
             }
         }
 
@@ -89,13 +85,13 @@ namespace WebbShoppen1._0.Helpers
             Console.ResetColor();
         }
 
-        public static int MenuReader(List<string> menuItems, int[,] pos, bool admin)
+        public static int MenuReader(List<string> menuItems, int[,] pos)
         {
             int selectedIndex = 0;
             Console.Clear();
             Helpers.MenuLogoOut(Start.x, Start.y);
 
-            if (admin != true)
+            if (Start.user.IsAdmin != true)
             {
                 ProductsOnFrontPage();
             }
