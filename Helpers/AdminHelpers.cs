@@ -15,7 +15,7 @@ namespace WebbShoppen1._0.Helpers
 
             int rowCount;
 
-
+            Helpers.NavigeraOchVälj(productList, 20, 5);
 
 
 

@@ -108,7 +108,7 @@ namespace WebbShoppen1._0.Helpers
                         Console.Write($"> ");
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write($"[{menuItems[i]}]");
-                        
+
                     }
                     else
                     {
@@ -165,11 +165,11 @@ namespace WebbShoppen1._0.Helpers
 
         public List<Models.Product> ProductsOnSale(List<Models.Product> allProducts)
         {
-            List < Models.Product > productsOnSale = new List<Models.Product>();
+            List<Models.Product> productsOnSale = new List<Models.Product>();
 
             foreach (var product in allProducts)
             {
-                if(product.OnSale == true)
+                if (product.OnSale == true)
                 {
                     productsOnSale.Add(product);
                 }
@@ -179,8 +179,72 @@ namespace WebbShoppen1._0.Helpers
         }
 
 
-      
+        public static int ChoseObject(List<Models.ProductUse> objektLista, int x, int y)
+        {
+            int aktuellIndex = 0;          
+            int maxKolumner = 3; // Antal kolumner innan radbrytning
 
+            ConsoleKey knapp;
+
+            do
+            {
+                Console.Clear();
+
+                // Skriv ut alla objekt från aktuell position
+                for (int i = 0; i < objektLista.Count; i++)
+                {
+                    int objektX = x + (i % maxKolumner) * 15; // Hoppa 15 steg åt höger per kolumn
+                    int objektY = y + (i / maxKolumner);      // Öka rad för varje "maxKolumner"
+
+                    Console.SetCursorPosition(objektX, objektY);
+
+                    if (i == aktuellIndex)
+                    {
+                        // Markera det valda objektet
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"> {objektLista[i].Name}");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"  {objektLista[i].Name}");
+                    }
+                }
+
+
+                knapp = Console.ReadKey(true).Key;
+
+                // Navigera mellan objekt
+                switch (knapp)
+                {
+                    case ConsoleKey.UpArrow:
+                        aktuellIndex = (aktuellIndex - maxKolumner + objektLista.Count) % objektLista.Count;
+                        break;
+
+                    case ConsoleKey.DownArrow:
+                        aktuellIndex = (aktuellIndex + maxKolumner) % objektLista.Count;
+                        break;
+
+                    case ConsoleKey.LeftArrow:
+                        aktuellIndex = (aktuellIndex > 0) ? aktuellIndex - 1 : objektLista.Count - 1;
+                        break;
+
+                    case ConsoleKey.RightArrow:
+                        aktuellIndex = (aktuellIndex < objektLista.Count - 1) ? aktuellIndex + 1 : 0;
+                        break;
+                }
+
+            } while (knapp != ConsoleKey.Enter);
+
+            Console.Clear();
+            Console.WriteLine($"Du valde: {objektLista[aktuellIndex].Name}");
+
+            return objektLista[aktuellIndex].IdInList;
+
+
+        }
 
     }
+
+    
 }
