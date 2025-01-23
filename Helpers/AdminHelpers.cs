@@ -15,10 +15,10 @@ namespace WebbShoppen1._0.Helpers
             AdminHelpers adminHelpers = new AdminHelpers();
             GetInfoDb getInfoDb = new GetInfoDb();
             List<Models.Product> productList = getInfoDb.GetDbInfo<Models.Product>();
-            
 
 
-            int productId = Helpers.ChoseObject(productList, TheWheel.Start.x + 17, TheWheel.Start.y + 15,msg);
+
+            int productId = Helpers.ChoseObject(productList, TheWheel.Start.x + 17, TheWheel.Start.y + 15, msg);
 
             return productId;
 
@@ -41,18 +41,22 @@ namespace WebbShoppen1._0.Helpers
             if (product.OnSale == false)
             {
                 MenuData.AdminView adminView = new MenuData.AdminView();
-                Window window = new Window("", Start.x + 38,Start.y + 13, adminView.adminProductSaleValue);
-                window.Draw(20);
-                double discount = Helpers.checkFormat<double>(Start.x + 50, Start.y + 12, Start.x + 60, Start.y + 20);
-                
-        }
+                Window window = new Window("", Start.x + 35, Start.y + 13, adminView.adminProductSaleValue);
+                window.Draw(25);
+                double discount = Helpers.checkFormat<double>(Start.x + 54, Start.y + 14, Start.x - 30, Start.y + 1);
+
+                product.OnSale = true;
+                product.DiscountAmount = discount;
+            }
 
             else
             {
-
-
+                product.OnSale = false;
+                product.DiscountAmount = 0;
             }
 
+            UsingDb.Connectors connectors = new UsingDb.Connectors();
+            connectors.UpdateSale(product);
 
 
         }

@@ -15,28 +15,32 @@ namespace WebbShoppen1._0.MenuData
             "Admin",
             "Categories",
             "Search",
+            "Logg Out",
 
         };
 
         public int[,] adminPageDefultLocations =
         {
-            {28,10},
-            {40,10},
-            {50,10},
-            {65,10},
+            {23,10},
+            {35,10},
+            {45,10},
+            {60,10},
+            {71,10},
 
         };
 
         public List<string> adminPage = new List<string> // Defult
         {
             "View Product",
+            "Back",
+
 
         };
 
         public int[,] adminPageLocations =
         {
             {22,10},
-            //{34,10},
+            {34,10},
             //{47,10},
             //{62,10},
             //{73,10},
@@ -49,6 +53,7 @@ namespace WebbShoppen1._0.MenuData
             "Edit",
             "Sale",
             //"View Product",
+            "Back",
 
         };
 
@@ -57,7 +62,7 @@ namespace WebbShoppen1._0.MenuData
             {22,10},
             {34,10},
             {47,10},
-            //{62,10},
+            {62,10},
             //{73,10},
 
         };

@@ -13,16 +13,18 @@ namespace WebbShoppen1._0.UsingDb
         static string connString = "data source=.\\SQLEXPRESS; initial catalog=WebbShoppen1.0; persist security info=True; Integrated Security=True; TrustServerCertificate=True;";
 
 
-        public static List<Models.Product> CitiesOut()
+        public void UpdateSale(Models.Product product)
         {
-            string sql = "SELECT TOP (1000) [Id]\r\n      ,[ProductName]\r\n      ,[Description]\r\n      ,[ProductPrice]\r\n      ,[ProductInStock]\r\n      ,[ReorderLevel]\r\n      ,[OutgoingProduct]\r\n      ,[OnSale]\r\n      ,[DiscountAmount]\r\n      ,[ManufacturerId]\r\n      ,[SupplierId]\r\n      ,[ProductCategoryId]\r\n  FROM [WebbShoppen1.0].[dbo].[Products]";
-            List<Models.Product> cities = new List<Models.Product>();
+            string sql =
+                "UPDATE [WebbShoppen1.0].[dbo].[Products] SET OnSale = @OnSale, DiscountAmount = @DiscountAmount WHERE Id = @Id";
+
 
             using (var connection = new SqlConnection(connString))
             {
-                cities = connection.Query<Models.Product>(sql).ToList();
+                
+                connection.Execute(sql, new { OnSale = product.OnSale, DiscountAmount = product.DiscountAmount, Id = product.Id });
             }
-            return cities;
+
         }
 
     }
