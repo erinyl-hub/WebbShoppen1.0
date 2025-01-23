@@ -63,6 +63,8 @@ namespace WebbShoppen1._0.TheWheel
                     case 1: // 
 
 
+
+
                         break;
 
                     case 2: //
@@ -88,6 +90,8 @@ namespace WebbShoppen1._0.TheWheel
             while (true)
             {
                 int choise = Helpers.Helpers.MenuReader(adminView.adminProductViewPage, adminView.adminProductViewPageLocations);
+                Helpers.AdminHelpers adminHelpers = new Helpers.AdminHelpers();
+
 
                 switch (choise)
                 {
@@ -100,10 +104,24 @@ namespace WebbShoppen1._0.TheWheel
 
                     case 1: // Ändra product
 
+                        UsingDb.GetInfoDb getInfoDbEdit = new UsingDb.GetInfoDb();
+                        int productIdEdit = adminHelpers.ChoseProduct(adminView.adminProductEdit);
+                        Models.Product productToChange = getInfoDbEdit.GetDbInfoOneObject(productIdEdit);
+                        
+
 
                         break;
 
-                    case 2:
+                    case 2: // sätt produkt på sale
+
+
+                        UsingDb.GetInfoDb getInfoDbSale = new UsingDb.GetInfoDb();
+                        int productIdSale = adminHelpers.ChoseProduct(adminView.adminProductSale); // all produkter
+                        Models.Product productOnSale = getInfoDbSale.GetDbInfoOneObject(productIdSale); // väljer 1 produkt
+                        adminHelpers.ProductOnSale(productOnSale);
+                        
+
+
                         break;
                 }
             }

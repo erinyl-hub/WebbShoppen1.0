@@ -8,12 +8,20 @@ namespace WebbShoppen1._0
     {
         static void Main(string[] args)
         {
-            Helpers.AdminHelpers.ChoseProduct();
+
+           
+
+
+            //var products = UsingDb.Connectors.CitiesOut();
+
+
+            //Helpers.AdminHelpers admin = new Helpers.AdminHelpers();
+            //admin.ChoseProduct();
 
             TheWheel.Start start = new TheWheel.Start();
 
             start.StartMenu();
-            
+
             //Helpers.Helpers.MenuLogoOut(25,1);
 
 
@@ -40,6 +48,6 @@ namespace WebbShoppen1._0
             Console.ReadLine();
 
 
-        }   
+        }
     }
 }

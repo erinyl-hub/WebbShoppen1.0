@@ -50,8 +50,8 @@ namespace WebbShoppen1._0.UsingDb
             Task<List<string>> suppliersListMenu = DisplayList<Supplier>(m => $"[{m.Id}]     {m.Name}", await suppliers);
             Task<List<string>> productCategorysListMenu = DisplayList<ProductCategory>(m => $"[{m.Id}]     {m.CategoryName}", await productCategorys);
 
-            double unitPrice = checkFormat<double>(x + 3, y + 6, +3, 10);
-            int unitsInStock = checkFormat<int>(x + 3, y + 8, +3, 8);
+            double unitPrice = Helpers.Helpers.checkFormat<double>(x + 3, y + 6, +3, 10);
+            int unitsInStock = Helpers.Helpers.checkFormat<int>(x + 3, y + 8, +3, 8);
             int manufacturerId = someDb(x + 3, y + 10, -10, 0, await manufacturerListMenu, "Manufacturers", await manufacturers);
             int supplierId = someDb(x + 3, y + 12, -12, -2, await suppliersListMenu, "Suppliers", await suppliers);
             int productCategoryId = someDb(x + 3, y + 14, -14, -4, await productCategorysListMenu, "Product Categorys", await productCategorys);
@@ -63,7 +63,7 @@ namespace WebbShoppen1._0.UsingDb
 
         }
 
-        public T checkFormat<T>(int x, int y, int xMsgWindow, int yMsgWindow)
+         public static T checkFormat<T>(int x, int y, int xMsgWindow, int yMsgWindow)
         {
             double value;
 
@@ -108,7 +108,7 @@ namespace WebbShoppen1._0.UsingDb
             while (true)
             {
                 MenuData.AddProduct addProduct = new MenuData.AddProduct();
-                int returnValue = checkFormat<int>(x, y, 2, 6 + yModErrosMsg);
+                int returnValue = Helpers.Helpers.checkFormat<int>(x, y, 2, 6 + yModErrosMsg);
                 Helpers.Helpers.clearMsg(x + 1, y + 6, 30, addProduct.wrongId.Count() + 2);
 
 

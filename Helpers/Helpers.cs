@@ -179,22 +179,30 @@ namespace WebbShoppen1._0.Helpers
         }
 
 
-        public static int ChoseObject(List<Models.ProductUse> objektLista, int x, int y)
+        public static int ChoseObject(List<Models.Product> objektLista, int x, int y, List<string> info)
         {
             int aktuellIndex = 0;          
-            int maxKolumner = 3; // Antal kolumner innan radbrytning
+            int maxKolumner = 5; // Antal kolumner innan radbrytning
+            Window window = new Window("", Start.x + 35, Start.y + 11,info);
+
 
             ConsoleKey knapp;
 
             do
             {
+
                 Console.Clear();
+                Helpers.MenuLogoOut(Start.x, Start.y);
+                window.Draw(0);
 
                 // Skriv ut alla objekt från aktuell position
                 for (int i = 0; i < objektLista.Count; i++)
                 {
                     int objektX = x + (i % maxKolumner) * 15; // Hoppa 15 steg åt höger per kolumn
                     int objektY = y + (i / maxKolumner);      // Öka rad för varje "maxKolumner"
+                    string onSale = "";
+
+                    if(objektLista[i].OnSale  == true) { onSale = " *"; };
 
                     Console.SetCursorPosition(objektX, objektY);
 
@@ -202,12 +210,12 @@ namespace WebbShoppen1._0.Helpers
                     {
                         // Markera det valda objektet
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine($"> {objektLista[i].Name}");
+                        Console.WriteLine($"> {objektLista[i].ProductName} {onSale}");
                         Console.ResetColor();
                     }
                     else
                     {
-                        Console.WriteLine($"  {objektLista[i].Name}");
+                        Console.WriteLine($"  {objektLista[i].ProductName} {onSale}");
                     }
                 }
 
@@ -236,12 +244,32 @@ namespace WebbShoppen1._0.Helpers
 
             } while (knapp != ConsoleKey.Enter);
 
-            Console.Clear();
-            Console.WriteLine($"Du valde: {objektLista[aktuellIndex].Name}");
 
-            return objektLista[aktuellIndex].IdInList;
+            return objektLista[aktuellIndex].Id;
 
 
+        }
+        public static T checkFormat<T>(int x, int y, int xMsgWindow, int yMsgWindow)
+        {
+            double value;
+
+            while (true)
+            {
+                Console.SetCursorPosition(x, y);
+
+                if (double.TryParse(Console.ReadLine(), out value))
+                {
+                    Helpers.clearMsg(x + xMsgWindow, y + yMsgWindow, 30, 5);
+                    return (T)Convert.ChangeType(value, typeof(T));
+                }
+
+                MenuData.AddProduct wrongFormat = new MenuData.AddProduct();
+                Helpers.clearMsg(x + xMsgWindow - 5, y + yMsgWindow, 30, 5);
+                var notMatch = new Window("", x + xMsgWindow, y + yMsgWindow, wrongFormat.wrongFormatWindow);
+                notMatch.Draw(0);
+                Console.SetCursorPosition(x, y);
+                Console.Write("          ");
+            }
         }
 
     }

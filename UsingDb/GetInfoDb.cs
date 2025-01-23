@@ -36,5 +36,17 @@ namespace WebbShoppen1._0.UsingDb
 
         }
 
+        public Models.Product GetDbInfoOneObject(int Id)
+        {
+            Models.Product product;
+
+            using (var db = new MyDbContext())
+            {
+                product = db.Set<Product>().FirstOrDefault(item => item.Id == Id);
+            }
+            return product;
+
+        }
+
     }
 }

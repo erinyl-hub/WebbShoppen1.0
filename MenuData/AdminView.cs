@@ -46,8 +46,8 @@ namespace WebbShoppen1._0.MenuData
         public List<string> adminProductViewPage = new List<string>
         {
             "Add Product",
-            "View Products",
-            //"View Product",
+            "Edit",
+            "Sale",
             //"View Product",
 
         };
@@ -56,11 +56,34 @@ namespace WebbShoppen1._0.MenuData
         {
             {22,10},
             {34,10},
-            //{47,10},
+            {47,10},
             //{62,10},
             //{73,10},
 
         };
+
+        public List<string> adminProductSale = new List<string>
+        {
+            "Chose product to put on sale",
+           
+
+        };
+
+        public List<string> adminProductEdit = new List<string>
+        {
+            "   Chose product to edit   ",
+
+
+        };
+
+        public List<string> adminProductSaleValue = new List<string>
+        {
+            "Enter sale value: ",
+
+
+        };
+
+
 
 
 
