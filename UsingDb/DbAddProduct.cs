@@ -38,7 +38,7 @@ namespace WebbShoppen1._0.UsingDb
 
             MenuData.AddProduct addProduct = new MenuData.AddProduct();
             var produktData = new Window("Add product", x, y, addProduct.addProductMenu);
-            produktData.Draw(10);
+            produktData.Draw(10,0);
 
             Console.SetCursorPosition(x + 3, y + 2);
             string name = Console.ReadLine();
@@ -57,7 +57,7 @@ namespace WebbShoppen1._0.UsingDb
             int productCategoryId = someDb(x + 3, y + 14, -14, -4, await productCategorysListMenu, "Product Categorys", await productCategorys);
 
             Models.Product product = new Models.Product
-                (name,description,unitPrice,null,false,false,null,manufacturerId,supplierId,productCategoryId);
+                (name,description,unitPrice,0,false,false,0,manufacturerId,supplierId,productCategoryId);
 
             return product;
 
@@ -80,13 +80,13 @@ namespace WebbShoppen1._0.UsingDb
                 MenuData.AddProduct wrongFormat = new MenuData.AddProduct();
                 Helpers.Helpers.clearMsg(x + xMsgWindow - 5, y + yMsgWindow, 30, 5);
                 var notMatch = new Window("", x + xMsgWindow, y + yMsgWindow, wrongFormat.wrongFormatWindow);
-                notMatch.Draw(0);
+                notMatch.Draw(0,1);
                 Console.SetCursorPosition(x, y);
                 Console.Write("          ");
             }
         }
 
-        public async Task<List<string>> DisplayList<T>(Func<T, string> formatter, List<T> items) where T : class // lär dig
+        public async Task<List<string>> DisplayList<T>(Func<T, string> formatter, List<T> items) where T : class 
         {
             List<string> itemList = new List<string>() { "ID      Name" };
 
@@ -103,7 +103,7 @@ namespace WebbShoppen1._0.UsingDb
             (int x, int y, int yModList, int yModErrosMsg, List<string> modelList, string dbValueName, List<T> objects) where T : class, IHasInfo
         {
             var manufacturers = new Window(dbValueName, x + 30, y + yModList, modelList);
-            manufacturers.Draw(10);
+            manufacturers.Draw(10,0);
 
             while (true)
             {
@@ -122,7 +122,7 @@ namespace WebbShoppen1._0.UsingDb
                 Console.Write("         ");
 
                 var wrongId = new Window("", x + 1, y + 6 + yModErrosMsg, addProduct.wrongId); // Fixa
-                wrongId.Draw(10);
+                wrongId.Draw(10,1);
 
             }
         }

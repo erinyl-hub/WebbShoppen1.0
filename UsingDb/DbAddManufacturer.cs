@@ -27,7 +27,7 @@ namespace WebbShoppen1._0.AddToDb
 
             MenuData.AddManufacturer addManufacturerName = new MenuData.AddManufacturer();
             var manufacturerName = new Window("Add manufacturer", x, y, addManufacturerName.createManufacturer);
-            manufacturerName.Draw(1);
+            manufacturerName.Draw(1,0);
 
             Console.SetCursorPosition(x + 3, y + 2);
             string name = Console.ReadLine();

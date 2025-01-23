@@ -21,8 +21,11 @@ namespace WebbShoppen1._0.Helpers
             TextRows = textRows;
         }
 
-        public void Draw(int increaseSize)
+        public void Draw(int increaseSize, int color)
         {
+            Console.ResetColor();
+            if (color == 1) { Console.ForegroundColor = ConsoleColor.Red; }
+          
             var width = TextRows.OrderByDescending(s => s.Length).FirstOrDefault().Length;
 
             // Kolla om Header är längre än det längsta ordet i listan
@@ -65,6 +68,8 @@ namespace WebbShoppen1._0.Helpers
             }
 
             Console.SetCursorPosition(0, Lowest.LowestPosition);
+
+            Console.ResetColor();
         }
     }
     public static class Lowest

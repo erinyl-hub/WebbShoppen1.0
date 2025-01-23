@@ -15,10 +15,13 @@ namespace WebbShoppen1._0.TheWheel
         public void StartMenu()
         {
             UsingDb.GetInfoDb getInfoDb = new UsingDb.GetInfoDb();
-            var onSaleProducts = getInfoDb.GetDbInfo<Models.Product>();
             Helpers.Helpers helpers = new Helpers.Helpers();
-            List<Models.Product> onSaleProductsList = helpers.ProductsOnSale(onSaleProducts);
             
+             
+
+
+
+
 
 
             while (true)
@@ -27,8 +30,8 @@ namespace WebbShoppen1._0.TheWheel
                 FrontMenuChoise frontMenuChoise = new FrontMenuChoise();
                 int choise;
 
-                Console.Clear();
-                Helpers.Helpers.MenuLogoOut(Start.x, Start.y);
+
+                
 
                 if (user.IsAdmin && user.LoggdIn)
                 {
@@ -41,7 +44,7 @@ namespace WebbShoppen1._0.TheWheel
                 {
                     
 
-                    choise = Helpers.Helpers.MenuReader(frontMenu.FrontPageTwo, frontMenu.FrontPageTwoLocations);
+                    choise = Helpers.Helpers.MenuReader(frontMenu.FrontPageTwo, frontMenu.FrontPageTwoLocations );
                     frontMenuChoise.FrontPageCustomer(choise);
 
                 }

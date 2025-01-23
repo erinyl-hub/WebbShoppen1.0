@@ -28,7 +28,7 @@ namespace WebbShoppen1._0.AddToDb
 
             MenuData.AddSupplier addSupplierName = new MenuData.AddSupplier();
             var supplierName = new Window("Add supplier", x, y, addSupplierName.createSupplier);
-            supplierName.Draw(1);
+            supplierName.Draw(1,0);
 
             Console.SetCursorPosition(x + 3, y + 2);
             string name = Console.ReadLine();

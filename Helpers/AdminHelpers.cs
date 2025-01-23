@@ -16,12 +16,9 @@ namespace WebbShoppen1._0.Helpers
             GetInfoDb getInfoDb = new GetInfoDb();
             List<Models.Product> productList = getInfoDb.GetDbInfo<Models.Product>();
 
-
-
             int productId = Helpers.ChoseObject(productList, TheWheel.Start.x + 17, TheWheel.Start.y + 15, msg);
 
             return productId;
-
         }
 
         public void EditProduct(int productId) // skriva link här?
@@ -42,7 +39,7 @@ namespace WebbShoppen1._0.Helpers
             {
                 MenuData.AdminView adminView = new MenuData.AdminView();
                 Window window = new Window("", Start.x + 35, Start.y + 13, adminView.adminProductSaleValue);
-                window.Draw(25);
+                window.Draw(25,1);
                 double discount = Helpers.checkFormat<double>(Start.x + 54, Start.y + 14, Start.x - 30, Start.y + 1);
 
                 product.OnSale = true;
