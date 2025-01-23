@@ -18,7 +18,7 @@ namespace WebbShoppen1._0.Models
         public double TotalPriceProducts => Amount * FinalPrice;
 
         public static List<Cart> TheCart { get; set; }
-        public static int? CartCount => TheCart?.Count;
+        public static int CartCount => TheCart?.Count ?? 0;
 
 
     }

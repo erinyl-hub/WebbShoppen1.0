@@ -8,13 +8,15 @@ namespace WebbShoppen1._0.MenuData
 {
     internal class FrontMenu
     {
+        
+
         public List<string> FrontPageOne = new List<string> // Defult
         {
             "Logg in",
             "Register",
             "Categories",
             "Search",
-            "Cart   ",
+            $"Cart {Models.Cart.CartCount}",
         };
 
         public int[,] FrontPageOneLocations =
@@ -33,7 +35,7 @@ namespace WebbShoppen1._0.MenuData
             "Profile",
             "Categories",
             "Search",
-            "Cart   "
+            $"Cart {Models.Cart.CartCount}"
         };
 
         public int[,] FrontPageTwoLocations =
