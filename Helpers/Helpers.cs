@@ -96,12 +96,8 @@ namespace WebbShoppen1._0.Helpers
             Helpers.MenuLogoOut(Start.x, Start.y);
             ProductsOnFrontPage();
 
-
-
             while (true)
             {
-
-
                 Console.ForegroundColor = ConsoleColor.Red;
 
                 for (int i = 0; i < menuItems.Count; i++)

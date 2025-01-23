@@ -40,7 +40,7 @@ namespace WebbShoppen1._0.TheWheel
                         break;
                     case 4: //Logg out
 
-                        break;
+                        return;
                 }
             }
 
@@ -76,7 +76,7 @@ namespace WebbShoppen1._0.TheWheel
 
                     case 3: //
 
-                        break;
+                        return;
 
 
 
@@ -101,7 +101,7 @@ namespace WebbShoppen1._0.TheWheel
                     case 0: // Add Product
 
                         UsingDb.DbAddProduct dbAddProduct = new UsingDb.DbAddProduct();
-                        dbAddProduct.AddProduct(Start.x + 3,Start.y + 11); // läger till produkt
+                        dbAddProduct.AddProduct(Start.x + 3, Start.y + 11); // läger till produkt
 
                         break;
 
@@ -122,10 +122,16 @@ namespace WebbShoppen1._0.TheWheel
                         int productIdSale = adminHelpers.ChoseProduct(adminView.adminProductSale); // all produkter
                         Models.Product productOnSale = getInfoDbSale.GetDbInfoOneObject(productIdSale); // väljer 1 produkt
                         adminHelpers.ProductOnSale(productOnSale);
-                        
+                        break;
 
+                    case 3: // sätt produkt på sale
 
                         break;
+
+                    case 4: // sätt produkt på sale
+
+                        return;
+                        
                 }
             }
 

@@ -33,6 +33,9 @@ namespace WebbShoppen1._0.MenuData
         {
             "View Product",
             "Back",
+            "|",
+            "|",
+            "Return"
 
 
         };
@@ -41,9 +44,9 @@ namespace WebbShoppen1._0.MenuData
         {
             {22,10},
             {34,10},
-            //{47,10},
-            //{62,10},
-            //{73,10},
+            {47,10},
+            {62,10},
+            {73,10},
 
         };
 
@@ -52,7 +55,7 @@ namespace WebbShoppen1._0.MenuData
             "Add Product",
             "Edit",
             "Sale",
-            //"View Product",
+            "||",
             "Back",
 
         };
@@ -63,7 +66,7 @@ namespace WebbShoppen1._0.MenuData
             {34,10},
             {47,10},
             {62,10},
-            //{73,10},
+            {73,10},
 
         };
 

@@ -25,7 +25,7 @@ namespace WebbShoppen1._0.AddToDb
             }
         }
 
-        public Models.LoggInInfo CreateAcount(int x, int y)
+        private Models.LoggInInfo CreateAcount(int x, int y)
         {
 
             MenuData.AddCustomerAcount createCustomerAcount = new MenuData.AddCustomerAcount();
@@ -43,7 +43,7 @@ namespace WebbShoppen1._0.AddToDb
             return loggInInfo;
         }
 
-        public Models.CustomerInfo CreatePersonalInfo(int x, int y)
+        private Models.CustomerInfo CreatePersonalInfo(int x, int y)
         {
 
 
@@ -86,7 +86,7 @@ namespace WebbShoppen1._0.AddToDb
             return customerInfo;
         }
 
-        public string CreatePassword(int x, int y)
+        private string CreatePassword(int x, int y)
         {
             while (true)
             {
@@ -118,7 +118,7 @@ namespace WebbShoppen1._0.AddToDb
             }
         }
 
-        public int RightYear(int x, int y)
+        private int RightYear(int x, int y)
         {
             int year;
 
@@ -145,7 +145,7 @@ namespace WebbShoppen1._0.AddToDb
             }
         }
 
-        public bool RightGender(int x, int y)
+        private bool RightGender(int x, int y)
         {
             while (true)
             {
@@ -173,7 +173,7 @@ namespace WebbShoppen1._0.AddToDb
             }
         }
 
-        public string CreateEmailAdress(int x, int y)
+        private string CreateEmailAdress(int x, int y)
         {
             while (true)
             {

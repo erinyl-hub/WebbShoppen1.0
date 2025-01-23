@@ -22,7 +22,7 @@ namespace WebbShoppen1._0.AddToDb
             }
         }
 
-        public Models.Supplier CreateSupplier(int x, int y)
+        private Models.Supplier CreateSupplier(int x, int y)
         {
 
 

@@ -21,7 +21,7 @@ namespace WebbShoppen1._0.AddToDb
             }
         }
 
-        public Models.Manufacturer CreateManufacturer(int x, int y)
+        private Models.Manufacturer CreateManufacturer(int x, int y)
         {
 
 

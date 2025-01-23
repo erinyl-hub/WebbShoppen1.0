@@ -26,7 +26,7 @@ namespace WebbShoppen1._0.UsingDb
             }
         }
 
-        public async Task<Models.Product> CreateProduct(int x, int y)
+        private async Task<Models.Product> CreateProduct(int x, int y)
         {
 
             UsingDb.GetInfoDb dbInfo = new UsingDb.GetInfoDb();
@@ -38,7 +38,7 @@ namespace WebbShoppen1._0.UsingDb
 
             MenuData.AddProduct addProduct = new MenuData.AddProduct();
             var produktData = new Window("Add product", x, y, addProduct.addProductMenu);
-            produktData.Draw(10,0);
+            produktData.Draw(10, 0);
 
             Console.SetCursorPosition(x + 3, y + 2);
             string name = Console.ReadLine();
@@ -57,13 +57,13 @@ namespace WebbShoppen1._0.UsingDb
             int productCategoryId = someDb(x + 3, y + 14, -14, -4, await productCategorysListMenu, "Product Categorys", await productCategorys);
 
             Models.Product product = new Models.Product
-                (name,description,unitPrice,0,false,false,0,manufacturerId,supplierId,productCategoryId);
+                (name, description, unitPrice, 0, false, false, 0, manufacturerId, supplierId, productCategoryId);
 
             return product;
 
         }
 
-         public static T checkFormat<T>(int x, int y, int xMsgWindow, int yMsgWindow)
+        private static T checkFormat<T>(int x, int y, int xMsgWindow, int yMsgWindow)
         {
             double value;
 
@@ -80,13 +80,13 @@ namespace WebbShoppen1._0.UsingDb
                 MenuData.AddProduct wrongFormat = new MenuData.AddProduct();
                 Helpers.Helpers.clearMsg(x + xMsgWindow - 5, y + yMsgWindow, 30, 5);
                 var notMatch = new Window("", x + xMsgWindow, y + yMsgWindow, wrongFormat.wrongFormatWindow);
-                notMatch.Draw(0,1);
+                notMatch.Draw(0, 1);
                 Console.SetCursorPosition(x, y);
                 Console.Write("          ");
             }
         }
 
-        public async Task<List<string>> DisplayList<T>(Func<T, string> formatter, List<T> items) where T : class 
+        public async Task<List<string>> DisplayList<T>(Func<T, string> formatter, List<T> items) where T : class
         {
             List<string> itemList = new List<string>() { "ID      Name" };
 
@@ -99,11 +99,11 @@ namespace WebbShoppen1._0.UsingDb
         }
 
 
-        public int someDb<T>
+        private int someDb<T>
             (int x, int y, int yModList, int yModErrosMsg, List<string> modelList, string dbValueName, List<T> objects) where T : class, IHasInfo
         {
             var manufacturers = new Window(dbValueName, x + 30, y + yModList, modelList);
-            manufacturers.Draw(10,0);
+            manufacturers.Draw(10, 0);
 
             while (true)
             {
@@ -122,14 +122,14 @@ namespace WebbShoppen1._0.UsingDb
                 Console.Write("         ");
 
                 var wrongId = new Window("", x + 1, y + 6 + yModErrosMsg, addProduct.wrongId); // Fixa
-                wrongId.Draw(10,1);
+                wrongId.Draw(10, 1);
 
             }
         }
 
 
 
-        public bool valueExistInDb<T>(List<T> objects, int valueToTest) where T : class, IHasInfo
+        private bool valueExistInDb<T>(List<T> objects, int valueToTest) where T : class, IHasInfo
         {
             foreach (var item in objects)
             {

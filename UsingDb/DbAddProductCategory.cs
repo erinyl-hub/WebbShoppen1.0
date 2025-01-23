@@ -24,7 +24,7 @@ namespace WebbShoppen1._0.AddToDb
 
         }
 
-        public Models.ProductCategory CreateProductCategory(int x, int y)
+        private Models.ProductCategory CreateProductCategory(int x, int y)
         {
 
             MenuData.AddProductCategory addProductCategoryName = new MenuData.AddProductCategory();
