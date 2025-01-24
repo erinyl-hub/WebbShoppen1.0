@@ -27,11 +27,11 @@ namespace WebbShoppen1._0.Helpers
 
                 Console.SetCursorPosition(x, objektY);
 
-                    Console.WriteLine("{0,-15} {1,-15} {2,-15} {3,-15}",
-                    $"  {objektLista[offset + i].ProductName}",
-                    $"Amount: {objektLista[offset + i].Amount}",
-                    $"Price: {objektLista[offset + i].FinalPrice}",
-                    $"Total price: {objektLista[offset + i].TotalPriceProducts}");              
+                Console.WriteLine("{0,-15} {1,-15} {2,-15} {3,-15}",
+                $"  {objektLista[offset + i].ProductName}",
+                $"Amount: {objektLista[offset + i].Amount}",
+                $"Price: {objektLista[offset + i].FinalPrice}",
+                $"Total price: {objektLista[offset + i].TotalPriceProducts}");
             }
 
         }
@@ -107,7 +107,7 @@ namespace WebbShoppen1._0.Helpers
                         break;
 
                     case ConsoleKey.Escape:
-                        return 0;
+                        return -1;
 
                 }
 
@@ -120,7 +120,7 @@ namespace WebbShoppen1._0.Helpers
 
         public void ViewTheCart()
         {
-            
+
 
             while (true)
             {
@@ -134,10 +134,20 @@ namespace WebbShoppen1._0.Helpers
                 switch (choise)
                 {
                     case 0: // Edit cart
-
-                        List<string> cartEdit = new List<string> { "  Chose a product ", "Press esc to return" };
-                        ChoseCartObjects(Models.Cart.TheCart, 40, 19, cartEdit, 20);
-
+                        int product = 66;
+                        while (product != -1)
+                        {
+                            Console.Clear();
+                            Helpers.MenuLogoOut(Start.x, Start.y);
+                            List<string> cartEdit = new List<string> { "  Chose a product ", "Press esc to return" };
+                            product = ChoseCartObjects(Models.Cart.TheCart, 40, 19, cartEdit, 20);
+                            if (product != -1)
+                            {
+                                Console.Clear();
+                                Helpers.MenuLogoOut(Start.x, Start.y);
+                                EditProductAmountInCart(product);
+                            }
+                        }
                         break;
 
                     case 1: // Check out
@@ -145,8 +155,9 @@ namespace WebbShoppen1._0.Helpers
                         break;
 
                     case 2: // Back
-
-                        break;
+                        Console.Clear();
+                        return;
+                        
                 }
 
 
@@ -155,6 +166,25 @@ namespace WebbShoppen1._0.Helpers
 
         }
 
+        private static void EditProductAmountInCart(int productIdInCart)
+        {
+            List<string> editProduct = new List<string> { "New amount: ", "Put 0 to remove" };
+            Window window = new Window("Enter new amount", Start.x + 37, Start.y + 13, editProduct);
+            window.Draw(5, 0);
 
+            int productAmount = Helpers.checkFormat<int>(Start.x + 50, Start.y + 14, Start.x + -26, Start.y + 2);
+
+            var theProduct = Models.Cart.TheCart.FirstOrDefault(o => o.ProductId == productIdInCart);
+
+            if (productAmount == 0)
+            {              
+                Models.Cart.TheCart.Remove(theProduct);
+                return;
+            }
+            else
+            {
+                theProduct.Amount = productAmount;
+            }
+        }
     }
 }
