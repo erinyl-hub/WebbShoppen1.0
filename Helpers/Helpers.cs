@@ -157,27 +157,27 @@ namespace WebbShoppen1._0.Helpers
 
                     
                     cart.AddToCartFromMenuSingel(productId[0],cart);
-                    Models.Cart.TheCart.Add(cart);
+                    
                    
                     break;
                 case 'S':
 
                     cart.AddToCartFromMenuSingel(productId[1], cart);
-                    Models.Cart.TheCart.Add(cart);
+                   
 
                     break;
 
                 case 'D':
 
                     cart.AddToCartFromMenuSingel(productId[2], cart);
-                    Models.Cart.TheCart.Add(cart);
+                   
 
                     break;
 
                 case 'F':
 
                     cart.AddToCartFromMenuSingel(productId[3], cart);
-                    Models.Cart.TheCart.Add(cart);
+                   
 
                     break;
             }

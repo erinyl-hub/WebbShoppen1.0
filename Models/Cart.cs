@@ -36,7 +36,7 @@ namespace WebbShoppen1._0.Models
                     if (goods.ProductId == product.Id)
                     {
                         goods.Amount++;
-                        break;
+                        return;
                     }
 
                 }
@@ -47,6 +47,9 @@ namespace WebbShoppen1._0.Models
             cartProduct.UnitPrice = product.ProductPrice;
             cartProduct.Discount = product.DiscountAmount ?? 0;
             cartProduct.Amount = 1;
+            
+            TheCart.Add(cartProduct);
+
 
         }
 
