@@ -85,7 +85,7 @@ namespace WebbShoppen1._0.Helpers
             Console.ResetColor();
         }
 
-        public static int MenuReader(List<string> menuItems, int[,] pos)
+        public static int MenuReader(List<string> menuItems, int[,] pos) // problem, listan för menuItems uppdateras inte när något hamnar i cart
         {
             int selectedIndex = 0;
             List<int> productsDisplaydId = new List<int>();
@@ -110,12 +110,17 @@ namespace WebbShoppen1._0.Helpers
                         Console.Write($"> ");
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write($"[{menuItems[i]}]");
-
                     }
                     else
                     {
                         Console.Write($"  [{menuItems[i]}]");
                     }
+
+                    if (menuItems[i] == "Cart")
+                    { Console.SetCursorPosition(pos[i, 0] + Start.x + 7, pos[i, 1] + Start.y);
+                        Console.Write($" {Models.Cart.CartCount}]");
+                    }
+
                 }
 
                 ConsoleKeyInfo key = Console.ReadKey(true);
@@ -133,6 +138,7 @@ namespace WebbShoppen1._0.Helpers
                     key.Key == ConsoleKey.S || key.Key == ConsoleKey.D || key.Key == ConsoleKey.F)
                 {
                     AddDisplayProductsToCart(productsDisplaydId, key);
+                    
                 }
 
 
@@ -239,12 +245,10 @@ namespace WebbShoppen1._0.Helpers
             int maxKolumner = 5;
             Window window = new Window("", Start.x + 35, Start.y + 11, info);
 
-
             ConsoleKey knapp;
 
             do
             {
-
                 Console.Clear();
                 Helpers.MenuLogoOut(Start.x, Start.y);
                 window.Draw(0, 0);
@@ -273,7 +277,6 @@ namespace WebbShoppen1._0.Helpers
                     }
                 }
 
-
                 knapp = Console.ReadKey(true).Key;
 
                 // Navigera mellan objekt
@@ -298,10 +301,7 @@ namespace WebbShoppen1._0.Helpers
 
             } while (knapp != ConsoleKey.Enter);
 
-
             return objektLista[aktuellIndex].Id;
-
-
         }
         public static T checkFormat<T>(int x, int y, int xMsgWindow, int yMsgWindow)
         {
@@ -328,13 +328,11 @@ namespace WebbShoppen1._0.Helpers
 
         public static List<int> ProductsOnFrontPage() // List metoden
         {
-
             Helpers helpers = new Helpers();
             List<Models.Product> productsOnSale =  helpers.ProductsOnSale();
             int x = 25;
             int y = 5;
-
-            
+           
             List<int> productNumber = new List<int>();
             List<string> letters = new List<string>() { "Press A to buy", "Press S to buy", "Press D to buy", "Press F to buy" };
             int[,] cords = { { Start.x + x, Start.y + y + 10 }, { Start.x + x, Start.y + y + 20 }, { Start.x + x + 30, Start.y + y + 10 }, { Start.x + x + 30, Start.y + y + 20 } };
@@ -348,9 +346,7 @@ namespace WebbShoppen1._0.Helpers
                 else
                 {
                     productNumber.Add(value);
-
                 }
-
             }
 
             List<int> idProductsDisplayed = new List<int>();
@@ -362,7 +358,6 @@ namespace WebbShoppen1._0.Helpers
                 Window window = new Window(letters[i], cords[i, 0], cords[i, 1], product);
                 window.Draw(0, 0);
             }
-
             return idProductsDisplayed;
         }
 

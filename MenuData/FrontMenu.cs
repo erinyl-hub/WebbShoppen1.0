@@ -16,7 +16,7 @@ namespace WebbShoppen1._0.MenuData
             "Register",
             "Categories",
             "Search",
-            $"Cart {Models.Cart.CartCount}",
+            "Cart",
         };
 
         public int[,] FrontPageOneLocations =
@@ -35,7 +35,7 @@ namespace WebbShoppen1._0.MenuData
             "Profile",
             "Categories",
             "Search",
-            $"Cart {Models.Cart.CartCount}"
+            "Cart"
         };
 
         public int[,] FrontPageTwoLocations =
