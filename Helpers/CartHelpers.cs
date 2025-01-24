@@ -27,7 +27,7 @@ namespace WebbShoppen1._0.Helpers
 
                 Console.SetCursorPosition(x, objektY);
 
-                Console.WriteLine("{0,-15} {1,-15} {2,-15} {3,-15}",
+                Console.WriteLine("{0,-18} {1,-18} {2,-18} {3,-18}",
                 $"  {objektLista[offset + i].ProductName}",
                 $"Amount: {objektLista[offset + i].Amount}",
                 $"Price: {objektLista[offset + i].FinalPrice}",
@@ -60,20 +60,20 @@ namespace WebbShoppen1._0.Helpers
                     if ((offset + i) == aktuellIndex)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("{0,-15} {1,-15} {2,-15} {3,-15}",
-                        $"> {objektLista[offset + i].ProductName}",
-                        $"Amount: {objektLista[offset + i].Amount}",
-                        $"Price: {objektLista[offset + i].FinalPrice}",
-                        $"Total price: {objektLista[offset + i].TotalPriceProducts}");
+                        Console.WriteLine("{0,-18} {1,-18} {2,-18} {3,-18}",
+                        $"> {objektLista[offset + i].ProductName}     ",
+                        $"Amount: {objektLista[offset + i].Amount}     ",
+                        $"Price: {objektLista[offset + i].FinalPrice}     ",
+                        $"Total price: {objektLista[offset + i].TotalPriceProducts}     ");
                         Console.ResetColor();
                     }
                     else
                     {
-                        Console.WriteLine("{0,-15} {1,-15} {2,-15} {3,-15}",
-                        $"  {objektLista[offset + i].ProductName}",
-                        $"Amount: {objektLista[offset + i].Amount}",
-                        $"Price: {objektLista[offset + i].FinalPrice}",
-                        $"Total price: {objektLista[offset + i].TotalPriceProducts}");
+                        Console.WriteLine("{0,-18} {1,-18} {2,-18} {3,-18}",
+                        $"  {objektLista[offset + i].ProductName}     ",
+                        $"Amount: {objektLista[offset + i].Amount}     ",
+                        $"Price: {objektLista[offset + i].FinalPrice}     ",
+                        $"Total price: {objektLista[offset + i].TotalPriceProducts}     ");
                     }
                 }
 
@@ -127,7 +127,7 @@ namespace WebbShoppen1._0.Helpers
                 MenuData.Cart cartData = new MenuData.Cart();
                 List<string> cartOverView = new List<string> { "  The cart  " };
                 Helpers.MenuLogoOut(Start.x, Start.y);
-                DrawCartObjects(Models.Cart.TheCart, 40, 19, cartOverView, 20);
+                DrawCartObjects(Models.Cart.TheCart, 35, 19, cartOverView, 18);
                 int choise = Helpers.MenuReader(cartData.inCart, cartData.inCartLocation, false);
 
 
@@ -140,7 +140,7 @@ namespace WebbShoppen1._0.Helpers
                             Console.Clear();
                             Helpers.MenuLogoOut(Start.x, Start.y);
                             List<string> cartEdit = new List<string> { "  Chose a product ", "Press esc to return" };
-                            product = ChoseCartObjects(Models.Cart.TheCart, 40, 19, cartEdit, 20);
+                            product = ChoseCartObjects(Models.Cart.TheCart, 35, 19, cartEdit, 18);
                             if (product != -1)
                             {
                                 Console.Clear();

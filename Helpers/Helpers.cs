@@ -66,7 +66,6 @@ namespace WebbShoppen1._0.Helpers
                             Start.user.IsAdmin = true;
                             return;
                         }
-
                         return;
                     }
                 }
@@ -88,9 +87,10 @@ namespace WebbShoppen1._0.Helpers
         public static int MenuReader(List<string> menuItems, int[,] pos, bool showOneSale) // problem, listan för menuItems uppdateras inte när något hamnar i cart
         {
             int selectedIndex = 0;
-            List<int> productsDisplaydId = new List<int>();           
+
             // Helpers.MenuLogoOut(Start.x, Start.y);
 
+            List<int> productsDisplaydId = new List<int>();
             if (showOneSale == true)
             {
                 productsDisplaydId = ProductsOnFrontPage();
@@ -332,7 +332,8 @@ namespace WebbShoppen1._0.Helpers
             List<int> productNumber = new List<int>();
             List<string> letters = new List<string>() { "Press A to buy", "Press S to buy", "Press D to buy", "Press F to buy" };
             int[,] cords = { { Start.x + x, Start.y + y + 10 }, { Start.x + x, Start.y + y + 20 }, { Start.x + x + 30, Start.y + y + 10 }, { Start.x + x + 30, Start.y + y + 20 } };
-            for (int i = 0; i < 4; i++)
+
+            for (int i = 0; i < 4; i++) // väljer ut 4 random produkter från "productsOnSale"
             {
                 int value = Random.Shared.Next(0, productsOnSale.Count);
                 if (productNumber.Contains(value))
@@ -349,8 +350,8 @@ namespace WebbShoppen1._0.Helpers
 
             for (int i = 0; i < 4; i++)
             {
-                idProductsDisplayed.Add(productsOnSale[i].Id);
-                List<string> product = produktInfoList(productsOnSale, productNumber[i]);
+                idProductsDisplayed.Add(productsOnSale[productNumber[i]].Id);
+                List<string> product = produktInfoList(productsOnSale, productNumber[i]); // fixar lista med string för meddelande om produkt
                 Window window = new Window(letters[i], cords[i, 0], cords[i, 1], product);
                 window.Draw(0, 0);
             }
