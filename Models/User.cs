@@ -8,7 +8,7 @@ namespace WebbShoppen1._0.Models
 {
     internal class User
     {
-        public int Id { get; set; }
+        public int UserId { get; set; }
         public bool LoggdIn { get; set; }
         public bool IsAdmin { get; set; }
 

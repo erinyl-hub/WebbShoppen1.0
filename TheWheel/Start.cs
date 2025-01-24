@@ -14,13 +14,6 @@ namespace WebbShoppen1._0.TheWheel
 
         public void StartMenu()
         {
-            UsingDb.GetInfoDb getInfoDb = new UsingDb.GetInfoDb();
-            Helpers.Helpers helpers = new Helpers.Helpers();
-            
-             
-
-
-
 
 
 

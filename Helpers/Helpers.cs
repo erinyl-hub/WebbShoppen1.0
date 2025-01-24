@@ -58,7 +58,7 @@ namespace WebbShoppen1._0.Helpers
                 {
                     if (user.EmailAdress == username && user.Password == password)
                     {
-                        Start.user.Id = user.Id;
+                        Start.user.UserId = user.Id;
                         Start.user.LoggdIn = true;
 
                         if (user.IsAdmin)
@@ -88,12 +88,13 @@ namespace WebbShoppen1._0.Helpers
         public static int MenuReader(List<string> menuItems, int[,] pos)
         {
             int selectedIndex = 0;
+            List<int> productsDisplaydId = new List<int>();
             Console.Clear();
             Helpers.MenuLogoOut(Start.x, Start.y);
 
             if (Start.user.IsAdmin != true)
             {
-                ProductsOnFrontPage();
+                productsDisplaydId = ProductsOnFrontPage();
             }
 
             while (true)
@@ -127,8 +128,55 @@ namespace WebbShoppen1._0.Helpers
                 else if (key.Key == ConsoleKey.Enter)
                 { Console.ResetColor(); return selectedIndex; }
 
-                // lägg metod, tar in key, kollar om ASDF, ev lägger till kundkorg
+                else if
+                    (Start.user.IsAdmin != true || key.Key == ConsoleKey.A ||
+                    key.Key == ConsoleKey.S || key.Key == ConsoleKey.D || key.Key == ConsoleKey.F)
+                {
+                    AddDisplayProductsToCart(productsDisplaydId, key);
+                }
+
+
+                // lägg metod, tar in key, kollar om A1 S2 D3 F4, ev lägger till kundkorg
             }
+        }
+
+        public static void AddDisplayProductsToCart(List<int> productId, ConsoleKeyInfo key)
+        {
+            char keyChar = Char.ToUpper(key.KeyChar);
+            Models.Cart cart = new Models.Cart();
+
+            switch (keyChar)
+            {
+                case 'A':
+
+                    
+                    cart.AddToCartFromMenuSingel(productId[0],cart);
+                    Models.Cart.TheCart.Add(cart);
+                   
+                    break;
+                case 'S':
+
+                    cart.AddToCartFromMenuSingel(productId[1], cart);
+                    Models.Cart.TheCart.Add(cart);
+
+                    break;
+
+                case 'D':
+
+                    cart.AddToCartFromMenuSingel(productId[2], cart);
+                    Models.Cart.TheCart.Add(cart);
+
+                    break;
+
+                case 'F':
+
+                    cart.AddToCartFromMenuSingel(productId[3], cart);
+                    Models.Cart.TheCart.Add(cart);
+
+                    break;
+            }
+
+
         }
 
         public static string HidePassword(int x, int y)
@@ -166,10 +214,10 @@ namespace WebbShoppen1._0.Helpers
             return input;
         }
 
-        public async Task<List<Models.Product>> ProductsOnSale()
+        public List<Models.Product> ProductsOnSale()
         {
             UsingDb.GetInfoDb getInfoDb = new UsingDb.GetInfoDb();
-            List<Models.Product> allProducts = await getInfoDb.GetDbInfoAsync<Models.Product>();
+            List<Models.Product> allProducts = getInfoDb.GetDbInfo<Models.Product>();
 
             List<Models.Product> productsOnSale = new List<Models.Product>();
 
@@ -278,16 +326,17 @@ namespace WebbShoppen1._0.Helpers
             }
         }
 
-        public async static void ProductsOnFrontPage()
+        public static List<int> ProductsOnFrontPage() // List metoden
         {
 
             Helpers helpers = new Helpers();
-            List<Models.Product> productsOnSale = await helpers.ProductsOnSale();
+            List<Models.Product> productsOnSale =  helpers.ProductsOnSale();
             int x = 25;
             int y = 5;
 
+            
             List<int> productNumber = new List<int>();
-            List<string> letters = new List<string>() { "Press A to buy", "Press B to buy", "Press C to buy", "Press D to buy" };
+            List<string> letters = new List<string>() { "Press A to buy", "Press S to buy", "Press D to buy", "Press F to buy" };
             int[,] cords = { { Start.x + x, Start.y + y + 10 }, { Start.x + x, Start.y + y + 20 }, { Start.x + x + 30, Start.y + y + 10 }, { Start.x + x + 30, Start.y + y + 20 } };
             for (int i = 0; i < 4; i++)
             {
@@ -304,12 +353,17 @@ namespace WebbShoppen1._0.Helpers
 
             }
 
+            List<int> idProductsDisplayed = new List<int>();
+
             for (int i = 0; i < 4; i++)
             {
+                idProductsDisplayed.Add(productsOnSale[i].Id);
                 List<string> product = produktInfoList(productsOnSale, productNumber[i]);
                 Window window = new Window(letters[i], cords[i, 0], cords[i, 1], product);
                 window.Draw(0, 0);
             }
+
+            return idProductsDisplayed;
         }
 
 
@@ -326,12 +380,7 @@ namespace WebbShoppen1._0.Helpers
 
         }
 
-        public static void DisplayCartValue()
-        {
 
-
-
-        }
 
     }
 
