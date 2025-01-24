@@ -85,14 +85,13 @@ namespace WebbShoppen1._0.Helpers
             Console.ResetColor();
         }
 
-        public static int MenuReader(List<string> menuItems, int[,] pos) // problem, listan för menuItems uppdateras inte när något hamnar i cart
+        public static int MenuReader(List<string> menuItems, int[,] pos, bool showOneSale) // problem, listan för menuItems uppdateras inte när något hamnar i cart
         {
             int selectedIndex = 0;
-            List<int> productsDisplaydId = new List<int>();
-            Console.Clear();
-            Helpers.MenuLogoOut(Start.x, Start.y);
+            List<int> productsDisplaydId = new List<int>();           
+            // Helpers.MenuLogoOut(Start.x, Start.y);
 
-            if (Start.user.IsAdmin != true)
+            if (showOneSale == true)
             {
                 productsDisplaydId = ProductsOnFrontPage();
             }
@@ -134,7 +133,7 @@ namespace WebbShoppen1._0.Helpers
                 { Console.ResetColor(); return selectedIndex; }
 
                 else if
-                    (Start.user.IsAdmin != true || key.Key == ConsoleKey.A ||
+                    (showOneSale == true || key.Key == ConsoleKey.A ||
                     key.Key == ConsoleKey.S || key.Key == ConsoleKey.D || key.Key == ConsoleKey.F)
                 {
                     AddDisplayProductsToCart(productsDisplaydId, key);
@@ -142,7 +141,7 @@ namespace WebbShoppen1._0.Helpers
                 }
 
 
-                // lägg metod, tar in key, kollar om A1 S2 D3 F4, ev lägger till kundkorg
+                
             }
         }
 
@@ -266,7 +265,7 @@ namespace WebbShoppen1._0.Helpers
 
                     if (i == aktuellIndex)
                     {
-                        // Markera det valda objektet
+                       
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine($"> {objektLista[i].ProductName} {onSale}");
                         Console.ResetColor();

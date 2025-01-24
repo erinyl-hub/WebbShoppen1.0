@@ -21,6 +21,7 @@ namespace WebbShoppen1._0.TheWheel
             {
                 MenuData.FrontMenu frontMenu = new MenuData.FrontMenu();
                 FrontMenuChoise frontMenuChoise = new FrontMenuChoise();
+                Helpers.Helpers.MenuLogoOut(Start.x, Start.y);
                 int choise;
 
 
@@ -37,14 +38,17 @@ namespace WebbShoppen1._0.TheWheel
                 {
                     
 
-                    choise = Helpers.Helpers.MenuReader(frontMenu.FrontPageTwo, frontMenu.FrontPageTwoLocations);
-                    frontMenuChoise.FrontPageCustomer(choise);
+                    TheWheel.UserPage userPage = new TheWheel.UserPage();
+                    userPage.FrontPageUser();
+
+
+
 
                 }
 
                 else 
                 {
-                    choise = Helpers.Helpers.MenuReader(frontMenu.FrontPageOne, frontMenu.FrontPageOneLocations);
+                    choise = Helpers.Helpers.MenuReader(frontMenu.FrontPageOne, frontMenu.FrontPageOneLocations, true);
                     frontMenuChoise.FrontPageDefult(choise);
 
                 

@@ -48,48 +48,9 @@ namespace WebbShoppen1._0.TheWheel
 
         }
 
-        public void FrontPageCustomer(int choise)
-        {
-            switch (choise)
-            {
-
-                case 0:
-
-                    break;
-
-            }
-
-        }
-
-        public void FrontPageAdmin(int choise)
-        {
-            while (true)
-            {
-
-                switch (choise)
-                {
-
-                    case 0: //Profile
-
-                        break;
-
-                    case 1: //Admin
 
 
-
-                        break;
-
-                    case 2: //Categories
-
-                        break;
-
-                    case 3: //Search
-
-                        break;
-                }
-            }
-
-        }
+        
 
 
 
