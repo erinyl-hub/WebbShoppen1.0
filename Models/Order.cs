@@ -13,7 +13,7 @@ namespace WebbShoppen1._0.Models
 
         public Order
             (DateTime orderDate, DateTime arrivalDate, double totalCost, int productCount,
-            bool orderArrived, bool orderUnderway, bool orderProcessing, int customerId) 
+            bool orderArrived, bool orderUnderway, bool orderProcessing, int userInfoId) 
         {
             OrderDate = orderDate;
             ArrivalDate = arrivalDate;
@@ -21,7 +21,7 @@ namespace WebbShoppen1._0.Models
             ProductCount = productCount;
             OrderArrived = orderArrived;
             OrderProcessing = orderProcessing;
-            CustomerId = customerId;         
+            UserInfoId = userInfoId;         
         }
 
 
@@ -34,9 +34,9 @@ namespace WebbShoppen1._0.Models
         public bool OrderUnderway { get; set; }
         public bool OrderProcessing { get; set; }
 
-        public int CustomerId { get; set; }
+        public int UserInfoId { get; set; }
 
-        public virtual CustomerInfo Customer { get; set; }
+        public virtual UserInfo UserInfo { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
         
     }

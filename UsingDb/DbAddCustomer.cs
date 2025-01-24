@@ -14,18 +14,18 @@ namespace WebbShoppen1._0.AddToDb
         {
 
 
-            Models.LoggInInfo loggInInfo = CreateAcount(x,y);
-            Models.CustomerInfo customer = CreatePersonalInfo(x,y);
+            Models.User loggInInfo = CreateAcount(x,y);
+            Models.UserInfo customer = CreatePersonalInfo(x,y);
 
             using (var dB = new Models.MyDbContext())
             {
-                customer.LoggInInfo = loggInInfo; 
-                dB.CustomerInfo.Add(customer);
+                customer.User = loggInInfo; 
+                dB.User.Add(customer);
                 dB.SaveChanges();
             }
         }
 
-        private Models.LoggInInfo CreateAcount(int x, int y)
+        private Models.User CreateAcount(int x, int y)
         {
 
             MenuData.AddCustomerAcount createCustomerAcount = new MenuData.AddCustomerAcount();
@@ -35,15 +35,15 @@ namespace WebbShoppen1._0.AddToDb
             string emailAdress = CreateEmailAdress(x, y);
             string password = CreatePassword(x + 3, y);
 
-            Models.LoggInInfo loggInInfo = new Models.LoggInInfo
-                    (emailAdress, password);
+            Models.User loggInInfo = new Models.User
+                    (emailAdress, password,"a","a", 9999, true); //FIXA
 
             Helpers.Helpers.clearMsg(x - 1, y,30,createCustomerAcount.createLogginData.Count);
 
             return loggInInfo;
         }
 
-        private Models.CustomerInfo CreatePersonalInfo(int x, int y)
+        private Models.UserInfo CreatePersonalInfo(int x, int y)
         {
 
 
@@ -77,8 +77,8 @@ namespace WebbShoppen1._0.AddToDb
             Console.SetCursorPosition(x + 18, y + 9);
             string telephoneNumber = Console.ReadLine();
 
-            Models.CustomerInfo customerInfo = new Models.CustomerInfo
-                (name, surname, yearBorn, gender, adress, postalCode, city, country, telephoneNumber);
+            Models.UserInfo customerInfo = new Models.UserInfo
+                ( adress, postalCode, city, country, telephoneNumber);
 
             Helpers.Helpers.clearMsg(x - 1, y, 37, createCustomerAcount.createPersenolInfo.Count + 2);
 
@@ -183,7 +183,7 @@ namespace WebbShoppen1._0.AddToDb
 
                 using (var dB = new Models.MyDbContext())
                 {
-                    foreach (var customer in dB.LoggInInfo) // skapa ett link istället?
+                    foreach (var customer in dB.User) // skapa ett link istället?
                     {
                         if (customer.EmailAdress == emailAdress) { inUse = false; }
                     }

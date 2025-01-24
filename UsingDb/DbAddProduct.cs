@@ -21,7 +21,7 @@ namespace WebbShoppen1._0.UsingDb
 
             using (var dB = new Models.MyDbContext())
             {
-                dB.Products.Add(await product);
+                dB.Product.Add(await product);
                 dB.SaveChanges();
             }
         }
@@ -31,7 +31,7 @@ namespace WebbShoppen1._0.UsingDb
 
             UsingDb.GetInfoDb dbInfo = new UsingDb.GetInfoDb();
 
-            var manufacturers = dbInfo.GetDbInfoAsync<Manufacturer>();
+            var manufacturers = dbInfo.GetDbInfoAsync<Supplier>();
             var suppliers = dbInfo.GetDbInfoAsync<Supplier>();
             var productCategorys = dbInfo.GetDbInfoAsync<ProductCategory>();
 
@@ -46,18 +46,18 @@ namespace WebbShoppen1._0.UsingDb
             Console.SetCursorPosition(x + 3, y + 4);
             string description = Console.ReadLine();
 
-            Task<List<string>> manufacturerListMenu = DisplayList<Manufacturer>(m => $"[{m.Id}]     {m.Name}", await manufacturers);
+            //Task<List<string>> manufacturerListMenu = DisplayList<Manufacturer>(m => $"[{m.Id}]     {m.Name}", await manufacturers);
             Task<List<string>> suppliersListMenu = DisplayList<Supplier>(m => $"[{m.Id}]     {m.Name}", await suppliers);
             Task<List<string>> productCategorysListMenu = DisplayList<ProductCategory>(m => $"[{m.Id}]     {m.CategoryName}", await productCategorys);
 
             double unitPrice = Helpers.Helpers.checkFormat<double>(x + 3, y + 6, +3, 10);
             int unitsInStock = Helpers.Helpers.checkFormat<int>(x + 3, y + 8, +3, 8);
-            int manufacturerId = someDb(x + 3, y + 10, -10, 0, await manufacturerListMenu, "Manufacturers", await manufacturers);
+            //int manufacturerId = someDb(x + 3, y + 10, -10, 0, await manufacturerListMenu, "Manufacturers", await manufacturers);
             int supplierId = someDb(x + 3, y + 12, -12, -2, await suppliersListMenu, "Suppliers", await suppliers);
             int productCategoryId = someDb(x + 3, y + 14, -14, -4, await productCategorysListMenu, "Product Categorys", await productCategorys);
 
             Models.Product product = new Models.Product
-                (name, description, unitPrice, 0, false, false, 0, manufacturerId, supplierId, productCategoryId);
+                (name, description, unitPrice, 0, false, false, 0, supplierId, productCategoryId);
 
             return product;
 

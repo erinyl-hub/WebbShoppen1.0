@@ -30,6 +30,6 @@ namespace WebbShoppen1._0.Models
 
 
         public virtual Order Order { get; set; }
-        public virtual Product Product { get; set; }
+        public virtual ICollection<Product> Products { get; set; } = new List<Product>();
     }
 }

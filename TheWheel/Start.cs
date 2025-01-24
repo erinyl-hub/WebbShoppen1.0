@@ -8,7 +8,7 @@ namespace WebbShoppen1._0.TheWheel
 {
     internal class Start
     {
-        public static Models.User user = new Models.User();
+        public static Models.UserInProgram user = new Models.UserInProgram();
         public static int x = 20;
         public static int y = 1;
 

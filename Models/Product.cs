@@ -13,7 +13,7 @@ namespace WebbShoppen1._0.Models
         public Product
             (string productName, string description, double productPrice,
             int? reorderLevel, bool outgoingProduct, bool onSale, double? discountAmount,
-            int manufacturerId, int supplierId, int productCategoryId) 
+            int supplierId, int productCategoryId) 
         {
             ProductName = productName;
             Description = description;
@@ -23,7 +23,6 @@ namespace WebbShoppen1._0.Models
             OnSale = onSale;
             DiscountAmount = discountAmount;
 
-            ManufacturerId = manufacturerId;
             SupplierId = supplierId;
             ProductCategoryId = productCategoryId;
         }
@@ -39,14 +38,13 @@ namespace WebbShoppen1._0.Models
         public bool OnSale { get; set; }
         public double? DiscountAmount { get; set; }
 
-        public int ManufacturerId { get; set; }
         public int SupplierId { get; set; }
         public int ProductCategoryId { get; set; }
 
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
+        public virtual OrderDetail OrderDetails { get; set; }
         public virtual ProductCategory ProductCategory { get; set; }
         public virtual Supplier Supplier { get; set; }
-        public virtual Manufacturer Manufacturer { get; set; }
+
 
     }
 }

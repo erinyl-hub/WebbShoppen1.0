@@ -33,7 +33,7 @@ namespace WebbShoppen1._0.AddToDb
             Console.SetCursorPosition(x + 3, y + 2);
             string name = Console.ReadLine();
 
-            Models.Supplier supplier = new Models.Supplier(name);
+            Models.Supplier supplier = new Models.Supplier(name,"test", "test", "test", "test", false); //FIXA
 
             return supplier;
         }

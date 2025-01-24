@@ -9,14 +9,20 @@ namespace WebbShoppen1._0.Models
 {
     internal class MyDbContext : DbContext
     {
-        public DbSet<LoggInInfo> LoggInInfo { get; set; }
-        public DbSet<CustomerInfo> CustomerInfo { get; set; }
-        public DbSet<Manufacturer> Manufacturers { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderDetail> OrderDetails { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<ProductCategory> ProductCategories { get; set; }
-        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<UserInfo> UserInfo { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderDetail> OrderDetail { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<ProductCategory> ProductCategory { get; set; }
+        public DbSet<Supplier> Supplier { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasIndex(a => a.EmailAdress).IsUnique();
+            modelBuilder.Entity<Product>().HasIndex(a => a.ProductName).IsUnique();
+            modelBuilder.Entity<Supplier>().HasIndex(a => a.Name).IsUnique();
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

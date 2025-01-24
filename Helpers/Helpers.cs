@@ -41,7 +41,7 @@ namespace WebbShoppen1._0.Helpers
         public static async void LoggIn(int x, int y)
         {
             UsingDb.GetInfoDb dbInfo = new UsingDb.GetInfoDb();
-            var loggInInfoList = dbInfo.GetDbInfoAsync<Models.LoggInInfo>();
+            var loggInInfoList = dbInfo.GetDbInfoAsync<Models.User>();
 
             MenuData.LoggIn loggInData = new MenuData.LoggIn();
             Window loggInBox = new Window("Logg In", x, y, loggInData.logginData);
