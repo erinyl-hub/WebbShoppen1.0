@@ -17,15 +17,50 @@ namespace WebbShoppen1._0.AddToDb
             Models.User loggInInfo = CreateAcount(x,y);
             Models.UserInfo customer = CreatePersonalInfo(x,y);
 
-            using (var dB = new Models.MyDbContext())
-            {
-                customer.User = loggInInfo; 
-                dB.User.Add(customer);
-                dB.SaveChanges();
-            }
+            //using (var dB = new Models.MyDbContext())
+            //{
+            //    customer.User = loggInInfo; 
+            //    dB.User.Add(customer);
+            //    dB.SaveChanges();
+            //}
         }
 
+
+
         private Models.User CreateAcount(int x, int y)
+        {
+
+            MenuData.AddCustomerAcount createCustomerAcount = new MenuData.AddCustomerAcount();
+            var logginData = new Window("Enter loggin data", x, y, createCustomerAcount.createLogginData);
+            logginData.Draw(5, 0);
+
+            string emailAdress = CreateEmailAdress(x, y);
+            string password = CreatePassword(x + 3, y);
+
+            Console.SetCursorPosition(x + 7, y + 1);
+            string name = Console.ReadLine();
+
+            Console.SetCursorPosition(x + 10, y + 2);
+            string surname = Console.ReadLine();
+
+            int yearBorn = RightYear(x + 12, y + 3);
+
+            bool gender = RightGender(x + 6, y + 4);
+
+            Models.User loggInInfo = new Models.User
+                    (emailAdress, password, surname, surname, yearBorn, gender); 
+
+            Helpers.Helpers.clearMsg(x - 1, y, 30, createCustomerAcount.createLogginData.Count);
+
+            return loggInInfo;
+        }
+
+
+
+
+
+
+        private Models.User CreateAcountAA(int x, int y)
         {
 
             MenuData.AddCustomerAcount createCustomerAcount = new MenuData.AddCustomerAcount();
@@ -52,15 +87,7 @@ namespace WebbShoppen1._0.AddToDb
             var customerInfoMenu = new Window("Enter personal info", x, y, createCustomerAcount.createPersenolInfo);
             customerInfoMenu.Draw(8,0);
 
-            Console.SetCursorPosition(x + 7, y + 1);
-            string name = Console.ReadLine();
 
-            Console.SetCursorPosition(x + 10, y + 2);
-            string surname = Console.ReadLine();
-
-            int yearBorn = RightYear(x + 12, y + 3);
-
-            bool gender = RightGender(x + 6, y + 4);
 
             Console.SetCursorPosition(x + 9, y + 5);
             string adress = Console.ReadLine();
@@ -85,6 +112,17 @@ namespace WebbShoppen1._0.AddToDb
 
             return customerInfo;
         }
+
+
+
+
+
+
+
+
+
+
+
 
         private string CreatePassword(int x, int y)
         {

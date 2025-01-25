@@ -14,14 +14,17 @@ namespace WebbShoppen1._0.MenuData
             "Enter password",
             ">",
             "Confirm password",
-            ">"
+            ">",
+             "Name: ",
+             ">",
+            "Surname: ",
+            ">",
+            "Year born: ",
+            ">",
+            "Gender: (1) Male | (2) Female",
         };
 
         public List<string> createPersenolInfo = new List<string> {
-            "Name: ",
-            "Surname: ",
-            "Year born: ",
-            "Gender: (1) Male | (2) Female",
             "Adress: ",
             "Postalcode: ",
             "City: ",

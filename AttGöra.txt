@@ -45,16 +45,49 @@ Display varor som är på rea
 
 
 
-INSERT INTO [WebbShoppen1.0].[dbo].[Products] (ProductName, Description, ProductPrice, ProductInStock, ReorderLevel, OutgoingProduct, OnSale, DiscountAmount, ManufacturerId, SupplierId, ProductCategoryId)
-VALUES
-('Product1', 'Description of Product1', 10.99, 50, 10, 0, 1, 1.99, 1, 3, 1),
-('Product2', 'Description of Product2', 15.49, 30, 5, 0, 0, NULL, 1, 3, 1),
-('Product3', 'Description of Product3', 25.99, 20, 8, 1, 1, 3.99, 2, 3, 2),
-('Product4', 'Description of Product4', 8.99, 60, 15, 0, 1, 0.99, 1, 3, 2),
-('Product5', 'Description of Product5', 19.99, 45, 12, 0, 0, NULL, 2, 3, 1),
-('Product6', 'Description of Product6', 29.99, 25, 7, 1, 1, 2.99, 3, 3, 1),
-('Product7', 'Description of Product7', 12.49, 40, 10, 0, 1, 1.49, 1, 3, 1),
-('Product8', 'Description of Product8', 6.99, 70, 20, 0, 0, NULL, 2, 3, 1),
-('Product9', 'Description of Product9', 18.49, 35, 9, 1, 1, 2.49, 3, 3, 1),
-('Product10', 'Description of Product10', 23.99, 15, 4, 0, 1, 3.49, 1, 3, 1),
-('Product11', 'Description of Product11', 14.99, 50, 10, 0, 0, NULL, 2, 3, 1)
+INSERT INTO [WebbShoppen1.0].[dbo].[Product] 
+(
+    [ProductName],
+    [Description],
+    [ProductPrice],
+    [ProductInStock],
+    [ReorderLevel],
+    [OutgoingProduct],
+    [OnSale],
+    [DiscountAmount],
+    [SupplierId],
+    [ProductCategoryId],
+    [OrderDetailsId]
+)
+VALUES 
+    ('Produkt A', 'Beskrivning av Produkt A', 99.99, 100, 10, 0, 1, 5, 1, 1, 1),
+    ('Produkt B', 'Beskrivning av Produkt B', 149.99, 50, 5, 0, 1, 10, 1, 2, 2),
+    ('Produkt C', 'Beskrivning av Produkt C', 79.99, 200, 20, 0, 0, 0, 2, 3, 3),
+    ('Produkt D', 'Beskrivning av Produkt D', 199.99, 30, 15, 0, 1, 15, 2, 4, 4),
+    ('Produkt E', 'Beskrivning av Produkt E', 49.99, 150, 8, 0, 0, 0, 3, 1, 1),
+    ('Produkt F', 'Beskrivning av Produkt F', 249.99, 75, 7, 1, 1, 20, 4, 2, 2),
+    ('Produkt G', 'Beskrivning av Produkt G', 129.99, 120, 12, 0, 0, 0, 1, 3, 3),
+    ('Produkt H', 'Beskrivning av Produkt H', 89.99, 200, 10, 1, 0, 25, 2, 4, 4),
+    ('Produkt I', 'Beskrivning av Produkt I', 199.99, 60, 18, 0, 1, 10, 3, 1, 1),
+    ('Produkt J', 'Beskrivning av Produkt J', 59.99, 250, 25, 0, 0, 0, 4, 2, 2),
+    ('Produkt K', 'Beskrivning av Produkt K', 109.99, 80, 14, 1, 0, 12, 1, 3, 3),
+    ('Produkt L', 'Beskrivning av Produkt L', 169.99, 45, 13, 0, 1, 8, 2, 4, 4),
+    ('Produkt M', 'Beskrivning av Produkt M', 139.99, 90, 20, 0, 1, 18, 3, 1, 1),
+    ('Produkt N', 'Beskrivning av Produkt N', 79.99, 100, 16, 1, 0, 30, 4, 2, 2),
+    ('Produkt O', 'Beskrivning av Produkt O', 199.99, 60, 10, 1, 0, 22, 1, 3, 3),
+    ('Produkt P', 'Beskrivning av Produkt P', 249.99, 40, 10, 0, 1, 15, 2, 4, 4),
+    ('Produkt Q', 'Beskrivning av Produkt Q', 109.99, 80, 5, 0, 0, 0, 3, 1, 1),
+    ('Produkt R', 'Beskrivning av Produkt R', 169.99, 120, 30, 1, 0, 20, 4, 2, 2),
+    ('Produkt S', 'Beskrivning av Produkt S', 89.99, 60, 10, 0, 1, 18, 1, 3, 3),
+    ('Produkt T', 'Beskrivning av Produkt T', 59.99, 180, 15, 1, 0, 12, 2, 4, 4),
+    ('Produkt U', 'Beskrivning av Produkt U', 99.99, 110, 14, 0, 1, 8, 3, 1, 1),
+    ('Produkt V', 'Beskrivning av Produkt V', 159.99, 50, 5, 0, 0, 0, 4, 2, 2),
+    ('Produkt W', 'Beskrivning av Produkt W', 129.99, 130, 7, 1, 1, 25, 1, 3, 3),
+    ('Produkt X', 'Beskrivning av Produkt X', 179.99, 90, 6, 0, 1, 10, 2, 4, 4),
+    ('Produkt Y', 'Beskrivning av Produkt Y', 89.99, 150, 12, 0, 1, 15, 3, 1, 1),
+    ('Produkt Z', 'Beskrivning av Produkt Z', 219.99, 40, 20, 1, 0, 18, 4, 2, 2),
+    ('Produkt AA', 'Beskrivning av Produkt AA', 139.99, 110, 10, 1, 0, 30, 1, 3, 3),
+    ('Produkt AB', 'Beskrivning av Produkt AB', 179.99, 50, 25, 0, 0, 0, 2, 4, 4),
+    ('Produkt AC', 'Beskrivning av Produkt AC', 119.99, 80, 18, 1, 0, 10, 3, 1, 1),
+    ('Produkt AD', 'Beskrivning av Produkt AD', 159.99, 70, 15, 0, 1, 5, 4, 2, 2),
+    ('Produkt AE', 'Beskrivning av Produkt AE', 99.99, 120, 30, 1, 0, 25, 1, 3, 3);

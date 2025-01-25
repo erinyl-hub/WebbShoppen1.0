@@ -41,7 +41,7 @@ namespace WebbShoppen1._0.Models
         public int SupplierId { get; set; }
         public int ProductCategoryId { get; set; }
 
-        public virtual OrderDetail OrderDetails { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
         public virtual ProductCategory ProductCategory { get; set; }
         public virtual Supplier Supplier { get; set; }
 
