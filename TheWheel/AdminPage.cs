@@ -137,11 +137,11 @@ namespace WebbShoppen1._0.TheWheel
                         adminHelpers.ProductOnSale(productOnSale);
                         break;
 
-                    case 3: // sätt produkt på sale
+                    case 3: 
 
                         break;
 
-                    case 4: // sätt produkt på sale
+                    case 4: // tillbaka
 
                         return;
                         

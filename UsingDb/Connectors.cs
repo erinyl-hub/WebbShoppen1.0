@@ -16,7 +16,7 @@ namespace WebbShoppen1._0.UsingDb
         public void UpdateSale(Models.Product product)
         {
             string sql =
-                "UPDATE [WebbShoppen1.0].[dbo].[Products] SET OnSale = @OnSale, DiscountAmount = @DiscountAmount WHERE Id = @Id";
+                "UPDATE [WebbShoppen1.0].[dbo].[Product] SET OnSale = @OnSale, DiscountAmount = @DiscountAmount WHERE Id = @Id";
 
 
             using (var connection = new SqlConnection(connString))
