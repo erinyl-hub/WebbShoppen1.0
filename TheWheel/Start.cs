@@ -21,6 +21,7 @@ namespace WebbShoppen1._0.TheWheel
             {
                 MenuData.FrontMenu frontMenu = new MenuData.FrontMenu();
                 FrontMenuChoise frontMenuChoise = new FrontMenuChoise();
+                Console.Clear();
                 Helpers.Helpers.MenuLogoOut(Start.x, Start.y);
                 int choise;
 

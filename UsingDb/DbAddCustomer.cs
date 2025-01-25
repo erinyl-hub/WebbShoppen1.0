@@ -189,12 +189,12 @@ namespace WebbShoppen1._0.AddToDb
 
                 if (inUse == true && emailAdress != "")
                 {
-                    Helpers.Helpers.clearMsg(x - 13, y + 16, 43, 4);
+                    Helpers.Helpers.clearMsg(x - 13, y + 15, 44, 4);
                     return emailAdress;
                 }
 
                 MenuData.AddCustomerAcount emailInUse = new MenuData.AddCustomerAcount();
-                var notMatch = new Window("", x, y + 16, emailInUse.emailInUse);
+                var notMatch = new Window("", x + 1, y  + 15, emailInUse.emailInUse);
                 notMatch.Draw(0,1);
                 emailAdress = Helpers.Helpers.Replacer(emailAdress.Length);
                 Console.SetCursorPosition(x + 3, y + 2);

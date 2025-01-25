@@ -32,10 +32,10 @@ namespace WebbShoppen1._0.MenuData
         public List<string> adminPage = new List<string> // Defult
         {
             "View Product",
-            "Back",
             "|",
             "|",
-            "Return"
+            "|",
+            "Back"
 
 
         };
@@ -43,7 +43,7 @@ namespace WebbShoppen1._0.MenuData
         public int[,] adminPageLocations =
         {
             {22,10},
-            {34,10},
+            {39,10},
             {47,10},
             {62,10},
             {73,10},
@@ -63,7 +63,7 @@ namespace WebbShoppen1._0.MenuData
         public int[,] adminProductViewPageLocations =
         {
             {22,10},
-            {34,10},
+            {38,10},
             {47,10},
             {62,10},
             {73,10},

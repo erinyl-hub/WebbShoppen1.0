@@ -16,8 +16,12 @@ namespace WebbShoppen1._0.TheWheel
         {
             while (true)
             {
+                Console.Clear();
+                Helpers.Helpers.MenuLogoOut(Start.x, Start.y);
                 MenuData.AdminView adminView = new MenuData.AdminView();
                 int choise = Helpers.Helpers.MenuReader(adminView.adminPageDefult, adminView.adminPageDefultLocations,false);
+
+
                 switch (choise)
                 {
 
@@ -26,6 +30,7 @@ namespace WebbShoppen1._0.TheWheel
                         break;
 
                     case 1: //Admin
+
 
                         AdminPage(adminView);
 
@@ -52,12 +57,15 @@ namespace WebbShoppen1._0.TheWheel
 
             while (true)
             {
-
+                Console.Clear();
+                Helpers.Helpers.MenuLogoOut(Start.x, Start.y);
                 int choise = Helpers.Helpers.MenuReader(adminView.adminPage, adminView.adminPageLocations,false);
+
 
                 switch (choise)
                 {
                     case 0: //Product
+
 
                         AdminProductView(adminView);
 
@@ -76,6 +84,9 @@ namespace WebbShoppen1._0.TheWheel
 
                     case 3: //
 
+                        break;
+                    case 4: //
+
                         return;
 
 
@@ -92,6 +103,8 @@ namespace WebbShoppen1._0.TheWheel
 
             while (true)
             {
+                Console.Clear();
+                Helpers.Helpers.MenuLogoOut(Start.x, Start.y);
                 int choise = Helpers.Helpers.MenuReader(adminView.adminProductViewPage, adminView.adminProductViewPageLocations,false);
                 Helpers.AdminHelpers adminHelpers = new Helpers.AdminHelpers();
 
