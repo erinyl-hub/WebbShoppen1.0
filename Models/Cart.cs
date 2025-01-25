@@ -28,7 +28,7 @@ namespace WebbShoppen1._0.Models
         {
 
             UsingDb.GetInfoDb getInfoDb = new UsingDb.GetInfoDb();
-            Models.Product product = getInfoDb.GetDbInfoOneObject(ProductId);
+            Models.Product product = getInfoDb.GetDbInfoOneObject<Product>(ProductId);
 
 
                 foreach (var goods in TheCart)

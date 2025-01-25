@@ -14,6 +14,7 @@ namespace WebbShoppen1._0.TheWheel
             while (true)
             {
                 MenuData.UserView userView = new MenuData.UserView();
+                Helpers.Helpers.MenuLogoOut(Start.x,Start.y);
                 int choise = Helpers.Helpers.MenuReader(userView.userFrontPage, userView.userFrontPageLocation,true);
                 switch (choise)
                 {

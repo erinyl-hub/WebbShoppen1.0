@@ -152,6 +152,8 @@ namespace WebbShoppen1._0.Helpers
 
                     case 1: // Check out
 
+                        CheckOutHelpers.CheckOut();
+
                         break;
 
                     case 2: // Back

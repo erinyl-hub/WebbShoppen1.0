@@ -91,3 +91,13 @@ VALUES
     ('Produkt AC', 'Beskrivning av Produkt AC', 119.99, 80, 18, 1, 0, 10, 3, 1, 1),
     ('Produkt AD', 'Beskrivning av Produkt AD', 159.99, 70, 15, 0, 1, 5, 4, 2, 2),
     ('Produkt AE', 'Beskrivning av Produkt AE', 99.99, 120, 30, 1, 0, 25, 1, 3, 3);
+
+
+
+    3 betalnings metoder 
+
+    Faktura, avbetalning, kort 
+
+    Faktura - skickas till adress - 
+    Avbetalning - 3 alt 3,6,12 månader
+    Kort - kort info - egen tabel med kort info

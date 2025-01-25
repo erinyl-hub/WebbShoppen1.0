@@ -36,16 +36,15 @@ namespace WebbShoppen1._0.UsingDb
 
         }
 
-        public Models.Product GetDbInfoOneObject(int Id)
+        public T GetDbInfoOneObject<T>(int Id) where T : class, IHasInfo
         {
-            Models.Product product;
+            T product;
 
             using (var db = new MyDbContext())
             {
-                product = db.Set<Product>().FirstOrDefault(item => item.Id == Id);
+                product = db.Set<T>().FirstOrDefault(item => item.Id == Id);
             }
             return product;
-
         }
 
     }

@@ -38,11 +38,8 @@ namespace WebbShoppen1._0.TheWheel
                 else if (user.LoggdIn) 
                 {
                     
-
                     TheWheel.UserPage userPage = new TheWheel.UserPage();
                     userPage.FrontPageUser();
-
-
 
 
                 }

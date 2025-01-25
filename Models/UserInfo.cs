@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebbShoppen1._0.Helpers;
 
 namespace WebbShoppen1._0.Models
 {
-    internal class UserInfo
+    internal class UserInfo : IHasInfo
     {
         public UserInfo()
         { }

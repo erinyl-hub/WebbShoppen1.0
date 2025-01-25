@@ -11,8 +11,33 @@ namespace WebbShoppen1._0.Helpers
     {
         public static void CheckOut()
         {
+            MenuData.CheckOut checkOut = new MenuData.CheckOut();
             Console.Clear();
             Helpers.MenuLogoOut(Start.x, Start.y);
+            if (Start.user.LoggdIn)
+            {
+                AdressOut();
+                int choise = Helpers.MenuReader(checkOut.checkOutAdressChoise, checkOut.checkOutAdressChoiseLocations, false);
+
+                switch (choise)
+                {
+                    case 0: // existerande adress
+
+
+
+
+                        break;
+
+                    case 1: // lägg till ny adress
+
+
+
+                        break;
+                }
+
+
+
+            }
 
 
 
@@ -22,7 +47,22 @@ namespace WebbShoppen1._0.Helpers
 
         private static void AdressOut()
         {
+            UsingDb.GetInfoDb getInfoDb = new UsingDb.GetInfoDb();
+            Models.UserInfo userInfo = getInfoDb.GetDbInfoOneObject<Models.UserInfo>(Start.user.UserId);
 
+            List<string> adressInfo = new List<string>{
+                "Adress",
+                $"> {userInfo.Adress}",
+                "PostalCode",
+                $"> {userInfo.PostalCode}",
+                "City",
+                $"> {userInfo.City}",
+                "Country",
+                $"> {userInfo.Country}",
+                "Telephone Number",
+                $"> {userInfo.TelephoneNumber}" };
+            Window window = new Window("", Start.x + 43, Start.y + 12, adressInfo);
+            window.Draw(0, 0);
 
         }
 

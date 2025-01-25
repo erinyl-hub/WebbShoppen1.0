@@ -122,7 +122,7 @@ namespace WebbShoppen1._0.TheWheel
 
                         UsingDb.GetInfoDb getInfoDbEdit = new UsingDb.GetInfoDb();
                         int productIdEdit = adminHelpers.ChoseProduct(adminView.adminProductEdit); // all produkter
-                        Models.Product productToChange = getInfoDbEdit.GetDbInfoOneObject(productIdEdit); // väljer 1 produkt
+                        Models.Product productToChange = getInfoDbEdit.GetDbInfoOneObject<Models.Product>(productIdEdit); // väljer 1 produkt
 
 
 
@@ -133,7 +133,7 @@ namespace WebbShoppen1._0.TheWheel
 
                         UsingDb.GetInfoDb getInfoDbSale = new UsingDb.GetInfoDb();
                         int productIdSale = adminHelpers.ChoseProduct(adminView.adminProductSale); // all produkter
-                        Models.Product productOnSale = getInfoDbSale.GetDbInfoOneObject(productIdSale); // väljer 1 produkt
+                        Models.Product productOnSale = getInfoDbSale.GetDbInfoOneObject<Models.Product>(productIdSale); // väljer 1 produkt
                         adminHelpers.ProductOnSale(productOnSale);
                         break;
 

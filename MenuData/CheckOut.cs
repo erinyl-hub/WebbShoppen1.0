@@ -24,6 +24,20 @@ namespace WebbShoppen1._0.MenuData
             ">",
         };
 
+        public List<string> checkOutAdressChoise = new List<string> // Defult
+        {
+            "Use existing adress",
+            "Enter new adress",
+         
+        };
+
+        public int[,] checkOutAdressChoiseLocations =
+{
+            {29,10},
+            {53,10},
+ 
+        };
+
 
     }
 }
