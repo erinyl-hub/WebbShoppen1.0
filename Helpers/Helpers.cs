@@ -38,7 +38,7 @@ namespace WebbShoppen1._0.Helpers
         }
 
 
-        public static async void LoggIn(int x, int y)
+        public static async void LoggIn(int x, int y) // Fixa så när man slår fel logg in!
         {
             UsingDb.GetInfoDb dbInfo = new UsingDb.GetInfoDb();
             var loggInInfoList = dbInfo.GetDbInfoAsync<Models.User>();
@@ -69,6 +69,8 @@ namespace WebbShoppen1._0.Helpers
                         return;
                     }
                 }
+
+                
             }
         }
 
