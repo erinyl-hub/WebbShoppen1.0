@@ -393,6 +393,13 @@ namespace WebbShoppen1._0.Helpers
                 
             }
         }
+        
+        public static void LoggOut()
+        {
+            Start.user.LoggdIn = false;
+            Start.user.UserId = 0;
+            Start.user.IsAdmin = false;
+        }
 
 
 

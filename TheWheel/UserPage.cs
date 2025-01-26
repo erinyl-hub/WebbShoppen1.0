@@ -39,6 +39,8 @@ namespace WebbShoppen1._0.TheWheel
                         break;
                     case 4: //Logg out
 
+                        Helpers.Helpers.LoggOut();
+
                         return;
                 }
 

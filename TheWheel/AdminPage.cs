@@ -45,6 +45,8 @@ namespace WebbShoppen1._0.TheWheel
                         break;
                     case 4: //Logg out
 
+                        Helpers.Helpers.LoggOut();
+
                         return;
                 }
             }
@@ -85,7 +87,7 @@ namespace WebbShoppen1._0.TheWheel
                     case 3: //
 
                         break;
-                    case 4: //
+                    case 4: // 
 
                         return;
 
@@ -141,7 +143,9 @@ namespace WebbShoppen1._0.TheWheel
 
                         break;
 
-                    case 4: // tillbaka
+                    case 4: // Tillbaka
+
+                        
 
                         return;
                         
