@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using WebbShoppen1._0.Helpers;
 using WebbShoppen1._0.Models;
 
-namespace WebbShoppen1._0.UsingDb
+namespace WebbShoppen1._0.AddToDb
 {
     internal class GetInfoDb
     {

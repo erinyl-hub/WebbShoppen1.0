@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebbShoppen1._0.TheWheel;
-using WebbShoppen1._0.UsingDb;
+using WebbShoppen1._0.AddToDb;
 
 namespace WebbShoppen1._0.Models
 {
@@ -27,7 +27,7 @@ namespace WebbShoppen1._0.Models
         public void AddToCartFromMenuSingel(int ProductId, Cart cartProduct)
         {
 
-            UsingDb.GetInfoDb getInfoDb = new UsingDb.GetInfoDb();
+            AddToDb.GetInfoDb getInfoDb = new AddToDb.GetInfoDb();
             Models.Product product = getInfoDb.GetDbInfoOneObject<Product>(ProductId);
 
 

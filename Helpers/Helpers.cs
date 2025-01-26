@@ -40,7 +40,7 @@ namespace WebbShoppen1._0.Helpers
 
         public static async void LoggIn(int x, int y) // Fixa så när man slår fel logg in!
         {
-            UsingDb.GetInfoDb dbInfo = new UsingDb.GetInfoDb();
+            AddToDb.GetInfoDb dbInfo = new AddToDb.GetInfoDb();
             var loggInInfoList = dbInfo.GetDbInfoAsync<Models.User>();
 
             MenuData.LoggIn loggInData = new MenuData.LoggIn();
@@ -220,7 +220,7 @@ namespace WebbShoppen1._0.Helpers
 
         public List<Models.Product> ProductsOnSale()
         {
-            UsingDb.GetInfoDb getInfoDb = new UsingDb.GetInfoDb();
+            AddToDb.GetInfoDb getInfoDb = new AddToDb.GetInfoDb();
             List<Models.Product> allProducts = getInfoDb.GetDbInfo<Models.Product>();
 
             List<Models.Product> productsOnSale = new List<Models.Product>();

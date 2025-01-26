@@ -113,14 +113,14 @@ namespace WebbShoppen1._0.TheWheel
                 {
                     case 0: // Add Product
 
-                        UsingDb.DbAddProduct dbAddProduct = new UsingDb.DbAddProduct();
+                        AddToDb.DbAddProduct dbAddProduct = new AddToDb.DbAddProduct();
                         dbAddProduct.AddProduct(Start.x + 3, Start.y + 11); // läger till produkt
 
                         break;
 
                     case 1: // Ändra product
 
-                        UsingDb.GetInfoDb getInfoDbEdit = new UsingDb.GetInfoDb();
+                        AddToDb.GetInfoDb getInfoDbEdit = new AddToDb.GetInfoDb();
                         int productIdEdit = adminHelpers.ChoseProduct(adminView.adminProductEdit); // all produkter
                         Models.Product productToChange = getInfoDbEdit.GetDbInfoOneObject<Models.Product>(productIdEdit); // väljer 1 produkt
 
@@ -131,7 +131,7 @@ namespace WebbShoppen1._0.TheWheel
                     case 2: // sätt produkt på sale
 
 
-                        UsingDb.GetInfoDb getInfoDbSale = new UsingDb.GetInfoDb();
+                        AddToDb.GetInfoDb getInfoDbSale = new AddToDb.GetInfoDb();
                         int productIdSale = adminHelpers.ChoseProduct(adminView.adminProductSale); // all produkter
                         Models.Product productOnSale = getInfoDbSale.GetDbInfoOneObject<Models.Product>(productIdSale); // väljer 1 produkt
                         adminHelpers.ProductOnSale(productOnSale);

@@ -18,7 +18,7 @@ namespace WebbShoppen1._0.AddToDb
             Console.Clear();
             Helpers.Helpers.MenuLogoOut(Start.x, Start.y);
 
-            Models.UserInfo userInfo = CreatePersonalInfo(x,y);
+            Models.UserInfo userInfo = CreatePersonalInfo(x,y, true);
 
             using (var dB = new Models.MyDbContext())
             {
@@ -26,6 +26,12 @@ namespace WebbShoppen1._0.AddToDb
                 dB.UserInfo.Add(userInfo);
                 dB.SaveChanges();
             }
+        }
+
+        public Models.UserInfo AddNewAdress(int x, int y)
+        {
+            Models.UserInfo userInfo = CreatePersonalInfo(x + 36, y + 13, false);
+            return userInfo;
         }
 
 
@@ -56,7 +62,7 @@ namespace WebbShoppen1._0.AddToDb
         }
 
 
-        private Models.UserInfo CreatePersonalInfo(int x, int y)
+        private Models.UserInfo CreatePersonalInfo(int x, int y, bool mainAdress)
         {
             MenuData.AddCustomerAcount createCustomerAcount = new MenuData.AddCustomerAcount();
             var customerInfoMenu = new Window("Enter personal info", x, y, createCustomerAcount.createPersenolInfo);
@@ -78,7 +84,7 @@ namespace WebbShoppen1._0.AddToDb
             string telephoneNumber = Console.ReadLine();
 
             Models.UserInfo customerInfo = new Models.UserInfo
-                ( adress, postalCode, city, country, telephoneNumber);
+                ( adress, postalCode, city, country, telephoneNumber, mainAdress);
 
             return customerInfo;
         }

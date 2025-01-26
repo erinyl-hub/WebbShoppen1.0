@@ -30,6 +30,7 @@ namespace WebbShoppen1._0.Helpers
 
                     case 1: // lägg till ny adress
 
+                        EnterNewAdress();
 
 
                         break;
@@ -47,7 +48,7 @@ namespace WebbShoppen1._0.Helpers
 
         private static void AdressOut()
         {
-            UsingDb.GetInfoDb getInfoDb = new UsingDb.GetInfoDb();
+            AddToDb.GetInfoDb getInfoDb = new AddToDb.GetInfoDb();
             Models.UserInfo userInfo = getInfoDb.GetDbInfoOneObject<Models.UserInfo>(Start.user.UserId);
 
             List<string> adressInfo = new List<string>{
@@ -57,14 +58,17 @@ namespace WebbShoppen1._0.Helpers
                 $"City: {userInfo.City}",
                 $"Country: {userInfo.Country}",
                 $"Telephone Number: {userInfo.TelephoneNumber}" };
-            Window window = new Window("", Start.x + 43, Start.y + 12, adressInfo);
+            Window window = new Window("", Start.x + 39, Start.y + 12, adressInfo);
             window.Draw(0, 0);
 
         }
 
         private static void EnterNewAdress()
         {
-
+            AddToDb.DbAddCustomer addAdress = new AddToDb.DbAddCustomer();
+            Models.UserInfo userInfo = addAdress.AddNewAdress(Start.x, Start.y);
+            AddToDb.Connectors connectors = new AddToDb.Connectors();
+            connectors.AddAdress(userInfo);
 
 
         }

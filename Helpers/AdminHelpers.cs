@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebbShoppen1._0.TheWheel;
-using WebbShoppen1._0.UsingDb;
+
 
 namespace WebbShoppen1._0.Helpers
 {
@@ -13,7 +13,7 @@ namespace WebbShoppen1._0.Helpers
         public int ChoseProduct(List<string> msg)
         {
             AdminHelpers adminHelpers = new AdminHelpers();
-            GetInfoDb getInfoDb = new GetInfoDb();
+            AddToDb.GetInfoDb getInfoDb = new AddToDb.GetInfoDb();
             List<Models.Product> productList = getInfoDb.GetDbInfo<Models.Product>();
 
             int productId = Helpers.ChoseObject(productList, TheWheel.Start.x + 17, TheWheel.Start.y + 15, msg);
@@ -52,7 +52,7 @@ namespace WebbShoppen1._0.Helpers
                 product.DiscountAmount = 0;
             }
 
-            UsingDb.Connectors connectors = new UsingDb.Connectors();
+            AddToDb.Connectors connectors = new AddToDb.Connectors();
             connectors.UpdateSale(product);
 
 

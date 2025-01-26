@@ -14,13 +14,14 @@ namespace WebbShoppen1._0.Models
 
 
         public UserInfo
-            (string adress, string postalcode, string city, string country, string telephoneNumber)
+            (string adress, string postalcode, string city, string country, string telephoneNumber, bool mainInfo)
         {
             Adress = adress;
             PostalCode = postalcode;
             City = city;
             Country = country;
             TelephoneNumber = telephoneNumber;
+            MainInfo = mainInfo;
         }
 
 

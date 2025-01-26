@@ -7,7 +7,7 @@ using WebbShoppen1._0.Helpers;
 using WebbShoppen1._0.Models;
 using WebbShoppen1._0.TheWheel;
 
-namespace WebbShoppen1._0.UsingDb
+namespace WebbShoppen1._0.AddToDb
 {
     internal class DbAddProduct
     {
@@ -29,7 +29,7 @@ namespace WebbShoppen1._0.UsingDb
         private async Task<Models.Product> CreateProduct(int x, int y)
         {
 
-            UsingDb.GetInfoDb dbInfo = new UsingDb.GetInfoDb();
+            AddToDb.GetInfoDb dbInfo = new AddToDb.GetInfoDb();
 
             var manufacturers = dbInfo.GetDbInfoAsync<Supplier>();
             var suppliers = dbInfo.GetDbInfoAsync<Supplier>();
