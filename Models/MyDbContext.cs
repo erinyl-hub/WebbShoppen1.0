@@ -16,12 +16,15 @@ namespace WebbShoppen1._0.Models
         public DbSet<Product> Product { get; set; }
         public DbSet<ProductCategory> ProductCategory { get; set; }
         public DbSet<Supplier> Supplier { get; set; }
+        public DbSet<PaymentInfo> PaymentInfos { get; set; }
+        public DbSet<CardInfo> CardInfo { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasIndex(a => a.EmailAdress).IsUnique();
             modelBuilder.Entity<Product>().HasIndex(a => a.ProductName).IsUnique();
             modelBuilder.Entity<Supplier>().HasIndex(a => a.Name).IsUnique();
+            modelBuilder.Entity<CardInfo>().HasIndex(a => a.CardNumber).IsUnique();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -34,6 +34,7 @@ namespace WebbShoppen1._0.Models
         public bool IsAdmin { get; set; }
 
         public virtual ICollection<UserInfo> UserInfo { get; set; } = new List<UserInfo>();
+        public virtual ICollection<CardInfo> OrderDetails { get; set; } = new List<CardInfo>();
 
 
     }

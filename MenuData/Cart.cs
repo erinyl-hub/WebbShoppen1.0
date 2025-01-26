@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebbShoppen1._0.TheWheel;
 
 namespace WebbShoppen1._0.MenuData
 {
@@ -22,8 +23,16 @@ namespace WebbShoppen1._0.MenuData
             {45,10},
             {59,10},
 
-
         };
+
+        //public List<string> inCartPrice = new List<string> // User
+        //{
+        //    $"Total Price: {Models.Cart.Tot}",
+        //    "Check out",
+        //    "Back",
+
+        //};
+
 
 
     }

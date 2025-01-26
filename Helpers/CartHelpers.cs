@@ -188,5 +188,24 @@ namespace WebbShoppen1._0.Helpers
                 theProduct.Amount = productAmount;
             }
         }
+
+        public static void TotalPrice(int x, int y)
+        {
+            double totalPrice = 0;
+
+            foreach(var item in Models.Cart.TheCart)
+            {
+                totalPrice += item.TotalPriceProducts;
+            }
+
+            Math.Round(totalPrice, 2);
+
+            List<string> priceSign = new List<string> 
+            { $"Total price:  {totalPrice}$",
+             $"VAT: {totalPrice * 0.2}"};
+
+
+
+        }
     }
 }
