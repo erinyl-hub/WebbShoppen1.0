@@ -25,13 +25,7 @@ namespace WebbShoppen1._0.MenuData
 
         };
 
-        //public List<string> inCartPrice = new List<string> // User
-        //{
-        //    $"Total Price: {Models.Cart.Tot}",
-        //    "Check out",
-        //    "Back",
 
-        //};
 
 
 

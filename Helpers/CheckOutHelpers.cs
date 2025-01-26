@@ -51,18 +51,21 @@ namespace WebbShoppen1._0.Helpers
             Models.UserInfo userInfo = getInfoDb.GetDbInfoOneObject<Models.UserInfo>(Start.user.UserId);
 
             List<string> adressInfo = new List<string>{
-                "Adress",
-                $"> {userInfo.Adress}",
-                "PostalCode",
-                $"> {userInfo.PostalCode}",
-                "City",
-                $"> {userInfo.City}",
-                "Country",
-                $"> {userInfo.Country}",
-                "Telephone Number",
-                $"> {userInfo.TelephoneNumber}" };
+
+                $"Adress: {userInfo.Adress}",
+                $"Postalcode: {userInfo.PostalCode}",
+                $"City: {userInfo.City}",
+                $"Country: {userInfo.Country}",
+                $"Telephone Number: {userInfo.TelephoneNumber}" };
             Window window = new Window("", Start.x + 43, Start.y + 12, adressInfo);
             window.Draw(0, 0);
+
+        }
+
+        private static void EnterNewAdress()
+        {
+
+
 
         }
 

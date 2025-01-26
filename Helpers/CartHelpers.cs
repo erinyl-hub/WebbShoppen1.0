@@ -14,9 +14,12 @@ namespace WebbShoppen1._0.Helpers
         {
             int aktuellIndex = 0;
             int offset = 0; // För att hålla reda på var vi är i listan när vi rullar
+            TotalPrice(Start.x + 60,Start.y + 13);
+
 
             Window window = new Window("", Start.x + 43, Start.y + 13, info);
             ConsoleKey knapp;
+
 
             window.Draw(0, 0);
 
@@ -159,7 +162,7 @@ namespace WebbShoppen1._0.Helpers
                     case 2: // Back
                         Console.Clear();
                         return;
-                        
+
                 }
 
 
@@ -179,7 +182,7 @@ namespace WebbShoppen1._0.Helpers
             var theProduct = Models.Cart.TheCart.FirstOrDefault(o => o.ProductId == productIdInCart);
 
             if (productAmount == 0)
-            {              
+            {
                 Models.Cart.TheCart.Remove(theProduct);
                 return;
             }
@@ -193,18 +196,19 @@ namespace WebbShoppen1._0.Helpers
         {
             double totalPrice = 0;
 
-            foreach(var item in Models.Cart.TheCart)
+            foreach (var item in Models.Cart.TheCart)
             {
                 totalPrice += item.TotalPriceProducts;
             }
 
-            Math.Round(totalPrice, 2);
-
-            List<string> priceSign = new List<string> 
-            { $"Total price:  {totalPrice}$",
-             $"VAT: {totalPrice * 0.2}"};
 
 
+            List<string> priceSign = new List<string>
+            { $"Total price:{Math.Round(totalPrice, 2)}$",
+             $"VAT:{Math.Round(totalPrice * 0.2,2)}$"};
+
+            Window windowTotalPriceDisplay = new Window("", Start.x + 60, Start.y + 13, priceSign);
+            windowTotalPriceDisplay.Draw(0, 0);
 
         }
     }
