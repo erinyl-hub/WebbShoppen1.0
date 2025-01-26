@@ -13,12 +13,12 @@ namespace WebbShoppen1._0.AddToDb
 
         public void AddCustomer(int x, int y)
         {
-            Models.User user = CreateAcount(x,y);
+            Models.User user = CreateAcount(x, y);
 
             Console.Clear();
             Helpers.Helpers.MenuLogoOut(Start.x, Start.y);
 
-            Models.UserInfo userInfo = CreatePersonalInfo(x,y, true);
+            Models.UserInfo userInfo = CreatePersonalInfo(x, y, true);
 
             using (var dB = new Models.MyDbContext())
             {
@@ -44,19 +44,13 @@ namespace WebbShoppen1._0.AddToDb
 
             string emailAdress = CreateEmailAdress(x, y);
             string password = CreatePassword(x + 3, y);
-
-            Console.SetCursorPosition(x + 3, y + 8);
-            string name = Console.ReadLine();
-
-            Console.SetCursorPosition(x + 3, y + 10);
-            string surname = Console.ReadLine();
-
+            string name = Helpers.Helpers.NotEmpty(x + 3, y + 8, Start.x + 38, Start.y + 28);
+            string surname = Helpers.Helpers.NotEmpty(x + 3, y + 10, Start.x + 38, Start.y + 28);
             int yearBorn = RightYear(x + 3, y + 12);
-
             bool gender = RightGender(x + 3, y + 14);
 
             Models.User loggInInfo = new Models.User
-                    (emailAdress, password, surname, surname, yearBorn, gender); 
+                    (emailAdress, password, surname, surname, yearBorn, gender);
 
             return loggInInfo;
         }
@@ -66,25 +60,16 @@ namespace WebbShoppen1._0.AddToDb
         {
             MenuData.AddCustomerAcount createCustomerAcount = new MenuData.AddCustomerAcount();
             var customerInfoMenu = new Window("Enter personal info", x, y, createCustomerAcount.createPersenolInfo);
-            customerInfoMenu.Draw(8,0);
+            customerInfoMenu.Draw(8, 0);
 
-            Console.SetCursorPosition(x + 9, y + 1);
-            string adress = Console.ReadLine();
-
-            Console.SetCursorPosition(x + 13, y + 2);
-            string postalCode = Console.ReadLine();
-
-            Console.SetCursorPosition(x + 7, y + 3);
-            string city = Console.ReadLine();
-
-            Console.SetCursorPosition(x + 10, y + 4);
-            string country = Console.ReadLine();
-
-            Console.SetCursorPosition(x + 18, y + 5);
-            string telephoneNumber = Console.ReadLine();
+            string adress = Helpers.Helpers.NotEmpty(x + 9,y + 1, Start.x + 39, Start.y + 20);
+            string postalCode = Helpers.Helpers.NotEmpty(x + 13, y + 2, Start.x + 39, Start.y + 20);
+            string city = Helpers.Helpers.NotEmpty(x + 7, y + 3, Start.x + 39, Start.y + 20);
+            string country = Helpers.Helpers.NotEmpty(x + 10, y + 4, Start.x + 39, Start.y + 20);
+            string telephoneNumber = Helpers.Helpers.NotEmpty(x + 18, y + 5, Start.x + 39, Start.y + 20);
 
             Models.UserInfo customerInfo = new Models.UserInfo
-                ( adress, postalCode, city, country, telephoneNumber, mainAdress);
+                (adress, postalCode, city, country, telephoneNumber, mainAdress);
 
             return customerInfo;
         }
@@ -108,8 +93,8 @@ namespace WebbShoppen1._0.AddToDb
                 else
                 {
                     MenuData.AddCustomerAcount passwordNotMatch = new MenuData.AddCustomerAcount();
-                    var notMatch = new Window("", x + 1 , y + 15, passwordNotMatch.passwordNotMatch);
-                    notMatch.Draw(0,1);
+                    var notMatch = new Window("", x + 1, y + 15, passwordNotMatch.passwordNotMatch);
+                    notMatch.Draw(0, 1);
 
                     password = Helpers.Helpers.Replacer(password.Length);
                     Console.SetCursorPosition(x, y + 4);
@@ -143,7 +128,7 @@ namespace WebbShoppen1._0.AddToDb
 
                 MenuData.AddCustomerAcount yearWrongFormat = new MenuData.AddCustomerAcount();
                 var notMatch = new Window("", x - 5, y + 3, yearWrongFormat.wrongYear);
-                notMatch.Draw(0,1);
+                notMatch.Draw(0, 1);
                 Console.SetCursorPosition(x, y);
                 Console.Write("          ");
             }
@@ -172,8 +157,8 @@ namespace WebbShoppen1._0.AddToDb
                 }
 
                 MenuData.AddCustomerAcount wrongGenderKey = new MenuData.AddCustomerAcount();
-                var notMatch = new Window("", x , y + 1, wrongGenderKey.wrongGenderKey);
-                notMatch.Draw(0,1);
+                var notMatch = new Window("", x, y + 1, wrongGenderKey.wrongGenderKey);
+                notMatch.Draw(0, 1);
             }
         }
 
@@ -200,13 +185,15 @@ namespace WebbShoppen1._0.AddToDb
                 }
 
                 MenuData.AddCustomerAcount emailInUse = new MenuData.AddCustomerAcount();
-                var notMatch = new Window("", x + 1, y  + 15, emailInUse.emailInUse);
-                notMatch.Draw(0,1);
+                var notMatch = new Window("", x + 1, y + 15, emailInUse.emailInUse);
+                notMatch.Draw(0, 1);
                 emailAdress = Helpers.Helpers.Replacer(emailAdress.Length);
                 Console.SetCursorPosition(x + 3, y + 2);
                 Console.Write(emailAdress);
             }
 
         }
+
+       
     }
 }

@@ -69,8 +69,15 @@ namespace WebbShoppen1._0.Helpers
                         return;
                     }
                 }
+                List<string> Msg = new List<string> { "Wrong user info" };
+                Window window = new Window("", x + 1, y + 6, Msg);
+                window.Draw(0, 1);
 
-                
+                Console.SetCursorPosition(x + 3, y + 2);
+                Console.Write(Replacer(username.Length));
+                Console.SetCursorPosition(x + 3, y + 4);
+                Console.Write(Replacer(password.Length));
+
             }
         }
 
@@ -152,16 +159,13 @@ namespace WebbShoppen1._0.Helpers
             switch (keyChar)
             {
                 case 'A':
-
-                    
-                    cart.AddToCartFromMenuSingel(productId[0],cart);
-                    
+                  
+                    cart.AddToCartFromMenuSingel(productId[0],cart);                  
                    
                     break;
                 case 'S':
 
-                    cart.AddToCartFromMenuSingel(productId[1], cart);
-                   
+                    cart.AddToCartFromMenuSingel(productId[1], cart);                  
 
                     break;
 
@@ -169,22 +173,19 @@ namespace WebbShoppen1._0.Helpers
 
                     cart.AddToCartFromMenuSingel(productId[2], cart);
                    
-
                     break;
 
                 case 'F':
 
                     cart.AddToCartFromMenuSingel(productId[3], cart);
                    
-
                     break;
             }
-
-
         }
 
         public static string HidePassword(int x, int y)
         {
+
             string input = "";
             Console.SetCursorPosition(x, y);
 
@@ -372,6 +373,25 @@ namespace WebbShoppen1._0.Helpers
 
             return objectsOnSaleList;
 
+        }
+
+        public static string NotEmpty(int x, int y, int msgX, int msgY)
+        {
+            while (true)
+            {
+                Console.SetCursorPosition(x, y);
+                string input = Console.ReadLine();
+
+                if (input != "")
+                {
+                    clearMsg(msgX, msgY, 25, 4);
+                    return input;
+                }
+                    List<string> Msg = new List<string> { "Field cannot be empty" };
+                    Window window = new Window("",  msgX, msgY, Msg);
+                    window.Draw(0, 1);
+                
+            }
         }
 
 
