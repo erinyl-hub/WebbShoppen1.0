@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,56 +18,65 @@ namespace WebbShoppen1._0.Helpers
             Models.PaymentInfo paymentInfo = new Models.PaymentInfo();
 
             int adressToUse;
-            if (Start.user.LoggdIn)
+
+            Console.Clear();
+            Helpers.MenuLogoOut(Start.x, Start.y);
+            Models.UserInfo userInfo = AdressToUse();
+            order.UserInfoId = userInfo.Id;
+
+            Console.Clear();
+            Helpers.MenuLogoOut(Start.x, Start.y);
+            paymentInfo = await PaymentOptions();
+
+            int shipingOption = Shiping();
+            if (shipingOption == 0)
             {
-                Console.Clear();
-                Helpers.MenuLogoOut(Start.x, Start.y);
-                order.UserInfoId = AdressToUse();
+                order.ShipingCost = 25;
+                order.ArrivalDate = DateTime.Now.AddDays(5);
+            }
+            else
+            {
+                order.ShipingCost = 50;
+                order.ArrivalDate = DateTime.Now.AddDays(2);
+            }
 
-                Console.Clear();
-                Helpers.MenuLogoOut(Start.x, Start.y);
-                paymentInfo = await PaymentOptions();
+            order.OrderDate = DateTime.Now;
+            order.ProductCount = Models.Cart.TheCart.Count;
 
-                int shipingOption = Shiping();
-                if (shipingOption == 0)
-                {
-                    order.ShipingCost = 25;
-                    order.ArrivalDate = DateTime.Now.AddDays(5);
-                }
-                else
-                {
-                    order.ShipingCost = 50;
-                    order.ArrivalDate = DateTime.Now.AddDays(2);
-                }
+            order.OrderArrived = false;
+            order.OrderUnderway = false;
+            order.OrderProcessing = true;
 
-                order.OrderDate = DateTime.Now;
-                order.ProductCount = Models.Cart.TheCart.Count;
+            foreach (var product in Models.Cart.TheCart)
+            {
+                order.TotalCost += product.TotalPriceProducts;
 
-                order.OrderArrived = false;
-                order.OrderUnderway = false;
-                order.OrderProcessing = true;
+            }
 
-                foreach (var product in Models.Cart.TheCart)
-                {
-                    order.TotalCost += product.TotalPriceProducts;
+            List<Models.OrderDetail> orderDetails = CreateOrderDetails(order);
 
-                }
+            Console.Clear();
+            Helpers.MenuLogoOut(Start.x, Start.y);
+            LastOrderView(paymentInfo, order, userInfo);
+            MenuData.CheckOut checkOut = new MenuData.CheckOut();
+            int choise = Helpers.MenuReader(checkOut.confirmOrder, checkOut.confirmOrderLocations, false);
 
-                List<Models.OrderDetail> orderDetails = CreateOrderDetails(order);
-
-
+            if (choise == 0)
+            {
                 AddToDb.DbAddOrder dbAddOrder = new AddToDb.DbAddOrder();
                 dbAddOrder.AddOrder(order, orderDetails, paymentInfo);
                 Models.Cart.TheCart.Clear();
                 Console.Clear();
                 Helpers.MenuLogoOut(Start.x, Start.y);
-                List<string> orderPlaced = new List<string>() 
+                List<string> orderPlaced = new List<string>()
                 {"Order has been placed", "Press key to continue.." };
                 Window window = new Window("", Start.x + 37, Start.y + 14, orderPlaced);
                 window.Draw(0, 0);
                 Console.ReadKey(true);
 
             }
+            else
+                return;
 
 
 
@@ -74,13 +84,13 @@ namespace WebbShoppen1._0.Helpers
 
         }
 
-        public static int AdressToUse()
+        public static Models.UserInfo AdressToUse()
         {
             MenuData.CheckOut checkOut = new MenuData.CheckOut();
             Console.Clear();
             Helpers.MenuLogoOut(Start.x, Start.y);
+            Models.UserInfo userInfo = AdressOut();
 
-            int addressToUse = AdressOut();
             int choise = Helpers.MenuReader(checkOut.checkOutAdressChoise, checkOut.checkOutAdressChoiseLocations, false);
 
             switch (choise)
@@ -88,18 +98,18 @@ namespace WebbShoppen1._0.Helpers
                 case 0: // existerande adress
 
 
-                    return addressToUse;
+                    return userInfo;
 
 
                 case 1: // lägg till ny adress
 
-                    return addressToUse = EnterNewAdress();
+                    return userInfo = EnterNewAdress();
             }
-            return -1;
+            return userInfo;
 
         }
 
-        private static int AdressOut()
+        private static Models.UserInfo AdressOut()
         {
             AddToDb.GetInfoDb getInfoDb = new AddToDb.GetInfoDb();
             Models.UserInfo userInfo = getInfoDb.GetDbInfoOneObject<Models.UserInfo>(Start.user.UserId);
@@ -113,18 +123,18 @@ namespace WebbShoppen1._0.Helpers
                 $"Telephone Number: {userInfo.TelephoneNumber}" };
             Window window = new Window("", Start.x + 39, Start.y + 12, adressInfo);
             window.Draw(0, 0);
-            return userInfo.Id;
+            return userInfo;
 
         }
 
-        private static int EnterNewAdress()
+        private static Models.UserInfo EnterNewAdress()
         {
             AddToDb.DbAddCustomer addAdress = new AddToDb.DbAddCustomer();
             Models.UserInfo userInfo = addAdress.AddNewAdress(Start.x, Start.y);
             AddToDb.Connectors connectors = new AddToDb.Connectors();
             connectors.AddAdress(userInfo);
 
-            return userInfo.Id;
+            return userInfo;
 
         }
 
@@ -145,7 +155,7 @@ namespace WebbShoppen1._0.Helpers
                 case 0:
                     {
                         paymentInfo.Card = true;
-                        cardOption(paymentInfo);
+                        CardOption(paymentInfo);
 
 
 
@@ -178,7 +188,7 @@ namespace WebbShoppen1._0.Helpers
             return paymentInfo;
         }
 
-        private async static void cardOption(Models.PaymentInfo payInfo)
+        private async static void CardOption(Models.PaymentInfo payInfo)
         {
 
 
@@ -218,9 +228,7 @@ namespace WebbShoppen1._0.Helpers
                         AddToDb.DbAddCardInfo.AddCardInfo();
 
                         break;
-                    case 2:
 
-                        return;
                 }
             }
 
@@ -325,17 +333,95 @@ namespace WebbShoppen1._0.Helpers
 
             foreach (var product in Models.Cart.TheCart)
             {
-                Models.OrderDetail orderDetail = new Models.OrderDetail() 
-                { 
+                Models.OrderDetail orderDetail = new Models.OrderDetail()
+                {
                     ProductId = product.ProductId,
                     Quantity = product.Amount,
                     OrderId = order.Id
-                                      
+
                 };
                 orderDetails.Add(orderDetail);
             }
             return orderDetails;
         }
+
+        private static void LastOrderView(Models.PaymentInfo paymentInfo, Models.Order order, Models.UserInfo userInfo)
+        {
+            List<string> adress = new List<string>()
+            {
+                $"Adress: {userInfo.Adress}",
+                $"Postal Code: {userInfo.PostalCode}",
+                $"City: {userInfo.City}",
+                $"Country: {userInfo.Country}",
+                $"Telephone Number: {userInfo.TelephoneNumber}"
+            };
+
+            List<string> products = new List<string>();
+            double totalPrice = 0;
+
+            foreach (var product in Models.Cart.TheCart)
+            {
+                string nameSpace = Spacer(product.ProductName, 20);
+                string amountSpace = Spacer(product.Amount.ToString(), 5);
+                string priceSpace = Spacer(Math.Round(product.TotalPriceProducts, 2).ToString(), 5);
+
+                string add = $"" +
+                    $"{product.ProductName}{nameSpace}" +
+                    $"{product.Amount}{amountSpace}" +
+                    $"{Math.Round(product.TotalPriceProducts, 2)}$";
+                products.Add(add);
+                totalPrice += product.TotalPriceProducts;
+            }
+
+            string onlyDate = order.ArrivalDate.ToString("yyyy-MM-dd");
+
+            List<string> shipingInfo = new List<string>()
+            {
+                $"Arrival: {onlyDate}"
+            };
+
+            if (order.ShipingCost == 25)
+            {
+                string reguler = "Shiping: Reguler";
+                shipingInfo.Add(reguler);
+            }
+            else if (order.ShipingCost == 50)
+            {
+                string express = "Shiping: Express";
+                shipingInfo.Add(express);
+            }
+
+            List<string> cost = new List<string>()
+            {
+                $"Total cost with shiping: {Math.Round(totalPrice,2)}$",
+                $"VAT:{Math.Round(totalPrice * 0.2,2)}$"};
+
+            AllOut("Adress", adress, Start.x + 5, Start.y + 11);
+            AllOut("Products", products, Start.x + 5, Start.y + 19);
+            AllOut("Shiping Info", shipingInfo, Start.x + 65, Start.y + 11);
+            AllOut("Cost", cost, Start.x + 65, Start.y + 15);
+
+        }
+
+        private static void AllOut(string msg, List<string> list, int x, int y)
+        {
+            Window window = new Window(msg, x, y, list);
+            window.Draw(0, 0);
+
+        }
+
+        public static string Spacer(string countString, int size)
+        {
+            string returner = "";
+            for (int i = 0; i < (size - countString.Length); i++)
+            {
+                returner += " ";
+            }
+
+            return returner;
+        }
+
+
 
 
     }

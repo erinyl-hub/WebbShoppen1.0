@@ -12,13 +12,15 @@ namespace WebbShoppen1._0.TheWheel
         public static int x = 20;
         public static int y = 1;
 
-        public void StartMenu()
+        public async void StartMenu()
         {
 
 
 
             while (true)
             {
+                AddToDb.GetInfoDb dbInfo = new AddToDb.GetInfoDb();
+                var loggInInfoList = dbInfo.GetDbInfoAsync<Models.User>();
                 MenuData.FrontMenu frontMenu = new MenuData.FrontMenu();
                 FrontMenuChoise frontMenuChoise = new FrontMenuChoise();
                 Console.Clear();
@@ -36,20 +38,17 @@ namespace WebbShoppen1._0.TheWheel
                 }
 
                 else if (user.LoggdIn) 
-                {
-                    
+                {                 
                     TheWheel.UserPage userPage = new TheWheel.UserPage();
                     userPage.FrontPageUser();
-
-
                 }
 
                 else 
                 {
-                    choise = Helpers.Helpers.MenuReader(frontMenu.FrontPageOne, frontMenu.FrontPageOneLocations, false);
-                    frontMenuChoise.FrontPageDefult(choise);
 
-                
+                    choise = Helpers.Helpers.MenuReader(frontMenu.FrontPageOne, frontMenu.FrontPageOneLocations, false);
+                    frontMenuChoise.FrontPageDefult(choise, await loggInInfoList);
+          
                 }
 
 

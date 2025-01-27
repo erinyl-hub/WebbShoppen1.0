@@ -56,31 +56,45 @@ namespace WebbShoppen1._0.MenuData
 
         public List<string> cardOption = new List<string> // Defult
         {
-            "Chose card",
+            "Choose card",
             "Add card",
-            "Back"
+            
 
         };
 
         public int[,] cardOptionLocations =
         {
-            {30,10},
-            {45,10},
-            {58,10},
+            {36,10},
+            {51,10},
+
 
         };
 
         public List<string> shipingOption = new List<string> // Defult
         {
-            "Reguler",
-            "Express",
+            "Reguler 25$",
+            "Express 50$",
 
         };
 
         public int[,] shipingOptionLocations =
         {
-            {39,10},
+            {35,10},
             {51,10}
+
+        };
+
+        public List<string> confirmOrder = new List<string> // Defult
+        {
+            "Confirm Order",
+            "Cancel",
+
+        };
+
+        public int[,] confirmOrderLocations =
+        {
+            {35,10},
+            {53,10}
 
         };
 

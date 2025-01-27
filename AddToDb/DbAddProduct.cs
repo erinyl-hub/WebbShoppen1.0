@@ -46,13 +46,12 @@ namespace WebbShoppen1._0.AddToDb
             Console.SetCursorPosition(x + 3, y + 4);
             string description = Console.ReadLine();
 
-            //Task<List<string>> manufacturerListMenu = DisplayList<Manufacturer>(m => $"[{m.Id}]     {m.Name}", await manufacturers);
+
             Task<List<string>> suppliersListMenu = DisplayList<Supplier>(m => $"[{m.Id}]     {m.Name}", await suppliers);
             Task<List<string>> productCategorysListMenu = DisplayList<ProductCategory>(m => $"[{m.Id}]     {m.CategoryName}", await productCategorys);
 
             double unitPrice = Helpers.Helpers.checkFormat<double>(x + 3, y + 6, +3, 10);
             int unitsInStock = Helpers.Helpers.checkFormat<int>(x + 3, y + 8, +3, 8);
-            //int manufacturerId = someDb(x + 3, y + 10, -10, 0, await manufacturerListMenu, "Manufacturers", await manufacturers);
             int supplierId = someDb(x + 3, y + 12, -12, -2, await suppliersListMenu, "Suppliers", await suppliers);
             int productCategoryId = someDb(x + 3, y + 14, -14, -4, await productCategorysListMenu, "Product Categorys", await productCategorys);
 

@@ -69,8 +69,6 @@ namespace WebbShoppen1._0.AddToDb
             string sql =
                 "SELECT * FROM [WebbShoppen1.0].[dbo].[CardInfo] WHERE UserId = @Id";
 
-            //Models.CardInfo cardInfo;
-
             using (var connection = new SqlConnection(connString))
             {
                 var cardInfo = connection.Query<Models.CardInfo>(sql, new { Id = id }).ToList();

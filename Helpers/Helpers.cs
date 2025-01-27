@@ -38,10 +38,9 @@ namespace WebbShoppen1._0.Helpers
         }
 
 
-        public static async void LoggIn(int x, int y) // Fixa så när man slår fel logg in!
+        public static async void LoggIn(int x, int y, List<Models.User> loggInInfoList) // Fixa så när man slår fel logg in!
         {
-            AddToDb.GetInfoDb dbInfo = new AddToDb.GetInfoDb();
-            var loggInInfoList = dbInfo.GetDbInfoAsync<Models.User>();
+
 
             MenuData.LoggIn loggInData = new MenuData.LoggIn();
             Window loggInBox = new Window("Logg In", x, y, loggInData.logginData);
@@ -54,7 +53,7 @@ namespace WebbShoppen1._0.Helpers
 
                 string password = Helpers.HidePassword(x + 3, y + 4);
 
-                foreach (var user in await loggInInfoList)
+                foreach (var user in loggInInfoList)
                 {
                     if (user.EmailAdress == username && user.Password == password)
                     {
@@ -96,8 +95,6 @@ namespace WebbShoppen1._0.Helpers
         public static int MenuReader(List<string> menuItems, int[,] pos, bool showOneSale) // problem, listan för menuItems uppdateras inte när något hamnar i cart
         {
             int selectedIndex = 0;
-
-            // Helpers.MenuLogoOut(Start.x, Start.y);
 
             List<int> productsDisplaydId = new List<int>();
             if (showOneSale == true)

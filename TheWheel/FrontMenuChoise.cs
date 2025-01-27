@@ -10,7 +10,7 @@ namespace WebbShoppen1._0.TheWheel
     internal class FrontMenuChoise
     {
 
-        public void FrontPageDefult(int choise)
+        public void FrontPageDefult(int choise, List<Models.User> loggInInfoList)
         {
             switch (choise) 
             { 
@@ -19,7 +19,7 @@ namespace WebbShoppen1._0.TheWheel
 
                     Console.Clear();
                     Helpers.Helpers.MenuLogoOut(Start.x, Start.y);
-                    Helpers.Helpers.LoggIn(Start.x + 42, Start.y + 13);
+                    Helpers.Helpers.LoggIn(Start.x + 42, Start.y + 13, loggInInfoList);
 
                     break;
 
