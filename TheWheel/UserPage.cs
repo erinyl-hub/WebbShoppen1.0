@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebbShoppen1._0.MenuData;
 
 namespace WebbShoppen1._0.TheWheel
 {
@@ -14,8 +15,8 @@ namespace WebbShoppen1._0.TheWheel
             while (true)
             {
                 MenuData.UserView userView = new MenuData.UserView();
-                Helpers.Helpers.MenuLogoOut(Start.x,Start.y);
-                int choise = Helpers.Helpers.MenuReader(userView.userFrontPage, userView.userFrontPageLocation,true);
+                Helpers.Helpers.MenuLogoOut(Start.x, Start.y);
+                int choise = Helpers.Helpers.MenuReader(userView.userFrontPage, userView.userFrontPageLocation, true);
                 switch (choise)
                 {
 
@@ -40,6 +41,7 @@ namespace WebbShoppen1._0.TheWheel
                     case 4: //Logg out
 
                         Helpers.Helpers.LoggOut();
+                        Models.Cart.TheCart.Clear();
 
                         return;
                 }
@@ -47,6 +49,43 @@ namespace WebbShoppen1._0.TheWheel
 
 
             }
+
+        }
+
+        private static void Profile()
+        {
+            MenuData.UserView userView = new MenuData.UserView();
+            int choise = Helpers.Helpers.MenuReader(userView.userFrontPage, userView.userFrontPageLocation, true);
+
+            switch (choise)
+            {
+
+                case 0: // adress - ändra,lätt till ta bort
+                    break;
+
+
+                case 1: // beställningar
+                    break;
+
+
+                case 2: // betalning
+                    break;
+
+
+                case 3:
+                    break;
+
+
+                case 4:
+                    break;
+
+
+                case 5:
+                    break;
+
+            }
+
+
 
         }
 

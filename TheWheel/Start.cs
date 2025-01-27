@@ -46,7 +46,7 @@ namespace WebbShoppen1._0.TheWheel
 
                 else 
                 {
-                    choise = Helpers.Helpers.MenuReader(frontMenu.FrontPageOne, frontMenu.FrontPageOneLocations, true);
+                    choise = Helpers.Helpers.MenuReader(frontMenu.FrontPageOne, frontMenu.FrontPageOneLocations, false);
                     frontMenuChoise.FrontPageDefult(choise);
 
                 

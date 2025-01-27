@@ -14,7 +14,7 @@ namespace WebbShoppen1._0.Helpers
         {
             int aktuellIndex = 0;
             int offset = 0; // För att hålla reda på var vi är i listan när vi rullar
-            TotalPrice(Start.x + 60,Start.y + 13);
+            TotalPrice(Start.x + 60, Start.y + 13);
 
 
             Window window = new Window("", Start.x + 43, Start.y + 13, info);
@@ -130,7 +130,7 @@ namespace WebbShoppen1._0.Helpers
                 MenuData.Cart cartData = new MenuData.Cart();
                 List<string> cartOverView = new List<string> { "  The cart  " };
                 Helpers.MenuLogoOut(Start.x, Start.y);
-                DrawCartObjects(Models.Cart.TheCart, 35, 19, cartOverView, 18);
+                DrawCartObjects(Models.Cart.TheCart, Start.x + 15, Start.y + 18, cartOverView, 18);
                 int choise = Helpers.MenuReader(cartData.inCart, cartData.inCartLocation, false);
 
 
@@ -143,7 +143,7 @@ namespace WebbShoppen1._0.Helpers
                             Console.Clear();
                             Helpers.MenuLogoOut(Start.x, Start.y);
                             List<string> cartEdit = new List<string> { "  Chose a product ", "Press esc to return" };
-                            product = ChoseCartObjects(Models.Cart.TheCart, 35, 19, cartEdit, 18);
+                            product = ChoseCartObjects(Models.Cart.TheCart, Start.x + 15, Start.y + 18, cartEdit, 18);
                             if (product != -1)
                             {
                                 Console.Clear();
@@ -155,8 +155,11 @@ namespace WebbShoppen1._0.Helpers
 
                     case 1: // Check out
 
-                        CheckOutHelpers.CheckOut();
-
+                        if (Models.Cart.TheCart.Count > 0)
+                        {
+                            CheckOutHelpers.CheckOut();
+                            return;
+                        }
                         break;
 
                     case 2: // Back

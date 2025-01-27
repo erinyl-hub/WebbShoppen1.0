@@ -37,6 +37,7 @@ namespace WebbShoppen1._0.Models
         public int UserId { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+        //public virtual ICollection<PaymentInfo> PaymentInfos { get; set; } = new List<PaymentInfo>();
         public virtual User User { get; set; }
 
 

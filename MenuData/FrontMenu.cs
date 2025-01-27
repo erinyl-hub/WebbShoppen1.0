@@ -14,18 +14,14 @@ namespace WebbShoppen1._0.MenuData
         {
             "Logg in",
             "Register",
-            "Categories",
-            "Search",
-            "Cart",
+
         };
 
         public int[,] FrontPageOneLocations =
         {
-            {22,10},
-            {34,10},
-            {47,10},
-            {62,10},
-            {73,10},
+            {39,10},
+            {51,10},
+
 
         };
 

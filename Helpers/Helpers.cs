@@ -125,7 +125,8 @@ namespace WebbShoppen1._0.Helpers
                     }
 
                     if (menuItems[i] == "Cart")
-                    { Console.SetCursorPosition(pos[i, 0] + Start.x + 7, pos[i, 1] + Start.y);
+                    {
+                        Console.SetCursorPosition(pos[i, 0] + Start.x + 7, pos[i, 1] + Start.y);
                         Console.Write($" {Models.Cart.CartCount}]");
                     }
 
@@ -142,12 +143,15 @@ namespace WebbShoppen1._0.Helpers
                 { Console.ResetColor(); return selectedIndex; }
 
                 else if
-                    (showOneSale == true || key.Key == ConsoleKey.A ||
-                    key.Key == ConsoleKey.S || key.Key == ConsoleKey.D || key.Key == ConsoleKey.F)
+                    (showOneSale == true)
                 {
-                    AddDisplayProductsToCart(productsDisplaydId, key);
-                    
-                }            
+                    if (key.Key == ConsoleKey.A ||
+                    key.Key == ConsoleKey.S || key.Key == ConsoleKey.D || key.Key == ConsoleKey.F)
+                    {
+                        AddDisplayProductsToCart(productsDisplaydId, key);
+                    }
+
+                }
             }
         }
 
@@ -159,26 +163,26 @@ namespace WebbShoppen1._0.Helpers
             switch (keyChar)
             {
                 case 'A':
-                  
-                    cart.AddToCartFromMenuSingel(productId[0],cart);                  
-                   
+
+                    cart.AddToCartFromMenuSingel(productId[0], cart);
+
                     break;
                 case 'S':
 
-                    cart.AddToCartFromMenuSingel(productId[1], cart);                  
+                    cart.AddToCartFromMenuSingel(productId[1], cart);
 
                     break;
 
                 case 'D':
 
                     cart.AddToCartFromMenuSingel(productId[2], cart);
-                   
+
                     break;
 
                 case 'F':
 
                     cart.AddToCartFromMenuSingel(productId[3], cart);
-                   
+
                     break;
             }
         }
@@ -265,7 +269,7 @@ namespace WebbShoppen1._0.Helpers
 
                     if (i == aktuellIndex)
                     {
-                       
+
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine($"> {objektLista[i].ProductName} {onSale}");
                         Console.ResetColor();
@@ -328,10 +332,10 @@ namespace WebbShoppen1._0.Helpers
         public static List<int> ProductsOnFrontPage() // List metoden
         {
             Helpers helpers = new Helpers();
-            List<Models.Product> productsOnSale =  helpers.ProductsOnSale();
+            List<Models.Product> productsOnSale = helpers.ProductsOnSale();
             int x = 25;
             int y = 5;
-           
+
             List<int> productNumber = new List<int>();
             List<string> letters = new List<string>() { "Press A to buy", "Press S to buy", "Press D to buy", "Press F to buy" };
             int[,] cords = { { Start.x + x, Start.y + y + 10 }, { Start.x + x, Start.y + y + 20 }, { Start.x + x + 30, Start.y + y + 10 }, { Start.x + x + 30, Start.y + y + 20 } };
@@ -387,19 +391,24 @@ namespace WebbShoppen1._0.Helpers
                     clearMsg(msgX, msgY, 25, 4);
                     return input;
                 }
-                    List<string> Msg = new List<string> { "Field cannot be empty" };
-                    Window window = new Window("",  msgX, msgY, Msg);
-                    window.Draw(0, 1);
-                
+                List<string> Msg = new List<string> { "Field cannot be empty" };
+                Window window = new Window("", msgX, msgY, Msg);
+                window.Draw(0, 1);
+
             }
         }
-        
+
         public static void LoggOut()
         {
             Start.user.LoggdIn = false;
             Start.user.UserId = 0;
             Start.user.IsAdmin = false;
         }
+
+
+
+
+
 
 
 

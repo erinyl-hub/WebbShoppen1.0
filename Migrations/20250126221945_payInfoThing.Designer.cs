@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebbShoppen1._0.Models;
 
@@ -11,9 +12,11 @@ using WebbShoppen1._0.Models;
 namespace WebbShoppen1._0.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250126221945_payInfoThing")]
+    partial class payInfoThing
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,9 +33,8 @@ namespace WebbShoppen1._0.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CardCVV")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CardCVV")
+                        .HasColumnType("int");
 
                     b.Property<string>("CardDate")
                         .IsRequired()
@@ -109,6 +111,9 @@ namespace WebbShoppen1._0.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<double?>("Discount")
+                        .HasColumnType("float");
+
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
@@ -117,6 +122,9 @@ namespace WebbShoppen1._0.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
+
+                    b.Property<double>("UnitPrice")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -156,12 +164,17 @@ namespace WebbShoppen1._0.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserInfoId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CardInfoId");
 
                     b.HasIndex("OrderId")
                         .IsUnique();
+
+                    b.HasIndex("UserInfoId");
 
                     b.ToTable("PaymentInfos");
                 });
@@ -415,9 +428,15 @@ namespace WebbShoppen1._0.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("WebbShoppen1._0.Models.UserInfo", "UserInfo")
+                        .WithMany("PaymentInfos")
+                        .HasForeignKey("UserInfoId");
+
                     b.Navigation("CardInfo");
 
                     b.Navigation("Order");
+
+                    b.Navigation("UserInfo");
                 });
 
             modelBuilder.Entity("WebbShoppen1._0.Models.Product", b =>
@@ -488,6 +507,8 @@ namespace WebbShoppen1._0.Migrations
             modelBuilder.Entity("WebbShoppen1._0.Models.UserInfo", b =>
                 {
                     b.Navigation("Orders");
+
+                    b.Navigation("PaymentInfos");
                 });
 #pragma warning restore 612, 618
         }

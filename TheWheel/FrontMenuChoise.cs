@@ -32,17 +32,7 @@ namespace WebbShoppen1._0.TheWheel
 
                     break;
 
-                case 2: //Categories
 
-                    break;
-
-                case 3: //Search
-
-                    break;
-
-                case 4: //Cart
-
-                    break;
 
             }
 

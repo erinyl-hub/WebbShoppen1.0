@@ -113,3 +113,7 @@ VALUES
     Faktura - skickas till adress - 
     Avbetalning - 3 alt 3,6,12 månader
     Kort - kort info - egen tabel med kort info
+
+
+    Fixa så man kan läga till CardInfo i profil, att man kan välja/lägga till när man checkar ut, 
+    Fixa profil, person uppgifter(ändra), bestälningar

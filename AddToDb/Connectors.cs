@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using WebbShoppen1._0.TheWheel;
+using WebbShoppen1._0.Models;
+using WebbShoppen1._0.MenuData;
 
 namespace WebbShoppen1._0.AddToDb
 {
@@ -22,7 +24,7 @@ namespace WebbShoppen1._0.AddToDb
 
             using (var connection = new SqlConnection(connString))
             {
-                
+
                 connection.Execute(sql, new { OnSale = product.OnSale, DiscountAmount = product.DiscountAmount, Id = product.Id });
             }
 
@@ -47,18 +49,35 @@ namespace WebbShoppen1._0.AddToDb
             using (var connection = new SqlConnection(connString))
             {
 
-                connection.Execute(sql, new 
-                { 
-                    Adress = userInfo.Adress, 
-                    PostalCode = userInfo.PostalCode, 
-                    City = userInfo.City, 
+                connection.Execute(sql, new
+                {
+                    Adress = userInfo.Adress,
+                    PostalCode = userInfo.PostalCode,
+                    City = userInfo.City,
                     Country = userInfo.Country,
                     TelephoneNumber = userInfo.TelephoneNumber,
                     MainInfo = userInfo.MainInfo,
-                    UserId = Start.user.UserId                      
+                    UserId = Start.user.UserId
                 });
             }
 
+        }
+
+        public async Task<List<Models.CardInfo>> GetCardInfo(int id)
+        {
+
+            string sql =
+                "SELECT * FROM [WebbShoppen1.0].[dbo].[CardInfo] WHERE UserId = @Id";
+
+            //Models.CardInfo cardInfo;
+
+            using (var connection = new SqlConnection(connString))
+            {
+                var cardInfo = connection.Query<Models.CardInfo>(sql, new { Id = id }).ToList();
+                return cardInfo;
+
+                
+            }
         }
 
     }
