@@ -117,3 +117,14 @@ VALUES
 
     Fixa så man kan läga till CardInfo i profil, att man kan välja/lägga till när man checkar ut, 
     Fixa profil, person uppgifter(ändra), bestälningar
+
+
+    User kvar:
+
+    profile: Se/ändra adress, Se/ta bort kort, se beställningar
+    Serch förmåga.
+
+
+    Admin kvar:
+
+    Edita produkter, ändra user info, sätta status på beställningar, se lite statestik, 

@@ -25,6 +25,8 @@ namespace WebbShoppen1._0.TheWheel
                         break;
 
                     case 1: //Categories
+                        Helpers.ProductCategoryHelpers productCategoryHelpers = new Helpers.ProductCategoryHelpers();
+                        productCategoryHelpers.TheCategory();
 
                         break;
 

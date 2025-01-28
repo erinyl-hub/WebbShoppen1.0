@@ -78,5 +78,22 @@ namespace WebbShoppen1._0.AddToDb
             }
         }
 
+        public List<Models.Product> GetProducts(int id)
+        {
+
+            string sql =
+                "SELECT * FROM [WebbShoppen1.0].[dbo].[Product] WHERE ProductCategoryId = @Id";
+
+            using (var connection = new SqlConnection(connString))
+            {
+                var products = connection.Query<Models.Product>(sql, new { Id = id }).ToList();
+                return products;
+
+
+            }
+        }
+
+
+
     }
 }

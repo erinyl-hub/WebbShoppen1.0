@@ -67,7 +67,7 @@ namespace WebbShoppen1._0.Helpers
                         $"> {objektLista[offset + i].ProductName}     ",
                         $"Amount: {objektLista[offset + i].Amount}     ",
                         $"Price: {objektLista[offset + i].FinalPrice}     ",
-                        $"Total price: {objektLista[offset + i].TotalPriceProducts}     ");
+                        $"Total price: {Math.Round(objektLista[offset + i].TotalPriceProducts,2)}     ");
                         Console.ResetColor();
                     }
                     else
@@ -76,7 +76,7 @@ namespace WebbShoppen1._0.Helpers
                         $"  {objektLista[offset + i].ProductName}     ",
                         $"Amount: {objektLista[offset + i].Amount}     ",
                         $"Price: {objektLista[offset + i].FinalPrice}     ",
-                        $"Total price: {objektLista[offset + i].TotalPriceProducts}     ");
+                        $"Total price: {Math.Round(objektLista[offset + i].TotalPriceProducts, 2)}     ");
                     }
                 }
 

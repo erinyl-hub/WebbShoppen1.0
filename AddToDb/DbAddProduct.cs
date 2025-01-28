@@ -52,8 +52,8 @@ namespace WebbShoppen1._0.AddToDb
 
             double unitPrice = Helpers.Helpers.checkFormat<double>(x + 3, y + 6, +3, 10);
             int unitsInStock = Helpers.Helpers.checkFormat<int>(x + 3, y + 8, +3, 8);
-            int supplierId = someDb(x + 3, y + 12, -12, -2, await suppliersListMenu, "Suppliers", await suppliers);
-            int productCategoryId = someDb(x + 3, y + 14, -14, -4, await productCategorysListMenu, "Product Categorys", await productCategorys);
+            int supplierId = someDb(x + 3, y + 10, -10, -2, await suppliersListMenu, "Suppliers", await suppliers);
+            int productCategoryId = someDb(x + 3, y + 12, -12, -4, await productCategorysListMenu, "Product Categorys", await productCategorys);
 
             Models.Product product = new Models.Product
                 (name, description, unitPrice, 0, false, false, 0, supplierId, productCategoryId);
@@ -114,6 +114,7 @@ namespace WebbShoppen1._0.AddToDb
                 if (valueExistInDb(objects, returnValue))
                 {
                     Helpers.Helpers.clearMsg(x + 27, y + yModList, 35, modelList.Count + 2);
+                    Helpers.Helpers.clearMsg(x , y + 4, 35, 4);
                     return returnValue;
                 }
 
