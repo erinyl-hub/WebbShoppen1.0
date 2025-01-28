@@ -15,28 +15,24 @@ namespace WebbShoppen1._0.AddToDb
 
             using (var dB = new Models.MyDbContext())
             {
-                // Koppla varje OrderDetail i listan till Order
+
                 foreach (var orderDetail in orderDetails)
                 {
-                    orderDetail.Order = order;
+                    orderDetail.Order = order; // kopplar ihop
                 }
 
-                // Koppla PaymentInfo till Order
-                paymentInfo.Order = order;
+                paymentInfo.Order = order; // kopplar ihop
 
-                // Lägg till Order (huvudobjektet)
                 dB.Order.Add(order);
 
-                // Lägg till alla OrderDetails i databaskontexten
                 dB.OrderDetail.AddRange(orderDetails);
 
-                // Lägg till PaymentInfo i databaskontexten
                 dB.PaymentInfos.Add(paymentInfo);
 
-                // Spara alla ändringar i databasen
                 dB.SaveChanges();
             }
         }
+
 
     }
 }

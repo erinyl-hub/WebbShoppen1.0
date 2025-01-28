@@ -93,6 +93,19 @@ namespace WebbShoppen1._0.AddToDb
             }
         }
 
+        public async Task LowerProductDb(int id, int amount)
+        {
+
+            string sql =
+                "UPDATE Product Set ProductInStock = ProductInStock - @Amount  WHERE Id = @Id";
+
+            using (var connection = new SqlConnection(connString))
+            {
+                await connection.ExecuteAsync(sql, new { Id = id, Amount = amount });
+
+            }
+        }
+
 
 
     }

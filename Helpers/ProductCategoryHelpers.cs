@@ -116,7 +116,7 @@ namespace WebbShoppen1._0.Helpers
             return objektLista[aktuellIndex].Id;
         }
 
-        private static int ChoseProduct(List<Models.Product> objektLista, int x, int y, List<string> info, int visningsRader)
+        public void ChoseProduct(List<Models.Product> objektLista, int x, int y, List<string> info, int visningsRader)
         {
             int aktuellIndex = 0;
             int offset = 0; // För att hålla reda på var vi är i listan när vi rullar
@@ -211,7 +211,7 @@ namespace WebbShoppen1._0.Helpers
                         }
 
                     case ConsoleKey.Escape:
-                        return -1;
+                        return;
 
                 }
 

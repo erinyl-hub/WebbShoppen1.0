@@ -65,11 +65,13 @@ namespace WebbShoppen1._0.Helpers
             {
                 AddToDb.DbAddOrder dbAddOrder = new AddToDb.DbAddOrder();
                 dbAddOrder.AddOrder(order, orderDetails, paymentInfo);
+                LowerProducts(orderDetails);
                 Models.Cart.TheCart.Clear();
                 Console.Clear();
                 Helpers.MenuLogoOut(Start.x, Start.y);
                 List<string> orderPlaced = new List<string>()
                 {"Order has been placed", "Press key to continue.." };
+                ;
                 Window window = new Window("", Start.x + 37, Start.y + 14, orderPlaced);
                 window.Draw(0, 0);
                 Console.ReadKey(true);
@@ -419,6 +421,19 @@ namespace WebbShoppen1._0.Helpers
             }
 
             return returner;
+        }
+
+        private async static void LowerProducts(List<Models.OrderDetail> orderDetail)
+        {
+
+            AddToDb.Connectors connectors = new AddToDb.Connectors();
+
+            foreach (var product in orderDetail)
+            {
+                connectors.LowerProductDb(product.ProductId, product.Quantity);
+
+            }
+
         }
 
 

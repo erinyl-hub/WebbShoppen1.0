@@ -32,6 +32,9 @@ namespace WebbShoppen1._0.TheWheel
 
                     case 2: //Search
 
+                        Helpers.SearchHelpers searchHelpers = new Helpers.SearchHelpers();
+                        searchHelpers.TheSearcher();
+
                         break;
 
                     case 3: //Cart
