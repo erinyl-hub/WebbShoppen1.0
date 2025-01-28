@@ -27,6 +27,42 @@ namespace WebbShoppen1._0.MenuData
 
         };
 
+        public List<string> userProfilePage = new List<string> // User
+        {
+            "Adress Info",
+            "Orders",
+            "Card Info",
+            "Back",
+
+        };
+
+        public int[,] userProfilePageLocation =
+        {
+            {25,10},
+            {41,10},
+            {52,10},
+            {66,10},
+
+        };
+
+        public List<string> userProfileAdressPage = new List<string> // User
+        {
+            "Change main adress",
+            "Add new adress",
+            "Change",
+            "Back",
+
+        };
+
+        public int[,] userProfileAdressLocation =
+        {
+            {21,10},
+            {44,10},
+            {63,10},
+            {74,10},
+
+        };
+
 
 
     }

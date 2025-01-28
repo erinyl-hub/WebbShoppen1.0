@@ -106,6 +106,56 @@ namespace WebbShoppen1._0.AddToDb
             }
         }
 
+        public List<Models.UserInfo> GetUserInfo(int id)
+        {
+
+            string sql =
+                "SELECT * FROM [WebbShoppen1.0].[dbo].[UserInfo] WHERE UserId = @Id";
+
+            using (var connection = new SqlConnection(connString))
+            {
+                var products = connection.Query<Models.UserInfo>(sql, new { Id = id }).ToList();
+                return products;
+            }
+        }
+
+        public void SetNewMainAdress(int newMainId, int userId)
+        {
+
+            string sql =
+                "UPDATE [WebbShoppen1.0].[dbo].[UserInfo] SET MainInfo = 0 WHERE MainInfo = 1 AND UserId = @UserId " +
+                "UPDATE [WebbShoppen1.0].[dbo].[UserInfo] SET MainInfo = 1 WHERE id = @NewMainId";
+
+            using (var connection = new SqlConnection(connString))
+            {
+                connection.Execute(sql, new { NewMainId = newMainId, UserId = userId });
+
+            }
+        }
+
+        public void ChagneAdress(int adressId, string adress, string postalCode, string city, string country, string telephoneNumber)
+        {
+
+            string sql =
+                "  UPDATE [WebbShoppen1.0].[dbo].[UserInfo] SET " +
+                "Adress = @Adress, PostalCode = @PostalCode, City = @City, Country = @Country,TelephoneNumber = @TelephoneNumber WHERE Id = @AdressId";
+                
+
+            using (var connection = new SqlConnection(connString))
+            {
+                connection.Execute
+                    (sql, new { 
+                        Adress = adress, 
+                        PostalCode = postalCode, 
+                        City = city, 
+                        Country = country, 
+                        TelephoneNumber = telephoneNumber, 
+                        AdressId = adressId}
+                    );
+
+            }
+        }
+
 
 
     }

@@ -105,6 +105,8 @@ namespace WebbShoppen1._0.Helpers
 
                 case 1: // lägg till ny adress
 
+                    Console.Clear();
+                    Helpers.MenuLogoOut(Start.x, Start.y);
                     return userInfo = EnterNewAdress();
             }
             return userInfo;
@@ -129,7 +131,7 @@ namespace WebbShoppen1._0.Helpers
 
         }
 
-        private static Models.UserInfo EnterNewAdress()
+        public static Models.UserInfo EnterNewAdress()
         {
             AddToDb.DbAddCustomer addAdress = new AddToDb.DbAddCustomer();
             Models.UserInfo userInfo = addAdress.AddNewAdress(Start.x, Start.y);
