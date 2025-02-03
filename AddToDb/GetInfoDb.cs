@@ -31,6 +31,8 @@ namespace WebbShoppen1._0.AddToDb
             using (var db = new MyDbContext())
             {
                 items = db.Set<T>().ToList();
+
+
             }
             return items;
 

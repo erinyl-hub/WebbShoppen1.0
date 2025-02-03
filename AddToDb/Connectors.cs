@@ -13,13 +13,13 @@ namespace WebbShoppen1._0.AddToDb
 {
     internal class Connectors
     {
-        static string connString = "data source=.\\SQLEXPRESS; initial catalog=WebbShoppen1.0; persist security info=True; Integrated Security=True; TrustServerCertificate=True;";
-
+        //static string connString = "data source=.\\SQLEXPRESS; initial catalog=WebbShoppen1.0; persist security info=True; Integrated Security=True; TrustServerCertificate=True;";
+        static string connString = "Server=tcp:runedbase.database.windows.net,1433;Initial Catalog=RuneSys24;Persist Security Info=False;User ID=Rune;Password=*SystemTILL2026!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
         public void UpdateSale(Models.Product product)
         {
             string sql =
-                "UPDATE [WebbShoppen1.0].[dbo].[Product] SET OnSale = @OnSale, DiscountAmount = @DiscountAmount WHERE Id = @Id";
+                "UPDATE [RuneSys24].[dbo].[Product] SET OnSale = @OnSale, DiscountAmount = @DiscountAmount WHERE Id = @Id";
 
 
             using (var connection = new SqlConnection(connString))
@@ -33,7 +33,7 @@ namespace WebbShoppen1._0.AddToDb
         public void AddAdress(Models.UserInfo userInfo)
         {
             string sql =
-                "INSERT INTO [WebbShoppen1.0].[dbo].[UserInfo]" +
+                "INSERT INTO [RuneSys24].[dbo].[UserInfo]" +
                  "(" +
                  "[Adress]" +
                  ",[PostalCode]" +
@@ -67,7 +67,7 @@ namespace WebbShoppen1._0.AddToDb
         {
 
             string sql =
-                "SELECT * FROM [WebbShoppen1.0].[dbo].[CardInfo] WHERE UserId = @Id";
+                "SELECT * FROM [RuneSys24].[dbo].[CardInfo] WHERE UserId = @Id";
 
             using (var connection = new SqlConnection(connString))
             {
@@ -82,7 +82,7 @@ namespace WebbShoppen1._0.AddToDb
         {
 
             string sql =
-                "SELECT * FROM [WebbShoppen1.0].[dbo].[Product] WHERE ProductCategoryId = @Id";
+                "SELECT * FROM [RuneSys24].[dbo].[Product] WHERE ProductCategoryId = @Id";
 
             using (var connection = new SqlConnection(connString))
             {
@@ -110,7 +110,7 @@ namespace WebbShoppen1._0.AddToDb
         {
 
             string sql =
-                "SELECT * FROM [WebbShoppen1.0].[dbo].[UserInfo] WHERE UserId = @Id";
+                "SELECT * FROM [RuneSys24].[dbo].[UserInfo] WHERE UserId = @Id";
 
             using (var connection = new SqlConnection(connString))
             {
@@ -123,8 +123,8 @@ namespace WebbShoppen1._0.AddToDb
         {
 
             string sql =
-                "UPDATE [WebbShoppen1.0].[dbo].[UserInfo] SET MainInfo = 0 WHERE MainInfo = 1 AND UserId = @UserId " +
-                "UPDATE [WebbShoppen1.0].[dbo].[UserInfo] SET MainInfo = 1 WHERE id = @NewMainId";
+                "UPDATE [RuneSys24].[dbo].[UserInfo] SET MainInfo = 0 WHERE MainInfo = 1 AND UserId = @UserId " +
+                "UPDATE [RuneSys24].[dbo].[UserInfo] SET MainInfo = 1 WHERE id = @NewMainId";
 
             using (var connection = new SqlConnection(connString))
             {
@@ -137,7 +137,7 @@ namespace WebbShoppen1._0.AddToDb
         {
 
             string sql =
-                "  UPDATE [WebbShoppen1.0].[dbo].[UserInfo] SET " +
+                "  UPDATE [RuneSys24].[dbo].[UserInfo] SET " +
                 "Adress = @Adress, PostalCode = @PostalCode, City = @City, Country = @Country,TelephoneNumber = @TelephoneNumber WHERE Id = @AdressId";
                 
 
@@ -153,6 +153,18 @@ namespace WebbShoppen1._0.AddToDb
                         AdressId = adressId}
                     );
 
+            }
+        }
+
+        public List<Models.Order> GetOrders(int id)
+        {
+            string sql =
+                "SELECT * FROM [RuneSys24].[dbo].[Order] WHERE UserInfoId = @Id";
+
+            using (var connection = new SqlConnection(connString))
+            {
+                var orders =  connection.Query<Models.Order>(sql, new { Id = id });
+                return orders.ToList();
             }
         }
 

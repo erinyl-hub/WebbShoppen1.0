@@ -9,17 +9,8 @@ namespace WebbShoppen1._0
         static void Main(string[] args)
         {
 
-
-
-
-
-
-
             Start start = new TheWheel.Start();
             start.StartMenu();
-
-
-
 
         }
     }

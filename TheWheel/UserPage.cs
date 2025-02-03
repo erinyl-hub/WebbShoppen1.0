@@ -82,6 +82,8 @@ namespace WebbShoppen1._0.TheWheel
 
                 case 1: // beställningar - se alla, status, kostnad , beställning gjord, när anländer ,välja för tydligare info, 
 
+                    Orders();
+
                     break;
 
 
@@ -138,7 +140,7 @@ namespace WebbShoppen1._0.TheWheel
                     Console.Clear();
                     Helpers.Helpers.MenuLogoOut(Start.x, Start.y);
                     CheckOutHelpers.EnterNewAdress();
-                    
+
 
 
                     break;
@@ -168,25 +170,29 @@ namespace WebbShoppen1._0.TheWheel
 
         private static void Orders()
         {
+            AddToDb.Connectors connectors = new AddToDb.Connectors();
+            List<Models.Order> orders = connectors.GetOrders(Start.user.UserId);
+
             MenuData.UserView userView = new MenuData.UserView();
-            int choise = Helpers.Helpers.MenuReader(userView.userFrontPage, userView.userFrontPageLocation, true);
 
-            switch (choise)
-            {
+            Console.Clear();
+            Helpers.Helpers.MenuLogoOut(Start.x, Start.y);
 
-                case 0: // adress - ändra,lägg till, sätt ny main
-                    break;
-
-
-                case 1: // beställningar - se alla, status, kostnad , beställning gjord, när anländer ,välja för tydligare info, 
-                    break;
+            List<string> orderMsg = new List<string>() { "   Order list", "Press esc to return" };
+            Window window = new Window(",", Start.x + 40, Start.y + 12, orderMsg);
 
 
-                case 2: // betalning - se kort, ta bort, lägg till
-                    break;
+            UserProfileHelpers userProfileHelpers = new UserProfileHelpers();
+            int specifikOrder = userProfileHelpers.OrdersOut(orders, Start.x + 3, Start.y + 15, 20, true);
+
+            //Metod som hämtar och skriver ut ordern
 
 
-            }
+
+
+
+
+
 
 
         }

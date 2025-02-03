@@ -29,8 +29,8 @@ namespace WebbShoppen1._0.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=WebbShoppen1.0;Trusted_Connection=True; TrustServerCertificate=True");
-            // optionsBuilder.UseSqlServer("Server=tcp:runedbase.database.windows.net,1433;Initial Catalog=RuneSys24;Persist Security Info=False;User ID=Rune;Password=*SystemTILL2026!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            //optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=WebbShoppen1.0;Trusted_Connection=True; TrustServerCertificate=True");
+             optionsBuilder.UseSqlServer("Server=tcp:runedbase.database.windows.net,1433;Initial Catalog=RuneSys24;Persist Security Info=False;User ID=Rune;Password=*SystemTILL2026!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
     }
 }

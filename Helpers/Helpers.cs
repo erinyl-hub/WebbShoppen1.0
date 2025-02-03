@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WebbShoppen1._0.Models;
 using WebbShoppen1._0.TheWheel;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 
 namespace WebbShoppen1._0.Helpers
 {
@@ -63,8 +64,9 @@ namespace WebbShoppen1._0.Helpers
                         if (user.IsAdmin)
                         {
                             Start.user.IsAdmin = true;
-                            return;
+                            
                         }
+                        RegisterLoggIn();
                         return;
                     }
                 }
@@ -367,8 +369,10 @@ namespace WebbShoppen1._0.Helpers
         {
             List<string> objectsOnSaleList = new List<string>();
 
-            string onSale = $"ON SALE {productsOnSale[productNumber].ProductName} ";
+            string onSale = $"ON SALE  ";
+            string product = productsOnSale[productNumber].ProductName;
             objectsOnSaleList.Add(onSale);
+            objectsOnSaleList.Add(product);
             string price = $"For only:{Math.Round(productsOnSale[productNumber].ProductPrice - (double)productsOnSale[productNumber].DiscountAmount),2} $";
             objectsOnSaleList.Add(price);
 
@@ -403,7 +407,24 @@ namespace WebbShoppen1._0.Helpers
         }
 
 
+        public static void RegisterLoggIn()
+        {
+            Models.LogInRegistry logInRegistry = new Models.LogInRegistry()
+            {
+                UserId = Start.user.UserId,
+                UserType = Start.user.IsAdmin ? "Admin" : "User",
+                
+            };
 
+            AddToDb.Connection.RegisterLoggIn().InsertOne(logInRegistry);
+
+
+        }
+
+        //public string Id { get; set; } = Guid.NewGuid().ToString();
+        //public int UserId { get; set; }
+        //public DateTime LoggedInTime { get; set; } = DateTime.Now;
+        //public string UserType { get; set; }
 
 
 

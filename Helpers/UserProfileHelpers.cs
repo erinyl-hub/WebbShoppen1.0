@@ -11,22 +11,22 @@ namespace WebbShoppen1._0.Helpers
     {
 
 
-        public int ChoseAdress(List<Models.UserInfo> objektLista, int x, int y, /*List<string> info,*/ int visningsRader, bool chose)
+        public int ChoseAdress(List<Models.UserInfo> objektLista, int x, int y,  int visningsRader, bool chose)
         {
             int aktuellIndex = 0;
-            int offset = 0; // För att hålla reda på var vi är i listan när vi rullar
+            int offset = 0; 
 
 
-            //Window window = new Window("", Start.x + 30, Start.y + 10, info);
+
             ConsoleKey knapp;
             do
             {
 
-                //window.Draw(0, 0);
+
                 Console.SetCursorPosition(x, y - 1);
                 Console.Write("[Adress]         [Postal Code]           [City]             [Country]");
 
-                // Rita endast de synliga objekten
+
                 for (int i = 0; i < visningsRader && (offset + i) < objektLista.Count; i++)
                 {
                     int objektY = y + i;
@@ -74,14 +74,13 @@ namespace WebbShoppen1._0.Helpers
                 {
                     knapp = Console.ReadKey(true).Key;
 
-                    // Navigera mellan objekten
                     switch (knapp)
                     {
                         case ConsoleKey.UpArrow:
                             if (aktuellIndex > 0)
                             {
                                 aktuellIndex--;
-                                // Rulla upp om vi är högre än offset
+
                                 if (aktuellIndex < offset)
                                 {
                                     offset--;
@@ -93,7 +92,6 @@ namespace WebbShoppen1._0.Helpers
                             if (aktuellIndex < objektLista.Count - 1)
                             {
                                 aktuellIndex++;
-                                // Rulla ner om vi går utanför visningsområdet
                                 if (aktuellIndex >= offset + visningsRader)
                                 {
                                     offset++;
@@ -150,7 +148,7 @@ namespace WebbShoppen1._0.Helpers
 
                         List<string> info = new List<string>() { "Chose a card" };
                         int cardId = ChoseCardObjects(cardInfos, Start.x + 14, Start.y + 2 + 14, info, 10);
-                        
+
 
                         return;
 
@@ -169,7 +167,7 @@ namespace WebbShoppen1._0.Helpers
         private static int ChoseCardObjects(List<Models.CardInfo> objektLista, int x, int y, List<string> info, int visningsRader)
         {
             int aktuellIndex = 0;
-            int offset = 0; // För att hålla reda på var vi är i listan när vi rullar
+            int offset = 0; 
 
             Window window = new Window("", Start.x + 40, Start.y + 13, info);
             ConsoleKey knapp;
@@ -179,7 +177,7 @@ namespace WebbShoppen1._0.Helpers
 
                 window.Draw(0, 0);
 
-                // Rita endast de synliga objekten
+
                 for (int i = 0; i < visningsRader && (offset + i) < objektLista.Count; i++)
                 {
                     int objektY = y + i;
@@ -208,14 +206,12 @@ namespace WebbShoppen1._0.Helpers
 
                 knapp = Console.ReadKey(true).Key;
 
-                // Navigera mellan objekten
                 switch (knapp)
                 {
                     case ConsoleKey.UpArrow:
                         if (aktuellIndex > 0)
                         {
                             aktuellIndex--;
-                            // Rulla upp om vi är högre än offset
                             if (aktuellIndex < offset)
                             {
                                 offset--;
@@ -227,7 +223,7 @@ namespace WebbShoppen1._0.Helpers
                         if (aktuellIndex < objektLista.Count - 1)
                         {
                             aktuellIndex++;
-                            // Rulla ner om vi går utanför visningsområdet
+
                             if (aktuellIndex >= offset + visningsRader)
                             {
                                 offset++;
@@ -245,10 +241,110 @@ namespace WebbShoppen1._0.Helpers
             return objektLista[aktuellIndex].Id;
         }
 
-        public static void OrderCheck()
+        public int OrdersOut(List<Models.Order> objektLista, int x, int y, int visningsRader, bool chose)
         {
+            int aktuellIndex = 0;
+            int offset = 0;
 
+
+            ConsoleKey knapp;
+            do
+            {
+
+
+                Console.SetCursorPosition(x, y - 1);
+                Console.Write("[Order placed]        [Products]     [Cost]    [Shiping]        [Arraving]        [Status]");
+
+
+                for (int i = 0; i < visningsRader && (offset + i) < objektLista.Count; i++)
+                {
+                    int objektY = y + i;
+
+                    Console.SetCursorPosition(x, objektY);
+
+                    string status = "Processing";
+                    if (objektLista[offset + i].OrderUnderway) { status = "Underway"; }
+                    else if (objektLista[offset + i].OrderArrived) { status = "Arrived"; }
+                    string shiping = objektLista[offset + i].ShipingCost == 50 ? "Express" : "Reguler";
+                    string onlyDatePlaced = objektLista[offset + i].OrderDate.ToString("yyyy-MM-dd");
+                    string onlyDateArrive = objektLista[offset + i].ArrivalDate.ToString("yyyy-MM-dd");
+
+                    if ((offset + i) == aktuellIndex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("{0,-25} {1,-10} {2,-10} {3,-15} {4,-15} {5, -15}",
+                        $"> {onlyDatePlaced}",
+                        $"{objektLista[offset + i].ProductCount}",
+                        $"{Math.Round(objektLista[offset + i].TotalCost, 2)}",
+                        $"{shiping}",
+                        $"{onlyDateArrive}",
+                        $"[{status}]");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.WriteLine("{0,-25} {1,-10} {2,-10} {3,-15} {4,-15} {5, -15}",
+                        $"  {onlyDatePlaced}",
+                        $"{objektLista[offset + i].ProductCount}",
+                        $"{Math.Round(objektLista[offset + i].TotalCost, 2)}",
+                        $"{shiping}",
+                        $"{onlyDateArrive}",
+                        $"[{status}]");
+                    }
+                }
+
+                if (chose == true)
+                {
+                    knapp = Console.ReadKey(true).Key;
+
+
+                    switch (knapp)
+                    {
+                        case ConsoleKey.UpArrow:
+                            if (aktuellIndex > 0)
+                            {
+                                aktuellIndex--;
+
+                                if (aktuellIndex < offset)
+                                {
+                                    offset--;
+                                }
+                            }
+                            break;
+
+                        case ConsoleKey.DownArrow:
+                            if (aktuellIndex < objektLista.Count - 1)
+                            {
+                                aktuellIndex++;
+
+                                if (aktuellIndex >= offset + visningsRader)
+                                {
+                                    offset++;
+                                }
+                            }
+                            break;
+
+
+                        case ConsoleKey.Enter:
+                            {
+                                chose = false;
+
+                                break;
+                            }
+
+                        case ConsoleKey.Escape:
+                            {
+                                return -1;
+                            }
+                    }
+                }
+
+            } while (chose == true);
+
+            return objektLista[aktuellIndex].Id;
         }
+
+       
 
     }
 }
